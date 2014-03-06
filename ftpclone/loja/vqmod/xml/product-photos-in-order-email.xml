@@ -1,0 +1,57 @@
+<modification>
+	<id><![CDATA[Product pictures in order email]]></id>
+	<version><![CDATA[1.4]]></version>
+	<vqmver><![CDATA[2.3.2]]></vqmver>
+	<author><![CDATA[OC2PS]]></author>
+	<file name="catalog/view/theme/default/template/mail/order.tpl">
+		<operation>
+			<search position="before"><![CDATA[
+			<td style="font-size: 12px; border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; background-color: #EFEFEF; font-weight: bold; text-align: left; padding: 7px; color: #222222;"><?php echo $text_product; ?></td>
+			]]></search>
+			<add><![CDATA[
+			<td style="font-size: 12px; border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; background-color: #EFEFEF; font-weight: bold; text-align: left; padding: 7px; color: #222222;"><?php echo "Imagem"; ?></td>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+			<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 7px;"><?php echo $product['name']; ?>
+			]]></search>
+			<add><![CDATA[
+			<td style="font-size: 12px;border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: left; padding: 7px;"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" /></a>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[<?php echo $product['name']; ?>]]></search>
+			<add><![CDATA[<a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a>]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 7px;" colspan="4"><b><?php echo $total['title']; ?>:</b></td>]]></search>
+			<add><![CDATA[<td style="font-size: 12px;	border-right: 1px solid #DDDDDD; border-bottom: 1px solid #DDDDDD; text-align: right; padding: 7px;" colspan="5"><b><?php echo $total['title']; ?>:</b></td>]]></add>
+		</operation>
+	</file>
+	<file name="catalog/model/checkout/order.php">
+		<operation>
+			<search position="after"><![CDATA[$template = new Template();]]></search>
+			<add><![CDATA[$this->load->model('tool/image');]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[$option_data = array();]]></search>
+			<add><![CDATA[$product_query = $this->db->query("SELECT image FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product['product_id'] . "'");
+foreach ($product_query->rows as $prodquery) { 
+$image = $prodquery['image']; 
+}
+$thumb = $this->model_tool_image->resize($image, 60, 60);
+]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[$template->data['products'][] = array(]]></search>
+			<add><![CDATA['thumb'     => $thumb,
+			'href'    	 => $this->url->link('product/product', 'product_id=' . $product['product_id']),]]></add>
+		</operation>
+	</file>
+	
+	
+	
+	
+	
+</modification>

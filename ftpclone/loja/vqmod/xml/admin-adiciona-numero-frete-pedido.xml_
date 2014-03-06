@@ -1,0 +1,104 @@
+<modification>
+	<id>Adiciona número no frete do admin</id>
+	<version>1.0.0</version>
+	<vqmver>2.1.7</vqmver>
+	<author>triplot</author>
+	
+	
+
+  <file name="admin/controller/sale/order.php">
+	<operation>
+      <search position="replace" offset="14"><![CDATA[
+		if (isset($this->request->post['shipping_company'])) {
+      ]]></search>
+      <add><![CDATA[
+    	if (isset($this->request->post['shipping_company'])) {
+      		$this->data['shipping_company'] = $this->request->post['shipping_company'];
+    	} elseif (!empty($order_info)) { 
+			$this->data['shipping_company'] = $order_info['shipping_company'];
+		} else {
+      		$this->data['shipping_company'] = '';
+    	}
+		
+    	if (isset($this->request->post['shipping_company_id'])) {
+      		$this->data['shipping_company_id'] = $this->request->post['shipping_company_id'];
+    	} elseif (!empty($order_info)) { 
+			$this->data['shipping_company_id'] = $order_info['shipping_company_id'];
+		} else {
+      		$this->data['shipping_company_id'] = '';
+    	}		
+		
+      ]]></add>
+    </operation>
+	
+	
+	
+	<operation>
+      <search position="before"><![CDATA[
+		$this->data['shipping_company'] = $order_info['shipping_company'];
+      ]]></search>
+      <add><![CDATA[
+		$this->data['shipping_company_id'] = $order_info['shipping_company_id'];		
+      ]]></add>
+    </operation>
+	
+	
+	
+	
+	
+	<operation>
+      <search position="replace" offset="29"><![CDATA[
+		$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
+      ]]></search>
+      <add><![CDATA[
+					$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}{company_id}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
+				}
+
+				$find = array(
+					'{firstname}',
+					'{lastname}',
+					'{company}',
+					'{company_id}',
+					'{address_1}',
+					'{address_2}',
+					'{city}',
+					'{postcode}',
+					'{zone}',
+					'{zone_code}',
+					'{country}'
+				);
+
+				$replace = array(
+					'firstname' => $order_info['shipping_firstname'],
+					'lastname'  => $order_info['shipping_lastname'],
+					'company'   => $order_info['shipping_company'],
+					'company_id'   => $order_info['shipping_company_id'],
+					'address_1' => $order_info['shipping_address_1'],
+					'address_2' => $order_info['shipping_address_2'],
+					'city'      => $order_info['shipping_city'],
+					'postcode'  => $order_info['shipping_postcode'],
+					'zone'      => $order_info['shipping_zone'],
+					'zone_code' => $order_info['shipping_zone_code'],
+					'country'   => $order_info['shipping_country']
+				);
+      ]]></add>
+    </operation>
+	
+	
+	
+  </file>
+  
+  
+  
+  <file name="admin/view/template/sale/order_info.tpl">
+	<operation>
+      <search position="replace"><![CDATA[
+		<td><?php echo $shipping_company; ?></td>
+      ]]></search>
+      <add><![CDATA[
+		<td><?php echo $shipping_company_id; ?></td>		
+      ]]></add>
+    </operation>
+  </file>  
+    
+</modification>

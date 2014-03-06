@@ -1,0 +1,53 @@
+<modification>
+	<id>Ajusta Tradução Admin</id>
+	<version>1.0</version>
+	<vqmver>2.2.1</vqmver>
+	<author>Thiago Torres - thiago@triplot.com.br</author>
+
+	<file name="loja/catalog/language/portuguese-br/product/order.php">
+		<operation>
+			<search position="replace"><![CDATA[
+				$_['text_sale']                = 'Desconto:';
+			]]></search>
+			<add><![CDATA[
+				$_['text_sale']                = 'Desconto Pós Black Friday:';
+			]]></add>
+		</operation>
+	</file>
+
+	<file name="loja/catalog/language/portuguese-br/product/search.php">
+		<operation>
+			<search position="replace"><![CDATA[
+				$_['text_sale']                = 'Desconto:';
+			]]></search>
+			<add><![CDATA[
+				$_['text_sale']                = 'Desconto Pós Black Friday:';
+			]]></add>
+		</operation>
+	</file>
+
+	<file name="loja/catalog/language/portuguese-br/product/special.php">
+		<operation>
+			<search position="replace"><![CDATA[
+				$_['text_sale']                = 'Desconto:';
+			]]></search>
+			<add><![CDATA[
+				$_['text_sale']                = 'Desconto Pós Black Friday:';
+			]]></add>
+		</operation>
+	</file>
+
+	<file name="loja/catalog/language/portuguese-br/module/featured.php">
+		<operation>
+			<search position="replace"><![CDATA[
+				$_['text_sale'] = 'Desconto';
+			]]></search>
+			<add><![CDATA[
+				$_['text_sale'] = 'Desconto Pós Black Friday';
+			]]></add>
+		</operation>
+	</file>
+
+	
+	
+</modification>
