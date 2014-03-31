@@ -62,7 +62,7 @@ font-family: "Minha Fonte2", Arial, Verdana;
 
 
     function showfacebook() {
-      window.parent.document.getElementById("frcompupload").src = "http://localhost/casefouryou/1/?m="+document.getElementById("modelodocelular").value+"&l="+document.getElementById("layoutdacapinha").value;
+      window.parent.document.getElementById("frcompupload").src = "http://capasparaiphone.webca.com.br/casefouryou/1/?m="+document.getElementById("modelodocelular").value+"&l="+document.getElementById("layoutdacapinha").value;
 
       document.getElementById("imagensselecione").style.display = 'none';
       document.getElementById("p3desc").style.display = 'none';
@@ -71,7 +71,7 @@ font-family: "Minha Fonte2", Arial, Verdana;
 
 
     function showcomputador() {
-      window.parent.document.getElementById("frcompupload").src = "http://localhost/case4you/1/?m="+document.getElementById("modelodocelular").value+"&l="+document.getElementById("layoutdacapinha").value;
+      window.parent.document.getElementById("frcompupload").src = "http://capasparaiphone.webca.com.br/case4you/1/?m="+document.getElementById("modelodocelular").value+"&l="+document.getElementById("layoutdacapinha").value;
 
       document.getElementById("imagensselecione").style.display = 'none';
       document.getElementById("p3desc").style.display = 'none';
@@ -193,7 +193,7 @@ progress:after { content: '%'; }
                         <input onChange="selecionarmodelo(this)" type="radio" name="modelo" id="mgalaxy3" value="galaxy3">
                 </div>
                 <div style="float: left; text-align: left;padding-left: 5px; height: 90px;">
-                        <img style="width: 45px;" src="./img/galaxys3.jpg" alt="">
+                        <img style="width: 45px;" src="./img/galaxys3.png" alt="">
                 </div>
                 <div style="float: left; text-align: left; padding-left: 20px;margin-top: 5px;">
                         Galaxy S3
@@ -205,7 +205,7 @@ progress:after { content: '%'; }
                         <input onChange="selecionarmodelo(this)" type="radio" name="modelo" id="mgalaxy4" value="galaxy4">
                 </div>
                 <div style="float: left; text-align: left;padding-left: 5px; height: 90px;">
-                        <img style="width: 45px;" src="./img/galaxys4.jpg" alt="">
+                        <img style="width: 45px;" src="./img/galaxys4.png" alt="">
                 </div>
                 <div style="float: left; text-align: left; padding-left: 20px;margin-top: 5px;">
                         Galaxy S4
@@ -226,12 +226,12 @@ progress:after { content: '%'; }
         </div>
 
        <div style="float: left; text-align: center;">        <input onChange="selecionarmodelo(this)" type="radio" name="modelo" value="galaxy3" style="display: inline; float: none;position: relative; top: -85px;">
-          <img style="margin-left: 2px; margin-right: 5px; width: 55px; float: none;position: relative; top: 1px;" src="./img/galaxys3.jpg" alt="">
+          <img style="margin-left: 2px; margin-right: 5px; width: 55px; float: none;position: relative; top: 1px;" src="./img/galaxys3.png" alt="">
         <br />iphone4
         </div>
 
        <div style="float: left; text-align: center;">        <input onChange="selecionarmodelo(this)" type="radio" name="modelo" value="galaxy4" style="display: inline; float: none;position: relative; top: -85px;">
-          <img style="margin-left: 2px; margin-right: 5px; width: 55px; float: none;position: relative; top: 1px;" src="./img/galaxys4.jpg" alt="">
+          <img style="margin-left: 2px; margin-right: 5px; width: 55px; float: none;position: relative; top: 1px;" src="./img/galaxys4.png" alt="">
         <br />iphone41
 	</div>
 -->

@@ -20,7 +20,7 @@ else {*/
 
 <head>
 	<meta charset="utf-8" />
-	<title>Case4You - Monte sua capinha</title>
+	<title>Capas Personalizadas</title>
 
 	<!-- libs -->
 	<link rel="stylesheet" href="lib/jquery-ui.css" />
@@ -80,7 +80,7 @@ else {*/
 		$(document).ready(function(){
 	   	var response = '';
 	   	$.ajax({ type: "GET",
-	            url: "http://localhost/casefouryou/1/index2.php",
+	            url: "http://capasparaiphone.webca.com.br/casefouryou/1/index2.php",
 	            async: false,
 	            success : function(text)
 	            {
@@ -100,7 +100,7 @@ else {*/
 		$(document).ready(function(){
 	   	var response = '';
 	   	$.ajax({ type: "GET",
-	            url: "http://localhost/casefouryou/2/index.php?idalbum="+albumid,
+	            url: "http://capasparaiphone.webca.com.br/casefouryou/2/index.php?idalbum="+albumid,
 	            async: false,
 	            success : function(text)
 	            {
@@ -127,7 +127,7 @@ else {*/
 
 	   	var response = '';
 	   	$.ajax({ type: "GET",
-	            url: "http://localhost/instagram4you/instagram/home2.php",
+	            url: "http://capasparaiphone.webca.com.br/instagram4you/instagram/home2.php",
 	            async: false,
 	            success : function(text)
 	            {
@@ -170,8 +170,8 @@ else {*/
 		
 		<div id="accordion" style="text-align: left; height: 615px; width: 400px; float: right;">
 			<!-- passo 1 -->
-			<h3 class="passall pass1">&nbsp;
-    			<div class="c4ystepnumber">1</div>
+			<h3 class="passall pass1">
+    			<div class="c4ystepnumber" style="color: #1acdfb;">1</div>
   				<div class="fontc4y2 c4ysteptitle">SELECIONE O MODELO DE SEU CELULAR!</div>
   			</h3>
 
@@ -209,7 +209,7 @@ else {*/
 				                <input onChange="selecionarmodelo(this)" type="radio" name="modelo" id="mgalaxy3" value="2">
 				        </div>
 				        <div style="float: left; text-align: left;padding-left: 5px; height: 90px;">
-				                <img style="width: 45px;" src="./img/galaxys3.jpg" alt="">
+				                <img style="width: 45px;" src="./img/galaxys3.png" alt="">
 				        </div>
 				        <div class="fontc4y1" style="float: left; text-align: left; padding-left: 20px;margin-top: 5px;">
 				                Galaxy S3
@@ -221,7 +221,7 @@ else {*/
 				                <input onChange="selecionarmodelo(this)" type="radio" name="modelo" id="mgalaxy4" value="3">
 				        </div>
 				        <div style="float: left; text-align: left;padding-left: 5px; height: 90px;">
-				                <img style="width: 45px;" src="./img/galaxys4.jpg" alt="">
+				                <img style="width: 45px;" src="./img/galaxys4.png" alt="">
 				        </div>
 				        <div class="fontc4y1" style="float: left; text-align: left; padding-left: 20px;margin-top: 5px;">
 				                Galaxy S4
@@ -264,8 +264,8 @@ else {*/
 
 
 			<!-- passo 2 -->
-			<h3 class="passall pass2">&nbsp;
-    			<div class="c4ystepnumber">2</div>
+			<h3 class="passall pass2">
+    			<div class="c4ystepnumber" style="color: #4faad6;">2</div>
   				<div class="fontc4y2 c4ysteptitle">ESCOLHA O TIPO DE LAYOUT!</div>
   			</h3>
 
@@ -295,8 +295,8 @@ else {*/
 
 
 			<!-- passo 3 -->
-			<h3 class="passall pass3">&nbsp;
-    			<div class="c4ystepnumber">3</div>
+			<h3 class="passall pass3">
+    			<div class="c4ystepnumber" style="color: #0c719c;">3</div>
   				<div class="fontc4y2 c4ysteptitle">SELECIONE SUAS FOTOS!</div>
   			</h3>
 
@@ -359,8 +359,8 @@ else {*/
 
 
 			<!-- passo 4 -->
-			<h3 class="passall pass4">&nbsp;
-    			<div class="c4ystepnumber">4</div>
+			<h3 class="passall pass4">
+    			<div class="c4ystepnumber" style="color: #0d4c6c;">4</div>
   				<div class="fontc4y2 c4ysteptitle">APLICAR FILTRO DE CORES!</div>
   			</h3>
 
@@ -461,7 +461,7 @@ else {*/
 		<div id="ircheckout2"  style="width: 360px;
 			float: right;
 			margin-right: 10px;
-			border: 1px solid #b9e4f9;
+			border: 1px solid #53ccdd;
 			border-radius: 5px;
 			padding-top: 10px;
 			padding-bottom: 10px;

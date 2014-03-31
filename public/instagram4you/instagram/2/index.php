@@ -385,7 +385,7 @@ switch ($ql) {
 <div style="display: block; float: left; width: 350px; border-left-style: solid; border-left-width: 1px; border-left-color: rgb(204, 204, 204); height: 540px; text-align: center; background-position: 15px 10px; background-repeat: no-repeat no-repeat;">
     	<div id="divmask" style="padding: 0px; height: <?php echo $mh; ?>px; width: 340px; margin-left: 10px; background-size: 340px; background-repeat: no-repeat no-repeat;">
     		<div id="divl1" ondrop="drop(event)" ondragover="allowDrop(event)" style="width: 100%; height: 100%; overflow: hidden;text-align: center;
-	align: middle; border: solid 1px #6aa11a;"></div>
+	align: middle; border: solid 1px #4faad6;"></div>
   	</div>
     </div>
 <!-- FIM LAYOUT 1 -->
@@ -396,10 +396,10 @@ switch ($ql) {
 <!-- LAYOUT 2 -->
 <div style="display: block; float: left; width: 350px; border-left-style: solid; border-left-width: 1px; border-left-color: rgb(204, 204, 204); height: 540px; text-align: center; background-position: 15px 10px; background-repeat: no-repeat no-repeat;">
         <div id="divmask" style="padding: 0px; height: <?php echo $mh; ?>px; width: 340px; margin-left: 10px; background-size: 340px; background-repeat: no-repeat no-repeat;">
-                <div id="divl2a" ondrop="dropl2(event)" ondragover="allowDrop(event)" style="float: left; border: solid 1px #6aa11a; width: <?php echo $mw2; ?>px; height: <?php echo $mh2; ?>px; overflow: hidden;text-align: center;
+                <div id="divl2a" ondrop="dropl2(event)" ondragover="allowDrop(event)" style="float: left; border: solid 1px #4faad6; width: <?php echo $mw2; ?>px; height: <?php echo $mh2; ?>px; overflow: hidden;text-align: center;
         align: middle;"></div>
 
-		<div id="divl2b" ondrop="dropl2(event)" ondragover="allowDrop(event)" style="float: left; border: solid 1px #6aa11a; width: <?php echo $mw2; ?>px; height: <?php echo $mh2; ?>px; overflow: hidden;text-align: center;
+		<div id="divl2b" ondrop="dropl2(event)" ondragover="allowDrop(event)" style="float: left; border: solid 1px #4faad6; width: <?php echo $mw2; ?>px; height: <?php echo $mh2; ?>px; overflow: hidden;text-align: center;
         align: middle;"></div>
         </div>
     </div>
@@ -412,53 +412,53 @@ switch ($ql) {
 <div style="display: block; float: left; width: 350px; border-left-style: solid; border-left-width: 1px; border-left-color: rgb(204, 204, 204); height: 540px; text-align: center; background-position: 15px 10px; background-repeat: no-repeat no-repeat;">
         <div id="divmask" style="padding: 0px; height: <?php echo $mh; ?>px; width: 340px; margin-left: 10px; background-size: 340px; background-repeat: no-repeat no-repeat;">
 
-                <div id="divl15b1" ondrop="dropl15b(event)" ondragover="allowDrop(event)" style="float: left; border: solid 1px #6aa11a; width: <?php echo $mw15b; ?>px; height: <?php echo $mh15b; ?>px; overflow: hidden;text-align: center;
+                <div id="divl15b1" ondrop="dropl15b(event)" ondragover="allowDrop(event)" style="float: left; border: solid 1px #4faad6; width: <?php echo $mw15b; ?>px; height: <?php echo $mh15b; ?>px; overflow: hidden;text-align: center;
         align: middle;"></div>
 
-		<div id="divl15b2" ondrop="dropl15b(event)" ondragover="allowDrop(event)" style="float: left; border: solid 1px #6aa11a; width: <?php echo $mw15b; ?>px; height: <?php echo $mh15b; ?>px; overflow: hidden;text-align: center;
+		<div id="divl15b2" ondrop="dropl15b(event)" ondragover="allowDrop(event)" style="float: left; border: solid 1px #4faad6; width: <?php echo $mw15b; ?>px; height: <?php echo $mh15b; ?>px; overflow: hidden;text-align: center;
         align: middle;"></div>
 
-                <div id="divl15a1" ondrop="dropl15a(event)" ondragover="allowDrop(event)" style="float: right; border: solid 1px #6aa11a; width: <?php echo $mw15a; ?>px; height: <?php echo $mh15a; ?>px; overflow: hidden;text-align: center;
+                <div id="divl15a1" ondrop="dropl15a(event)" ondragover="allowDrop(event)" style="float: right; border: solid 1px #4faad6; width: <?php echo $mw15a; ?>px; height: <?php echo $mh15a; ?>px; overflow: hidden;text-align: center;
         align: middle;"></div>
 
-                <div id="divl15b3" ondrop="dropl15b(event)" ondragover="allowDrop(event)" style="float: left; border: solid 1px #6aa11a; width: <?php echo $mw15b; ?>px; height: <?php echo $mh15b; ?>px; overflow: hidden;text-align: center;
+                <div id="divl15b3" ondrop="dropl15b(event)" ondragover="allowDrop(event)" style="float: left; border: solid 1px #4faad6; width: <?php echo $mw15b; ?>px; height: <?php echo $mh15b; ?>px; overflow: hidden;text-align: center;
         align: middle;"></div>
 
-                <div id="divl15b4" ondrop="dropl15b(event)" ondragover="allowDrop(event)" style="float: left; border: solid 1px #6aa11a; width: <?php echo $mw15b; ?>px; height: <?php echo $mh15b; ?>px; overflow: hidden;text-align: center;
-        align: middle;"></div>
-
-
-
-		<div id="divl15a2" ondrop="dropl15a(event)" ondragover="allowDrop(event)" style="float: left; border: solid 1px #6aa11a; width: <?php echo $mw15a; ?>px; height: <?php echo $mh15a; ?>px; overflow: hidden;text-align: center;
-        align: middle;"></div>
-
-                <div id="divl15b5" ondrop="dropl15b(event)" ondragover="allowDrop(event)" style="float: right; border: solid 1px #6aa11a; width: <?php echo $mw15b; ?>px; height: <?php echo $mh15b; ?>px; overflow: hidden;text-align: center;
-        align: middle;"></div>
-
-                <div id="divl15b6" ondrop="dropl15b(event)" ondragover="allowDrop(event)" style="float: right; border: solid 1px #6aa11a; width: <?php echo $mw15b; ?>px; height: <?php echo $mh15b; ?>px; overflow: hidden;text-align: center;
-        align: middle;"></div>
-
-                <div id="divl15b7" ondrop="dropl15b(event)" ondragover="allowDrop(event)" style="float: right; border: solid 1px #6aa11a; width: <?php echo $mw15b; ?>px; height: <?php echo $mh15b; ?>px; overflow: hidden;text-align: center;
-        align: middle;"></div>
-
-                <div id="divl15b8" ondrop="dropl15b(event)" ondragover="allowDrop(event)" style="float: right; border: solid 1px #6aa11a; width: <?php echo $mw15b; ?>px; height: <?php echo $mh15b; ?>px; overflow: hidden;text-align: center;
+                <div id="divl15b4" ondrop="dropl15b(event)" ondragover="allowDrop(event)" style="float: left; border: solid 1px #4faad6; width: <?php echo $mw15b; ?>px; height: <?php echo $mh15b; ?>px; overflow: hidden;text-align: center;
         align: middle;"></div>
 
 
 
-                <div id="divl15b9" ondrop="dropl15b(event)" ondragover="allowDrop(event)" style="float: left; border: solid 1px #6aa11a; width: <?php echo $mw15b; ?>px; height: <?php echo $mh15b; ?>px; overflow: hidden;text-align: center;
+		<div id="divl15a2" ondrop="dropl15a(event)" ondragover="allowDrop(event)" style="float: left; border: solid 1px #4faad6; width: <?php echo $mw15a; ?>px; height: <?php echo $mh15a; ?>px; overflow: hidden;text-align: center;
         align: middle;"></div>
 
-                <div id="divl15b10" ondrop="dropl15b(event)" ondragover="allowDrop(event)" style="float: left; border: solid 1px #6aa11a; width: <?php echo $mw15b; ?>px; height: <?php echo $mh15b; ?>px; overflow: hidden;text-align: center;
+                <div id="divl15b5" ondrop="dropl15b(event)" ondragover="allowDrop(event)" style="float: right; border: solid 1px #4faad6; width: <?php echo $mw15b; ?>px; height: <?php echo $mh15b; ?>px; overflow: hidden;text-align: center;
         align: middle;"></div>
 
-                <div id="divl15a3" ondrop="dropl15a(event)" ondragover="allowDrop(event)" style="float: right; border: solid 1px #6aa11a; width: <?php echo $mw15a; ?>px; height: <?php echo $mh15a; ?>px; overflow: hidden;text-align: center;
+                <div id="divl15b6" ondrop="dropl15b(event)" ondragover="allowDrop(event)" style="float: right; border: solid 1px #4faad6; width: <?php echo $mw15b; ?>px; height: <?php echo $mh15b; ?>px; overflow: hidden;text-align: center;
         align: middle;"></div>
 
-                <div id="divl15b11" ondrop="dropl15b(event)" ondragover="allowDrop(event)" style="float: left; border: solid 1px #6aa11a; width: <?php echo $mw15b; ?>px; height: <?php echo $mh15b; ?>px; overflow: hidden;text-align: center;
+                <div id="divl15b7" ondrop="dropl15b(event)" ondragover="allowDrop(event)" style="float: right; border: solid 1px #4faad6; width: <?php echo $mw15b; ?>px; height: <?php echo $mh15b; ?>px; overflow: hidden;text-align: center;
         align: middle;"></div>
 
-                <div id="divl15b12" ondrop="dropl15b(event)" ondragover="allowDrop(event)" style="float: left; border: solid 1px #6aa11a; width: <?php echo $mw15b; ?>px; height: <?php echo $mh15b; ?>px; overflow: hidden;text-align: center;
+                <div id="divl15b8" ondrop="dropl15b(event)" ondragover="allowDrop(event)" style="float: right; border: solid 1px #4faad6; width: <?php echo $mw15b; ?>px; height: <?php echo $mh15b; ?>px; overflow: hidden;text-align: center;
+        align: middle;"></div>
+
+
+
+                <div id="divl15b9" ondrop="dropl15b(event)" ondragover="allowDrop(event)" style="float: left; border: solid 1px #4faad6; width: <?php echo $mw15b; ?>px; height: <?php echo $mh15b; ?>px; overflow: hidden;text-align: center;
+        align: middle;"></div>
+
+                <div id="divl15b10" ondrop="dropl15b(event)" ondragover="allowDrop(event)" style="float: left; border: solid 1px #4faad6; width: <?php echo $mw15b; ?>px; height: <?php echo $mh15b; ?>px; overflow: hidden;text-align: center;
+        align: middle;"></div>
+
+                <div id="divl15a3" ondrop="dropl15a(event)" ondragover="allowDrop(event)" style="float: right; border: solid 1px #4faad6; width: <?php echo $mw15a; ?>px; height: <?php echo $mh15a; ?>px; overflow: hidden;text-align: center;
+        align: middle;"></div>
+
+                <div id="divl15b11" ondrop="dropl15b(event)" ondragover="allowDrop(event)" style="float: left; border: solid 1px #4faad6; width: <?php echo $mw15b; ?>px; height: <?php echo $mh15b; ?>px; overflow: hidden;text-align: center;
+        align: middle;"></div>
+
+                <div id="divl15b12" ondrop="dropl15b(event)" ondragover="allowDrop(event)" style="float: left; border: solid 1px #4faad6; width: <?php echo $mw15b; ?>px; height: <?php echo $mh15b; ?>px; overflow: hidden;text-align: center;
         align: middle;"></div>
 </div>
 

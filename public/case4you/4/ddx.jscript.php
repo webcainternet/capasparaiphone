@@ -11,12 +11,12 @@ function drag(ev)
 
 function saveposition(posicao, imagemurl)
 {
-    document.getElementById("invfr"+posicao).src="http://localhost/case4you/save.posicao.php?idcsession=<?php echo $idcsession; ?>&modelo=<?php echo $gmodelo; ?>&layout=<?php echo $glayout; ?>&posicao="+posicao+"&imagem="+imagemurl;
+    document.getElementById("invfr"+posicao).src="http://capasparaiphone.webca.com.br/case4you/save.posicao.php?idcsession=<?php echo $idcsession; ?>&modelo=<?php echo $gmodelo; ?>&layout=<?php echo $glayout; ?>&posicao="+posicao+"&imagem="+imagemurl;
 }
 
 function saveposition2(posicao, imagemurl, nheight, nwidth, nleft, ntop)
 {
-    document.getElementById("invfr"+posicao).src="http://localhost/case4you/save.posicao2.php?idcsession=<?php echo $idcsession; ?>&modelo=<?php echo $gmodelo; ?>&layout=<?php echo $glayout; ?>&posicao="+posicao+"&imagem="+imagemurl+"&nheight="+nheight+"&nwidth="+nwidth+"&nleft="+nleft+"&ntop="+ntop;
+    document.getElementById("invfr"+posicao).src="http://capasparaiphone.webca.com.br/case4you/save.posicao2.php?idcsession=<?php echo $idcsession; ?>&modelo=<?php echo $gmodelo; ?>&layout=<?php echo $glayout; ?>&posicao="+posicao+"&imagem="+imagemurl+"&nheight="+nheight+"&nwidth="+nwidth+"&nleft="+nleft+"&ntop="+ntop;
 }
 
 function drop(ev, posicao)

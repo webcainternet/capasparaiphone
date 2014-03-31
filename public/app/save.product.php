@@ -226,7 +226,7 @@ if (isset($novoid)) {
 					  $idcsession = $idsession;
 
 					
-					header('Location: http://localhost/index.php?route=product/productcustom&product_id='.$novoid);
+					header('Location: http://capasparaiphone.webca.com.br/index.php?route=product/productcustom&product_id='.$novoid);
 				}
 			}
 		}

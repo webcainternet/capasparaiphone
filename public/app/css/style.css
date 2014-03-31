@@ -61,7 +61,7 @@ background-color: transparent;
   width: 320px;
   margin-left: 5px;
   padding: 5px;
-  color: #6aa11a;
+  color: #FFFFFF;
   font-size: 14px;
   font-weight: bold;
   margin-top: 2px;
@@ -76,12 +76,12 @@ background-color: transparent;
   float: left;
   width: 15px;
   height: 20px;
-  background-color: #6aa11a;
+  background-color: #FFFFFF;
   border-radius: 20px;
   padding: 5px;
   padding-left: 10px;
   padding-top: 5px;
-  color: #FFFFFF;
+  color: #6aa11a;
   font-size: 14px;
   font-weight: bold;
 }
@@ -105,7 +105,7 @@ background-color: transparent;
 }
 
 .pass1 {
-  background-color: #b9e4f9;
+  background-color: #53ccdd;
 }
 
 .pass2 {
