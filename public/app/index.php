@@ -80,7 +80,7 @@ else {*/
 		$(document).ready(function(){
 	   	var response = '';
 	   	$.ajax({ type: "GET",
-	            url: "http://capasparaiphone.webca.com.br/casefouryou/1/index2.php",
+	            url: "http://localhost/casefouryou/1/index2.php",
 	            async: false,
 	            success : function(text)
 	            {
@@ -100,7 +100,7 @@ else {*/
 		$(document).ready(function(){
 	   	var response = '';
 	   	$.ajax({ type: "GET",
-	            url: "http://capasparaiphone.webca.com.br/casefouryou/2/index.php?idalbum="+albumid,
+	            url: "http://localhost/casefouryou/2/index.php?idalbum="+albumid,
 	            async: false,
 	            success : function(text)
 	            {
@@ -127,7 +127,7 @@ else {*/
 
 	   	var response = '';
 	   	$.ajax({ type: "GET",
-	            url: "http://capasparaiphone.webca.com.br/instagram4you/instagram/home2.php",
+	            url: "http://localhost/instagram4you/instagram/home2.php",
 	            async: false,
 	            success : function(text)
 	            {
@@ -168,7 +168,7 @@ else {*/
 
 	<div class="wrap-app">
 		
-		<div id="accordion" style="text-align: left; height: 615px; width: 400px; float: right;">
+		<div id="accordion" style="text-align: left; height: 615px; width: 400px; float: left;">
 			<!-- passo 1 -->
 			<h3 class="passall pass1">
     			<div class="c4ystepnumber" style="color: #1acdfb;">1</div>
@@ -416,8 +416,8 @@ else {*/
 
 		<div id="divcapinha" onmouseout="mostramascarasup()" style="width: 360px;
 			height: 564px;
-			float: right;
-			margin-right: 10px;
+			float: left;
+			margin-left: 10px;
 			border: 1px solid #FFFFFF;
 			border-radius: 5px;
 			padding-top: 10px;

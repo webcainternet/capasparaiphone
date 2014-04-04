@@ -89,7 +89,7 @@ background-color: transparent;
       goto4();
       document.getElementById("filtro1").style.display = 'none';
       document.getElementById("filtro2").style.display = 'block';
-      document.getElementById("frcompletar").src = "http://capasparaiphone.webca.com.br/case4you/3/index.php?idcsession=<?php echo $idcsession; ?>&m="+document.getElementById("modelodocelular").value+"&l="+document.getElementById("layoutdacapinha").value;
+      document.getElementById("frcompletar").src = "http://localhost/case4you/3/index.php?idcsession=<?php echo $idcsession; ?>&m="+document.getElementById("modelodocelular").value+"&l="+document.getElementById("layoutdacapinha").value;
     }
 
 
@@ -111,7 +111,7 @@ background-color: transparent;
 
 
     function showfacebook() {
-      document.getElementById("frcompupload").src = "http://capasparaiphone.webca.com.br/casefouryou/1/index.php?m="+document.getElementById("modelodocelular").value+"&l="+document.getElementById("layoutdacapinha").value;
+      document.getElementById("frcompupload").src = "http://localhost/casefouryou/1/index.php?m="+document.getElementById("modelodocelular").value+"&l="+document.getElementById("layoutdacapinha").value;
 
       document.getElementById("imagensselecione").style.display = 'none';
       document.getElementById("p3desc").style.display = 'none';
@@ -121,7 +121,7 @@ background-color: transparent;
     }
 
     function showinstagram() {
-      document.getElementById("frcompupload").src = "http://capasparaiphone.webca.com.br/instagram4you/instagram/1/?m="+document.getElementById("modelodocelular").value+"&l="+document.getElementById("layoutdacapinha").value;
+      document.getElementById("frcompupload").src = "http://localhost/instagram4you/instagram/1/?m="+document.getElementById("modelodocelular").value+"&l="+document.getElementById("layoutdacapinha").value;
 
       document.getElementById("imagensselecione").style.display = 'none';
       document.getElementById("p3desc").style.display = 'none';
@@ -131,7 +131,7 @@ background-color: transparent;
     }
 
     function showcomputador() {
-      document.getElementById("frcompupload").src = "http://capasparaiphone.webca.com.br/case4you/4/?m="+document.getElementById("modelodocelular").value+"&l="+document.getElementById("layoutdacapinha").value;
+      document.getElementById("frcompupload").src = "http://localhost/case4you/4/?m="+document.getElementById("modelodocelular").value+"&l="+document.getElementById("layoutdacapinha").value;
 
       document.getElementById("imagensselecione").style.display = 'none';
       document.getElementById("p3desc").style.display = 'none';

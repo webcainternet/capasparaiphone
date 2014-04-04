@@ -121,7 +121,7 @@ padding: 6px 6px 6px 6px;
 box-shadow: 1px 1px 4px rgba(0,0,0,0.16);
 font-size: 14px;
 ">
-			<img id="drag<?php echo $ic; ?>" src="http://capasparaiphone.webca.com.br/case4you/1/uploads/<?php echo "$entry";?>" draggable="true"
+			<img id="drag<?php echo $ic; ?>" src="http://localhost/case4you/1/uploads/<?php echo "$entry";?>" draggable="true"
 			ondragstart="drag(event)" style="max-width:100%; max-height:100%;">
 		</div>
 

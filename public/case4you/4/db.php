@@ -1,5 +1,5 @@
 <?php
-$mysql_hostname = "capasparaiphone.webca.com.br";
+$mysql_hostname = "localhost";
 $mysql_user = "username";
 $mysql_password = "password";
 $mysql_database = "database";
