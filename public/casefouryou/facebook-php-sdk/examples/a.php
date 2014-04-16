@@ -7,12 +7,12 @@ require '../src/facebook.php';
 * ID da App, vocé obteve isso na ultima
 * página de geração do seu aplicativo no facebook
 */
-$App_ID = '533870426700085';
+$App_ID = '576622305778855';
 /*
 * App Secret, você obteve isso na ultima
 * página de geração do seu aplicativo no facebook
 */
-$App_Secret = 'd61ec652232c75af2667e8a2f5c2ba88';
+$App_Secret = 'd5fa3ee39357eb566807b7b742b7323e';
  
 //Instanciando o Objeto da classe do facebook
 $facebook = new Facebook(array(
