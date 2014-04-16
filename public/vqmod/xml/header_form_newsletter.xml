@@ -1,0 +1,44 @@
+<modification>
+
+	<id>E-mail Manager Formulario Header</id>
+	<version>1.0.0</version>
+	<vqmver>2.1</vqmver>
+	<author>Thiago Torres</author>
+		
+	<file name="catalog/view/theme/dilecta/template/common/header.tpl">
+		<operation>
+			<search position="replace"><![CDATA[
+			<div class="newsletter-form">
+			]]></search>
+			<add><![CDATA[
+			<div class="newsletter-form">
+			
+			
+			
+			<!-- início do formulário -->
+<form action="http://app.emailmanager.com/form/" method="POST" name="formClient" accept-charset="ISO-8859-1">
+<table>
+<tr>
+<td class="label">Cadastre seu E-mail</td>
+</tr>
+<tr>
+<td>
+<input type="text" name="email" id="email" value="" style="width: 200px;" maxlength="255"> <input type="submit" name="submit" value="Ok" class="botao"></td>
+</tr>
+<tr>
+<td class="label-menor">Receba novidades e promoções no seu e-mail</td>
+</tr>
+
+</table>
+<input type="hidden" name="_form_data" value="16184.5.2.2.0.39fa9">
+<input type="hidden" name="_form_charset" value="ISO-8859-1"><input type="hidden" name="_form_urlOut" value="http://www.capasparaiphone.com.br/loja/confirmacao-de-cadastro-de-newsletter"><input type="hidden" name="_form_urlError" value="http://www.capasparaiphone.com.br/loja/erro-no-cadastro-de-e-mail"><input type="hidden" name="_form_origin" value="9">
+
+</form>
+<!-- fim do formulário -->
+			
+								
+				]]></add>
+		</operation>
+	</file>
+
+</modification>

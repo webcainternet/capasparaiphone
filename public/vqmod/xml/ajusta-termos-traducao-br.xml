@@ -1,0 +1,59 @@
+<modification>
+	<id>Ajusta Tradução Admin</id>
+	<version>1.0</version>
+	<vqmver>2.2.1</vqmver>
+	<author>Thiago Torres - thiago@triplot.com.br</author>
+
+	<!-- Inicio: Admin/Model/Sale/Order -->
+	<file name="admin/language/portuguese-br/sale/order.php">
+		<operation>
+			<search position="replace"><![CDATA[
+				$_['text_fax']                = 'Fax:';
+			]]></search>
+			<add><![CDATA[
+				$_['text_fax']                = 'Telefone para Contato:';
+			]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[
+				$_['text_telephone']          = 'Telefone:';
+			]]></search>
+			<add><![CDATA[
+				$_['text_telephone']          = 'Celular:';
+			]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[
+				$_['text_company_id']                         = 'ID da empresa:';
+			]]></search>
+			<add><![CDATA[
+				$_['text_company_id']                         = 'Número:';
+			]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[
+				$_['entry_company_id']                        = 'ID da empresa:';
+			]]></search>
+			<add><![CDATA[
+				$_['entry_company_id']                        = 'Número:';
+			]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[
+				$_['text_address_2']          = 'Complemento:';
+			]]></search>
+			<add><![CDATA[
+				$_['text_address_2']          = 'Bairro:';
+			]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[
+				$_['entry_address_2']         = 'Complemento:';
+			]]></search>
+			<add><![CDATA[
+				$_['entry_address_2']         = 'Bairro:';
+			]]></add>
+		</operation>
+	</file>
+	<!-- Fim: Admin/Model/Sale/Order -->
+</modification>

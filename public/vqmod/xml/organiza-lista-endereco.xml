@@ -1,0 +1,104 @@
+<modification>
+
+	<id>Aumenta tamanho dos campos form</id>
+	<version>1.0.0</version>
+	<vqmver>2.1</vqmver>
+	<author>Thiago Torres</author>
+	
+	<!--
+	<file name="catalog/controller/account/address.php">
+		<operation>
+			<search position="replace" offset="28"><![CDATA[
+      $format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
+			]]></search>
+			<add><![CDATA[
+				$format = '{firstname} {lastname}' . "\n" . '{address_1} {numero}' . "\n" . '{complemento}' . "\n" . '{address_2}' . "\n" . '{postcode}' . "\n" . '{city}' . " / " .'{zone}' . "\n" . '{country}';
+			}
+		
+    		$find = array(
+	  		'{firstname}',
+	  		'{lastname}',
+      			'{address_1}',
+      			'{numero}',
+      			'{complemento}',
+      			'{address_2}',
+     			'{city}',
+      			'{postcode}',
+      			'{zone}',
+			'{zone_code}',
+      			'{country}'
+			);
+	
+			$replace = array(
+	  		'firstname' => $result['firstname'],
+	  		'lastname'  => $result['lastname'],
+      			'address_1' => $result['address_1'],
+      			'numero' => $result['numero'],
+      			'complemento' => $result['complemento'],
+      			'address_2' => $result['address_2'],
+      			'city'      => $result['city'],
+      			'postcode'  => $result['postcode'],
+      			'zone'      => $result['zone'],
+			'zone_code' => $result['zone_code'],
+      			'country'   => $result['country']  
+			);
+			]]></add>
+		</operation>
+	</file>
+	-->
+	
+	
+	
+	
+	
+	<file name="catalog/view/theme/dilecta/template/checkout/checkout.tpl">
+		<operation>
+			<search position="replace"><![CDATA[
+				<div id="payment-address">
+			]]></search>
+			<add><![CDATA[
+				<div id="payment-address" style="display: none">
+			]]></add>
+		</operation>
+		
+		<operation>
+			<search position="replace"><![CDATA[
+				$('#payment-address .checkout-content').slideDown('slow');
+			]]></search>
+			<add><![CDATA[
+				$("#payment-existing select").prop("selectedIndex", $("#shipping-existing select").prop("selectedIndex"));
+				$('#payment-address #button-payment').click();
+				$('#button-payment-address').click();
+			]]></add>
+		</operation>
+	</file>
+	
+	
+		
+	<!--
+	<file name="catalog/view/theme/dilecta/template/checkout/shipping_address.tpl">
+		<operation>
+			<search position="replace" offset="11"><![CDATA[
+      <div id="shipping-existing">
+			]]></search>
+			<add><![CDATA[
+<div id="shipping-existing">
+  <select name="address_id" style="width: 100%; margin-bottom: 15px; height:70px" size="50">
+    <?php foreach ($addresses as $address) { ?>
+    <?php if ($address['address_id'] == $address_id) { ?>
+    <option value="<?php echo $address['address_id']; ?>" selected="selected"><?php echo $address['firstname']; ?> <?php echo $address['lastname']; ?>, <?php echo $address['address_1']; ?> <?php echo $address['company_id']; ?> <?php echo $address['company']; ?>, <?php echo $address['city']; ?>, <?php echo $address['zone']; ?>, <?php echo $address['country']; ?></option>
+    <?php } else { ?>
+    <option value="<?php echo $address['address_id']; ?>"><?php echo $address['firstname']; ?> <?php echo $address['lastname']; ?>, <?php echo $address['address_1']; ?> <?php echo $address['company_id']; ?> <?php echo $address['company']; ?>, <?php echo $address['city']; ?>, <?php echo $address['zone']; ?>, <?php echo $address['country']; ?></option>
+    <?php } ?>
+    <?php } ?>
+  </select>
+</div>
+			]]></add>
+		</operation>
+	</file>
+	-->
+	
+	
+		
+	
+</modification>

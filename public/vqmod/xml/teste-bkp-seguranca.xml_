@@ -1,0 +1,2900 @@
+<modification>
+	<id>Campos para cadastro do Brasil (Sexo, Data de Nascimento, CPF, RG, CNPJ, Razão Social, Inscrição Estadual, Apelido p/ Endereço, Número e Complemento)</id>
+	<version>1.0</version>
+	<vqmver>2.2.1</vqmver>
+	<author>Thiago Torres - thiago@triplot.com.br</author>
+	<!-- Inicio: System/Library/Customer -->
+	<file name="system/library/customer.php">
+		<operation>
+			<search position="after" index="1"><![CDATA[private $address_id;]]></search>
+			<add><![CDATA[
+				private $sexo;
+				private $cpf;
+				private $rg;
+				private $cnpj;
+				private $razao_social;
+				private $inscricao_estadual;
+				private $data_nascimento;
+				
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1,2"><![CDATA[$this->address_id = $customer_query->row['address_id'];]]></search>
+			<add><![CDATA[
+				if($this->config->get('fields_register_brazil_status')){
+					$this->sexo               = $customer_query->row['sexo'];
+					$this->cpf                = $customer_query->row['cpf'];
+					$this->rg                 = $customer_query->row['rg'];
+					$this->cnpj               = $customer_query->row['cnpj'];
+					$this->razao_social       = $customer_query->row['razao_social'];
+					$this->inscricao_estadual = $customer_query->row['inscricao_estadual'];
+					$this->data_nascimento    = $customer_query->row['data_nascimento'];
+					
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1"><![CDATA[$this->address_id = '';]]></search>
+			<add><![CDATA[
+				if($this->config->get('fields_register_brazil_status')){
+					$this->sexo               = '';
+					$this->cpf                = '';
+					$this->rg                 = '';
+					$this->cnpj               = '';
+					$this->razao_social       = '';
+					$this->inscricao_estadual = '';
+					$this->data_nascimento    = '';
+					
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before" index="1"><![CDATA[public function getBalance() {]]></search>
+			<add><![CDATA[
+
+				public function getSexo() {
+					return $this->sexo;
+				}
+
+				public function getCpf() {
+					return $this->cpf;
+				}
+
+				public function getRg() {
+					return $this->rg;
+				}
+
+				public function getCnpj() {
+					return $this->cnpj;
+				}
+
+				public function getRazaoSocial() {
+					return $this->razao_social;
+				}
+
+				public function getInscricaoEstadual() {
+					return $this->inscricao_estadual;
+				}
+				
+				public function getDataNascimento() {
+					return $this->data_nascimento;
+				}
+								
+				
+				
+			]]></add>
+		</operation>
+	</file>
+	<!-- Fim: System/Library/Customer -->
+
+	<!-- Inicio: Admin/Model/Sale/Order -->
+	<file name="admin/model/sale/order.php">
+		<operation>
+			<search position="after" index="1"><![CDATA['fax'                     => $order_query->row['fax'],]]></search>
+			<add><![CDATA[
+				'sexo'                     => ($this->config->get('fields_register_brazil_status')) ? $order_query->row['sexo'] : '',
+				'data_nascimento'          => ($this->config->get('fields_register_brazil_status')) ? $order_query->row['data_nascimento'] : '',
+				'cpf'                      => ($this->config->get('fields_register_brazil_status')) ? $order_query->row['cpf'] : '',
+				'rg'                       => ($this->config->get('fields_register_brazil_status')) ? $order_query->row['rg'] : '',
+				'cnpj'                     => ($this->config->get('fields_register_brazil_status')) ? $order_query->row['cnpj'] : '',
+				'razao_social'             => ($this->config->get('fields_register_brazil_status')) ? $order_query->row['razao_social'] : '',
+				'inscricao_estadual'       => ($this->config->get('fields_register_brazil_status')) ? $order_query->row['inscricao_estadual'] : '',
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before" index="1"><![CDATA['shipping_firstname'      => $order_query->row['shipping_firstname'],]]></search>
+			<add><![CDATA[
+				'shipping_apelido'      => ($this->config->get('fields_register_brazil_status')) ? $order_query->row['shipping_apelido'] : '',
+				'shipping_numero'       => ($this->config->get('fields_register_brazil_status')) ? $order_query->row['shipping_numero'] : '',
+				'shipping_complemento'  => ($this->config->get('fields_register_brazil_status')) ? $order_query->row['shipping_complemento'] : '',
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before" index="1"><![CDATA['payment_firstname'       => $order_query->row['payment_firstname'],]]></search>
+			<add><![CDATA[
+				'payment_apelido'      => ($this->config->get('fields_register_brazil_status')) ? $order_query->row['payment_apelido'] : '',
+				'payment_numero'       => ($this->config->get('fields_register_brazil_status')) ? $order_query->row['payment_numero'] : '',
+				'payment_complemento'  => ($this->config->get('fields_register_brazil_status')) ? $order_query->row['payment_complemento'] : '',
+			]]></add>
+		</operation>
+		<operation>
+			<search position="replace" index="1"><![CDATA[$this->db->query("INSERT INTO `" . DB_PREFIX . "order` SET invoice_prefix = '" . $this->db->escape($invoice_prefix) . "', store_id = '" . (int)$data['store_id'] . "', store_name = '" . $this->db->escape($store_name) . "',store_url = '" . $this->db->escape($store_url) . "', customer_id = '" . (int)$data['customer_id'] . "', customer_group_id = '" . (int)$data['customer_group_id'] . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', payment_firstname = '" . $this->db->escape($data['payment_firstname']) . "', payment_lastname = '" . $this->db->escape($data['payment_lastname']) . "', payment_company = '" . $this->db->escape($data['payment_company']) . "', payment_company_id = '" . $this->db->escape($data['payment_company_id']) . "', payment_tax_id = '" . $this->db->escape($data['payment_tax_id']) . "', payment_address_1 = '" . $this->db->escape($data['payment_address_1']) . "', payment_address_2 = '" . $this->db->escape($data['payment_address_2']) . "', payment_city = '" . $this->db->escape($data['payment_city']) . "', payment_postcode = '" . $this->db->escape($data['payment_postcode']) . "', payment_country = '" . $this->db->escape($payment_country) . "', payment_country_id = '" . (int)$data['payment_country_id'] . "', payment_zone = '" . $this->db->escape($payment_zone) . "', payment_zone_id = '" . (int)$data['payment_zone_id'] . "', payment_address_format = '" . $this->db->escape($payment_address_format) . "', payment_method = '" . $this->db->escape($data['payment_method']) . "', payment_code = '" . $this->db->escape($data['payment_code']) . "', shipping_firstname = '" . $this->db->escape($data['shipping_firstname']) . "', shipping_lastname = '" . $this->db->escape($data['shipping_lastname']) . "', shipping_company = '" . $this->db->escape($data['shipping_company']) . "', shipping_address_1 = '" . $this->db->escape($data['shipping_address_1']) . "', shipping_address_2 = '" . $this->db->escape($data['shipping_address_2']) . "', shipping_city = '" . $this->db->escape($data['shipping_city']) . "', shipping_postcode = '" . $this->db->escape($data['shipping_postcode']) . "', shipping_country = '" . $this->db->escape($shipping_country) . "', shipping_country_id = '" . (int)$data['shipping_country_id'] . "', shipping_zone = '" . $this->db->escape($shipping_zone) . "', shipping_zone_id = '" . (int)$data['shipping_zone_id'] . "', shipping_address_format = '" . $this->db->escape($shipping_address_format) . "', shipping_method = '" . $this->db->escape($data['shipping_method']) . "', shipping_code = '" . $this->db->escape($data['shipping_code']) . "', comment = '" . $this->db->escape($data['comment']) . "', order_status_id = '" . (int)$data['order_status_id'] . "', affiliate_id  = '" . (int)$data['affiliate_id'] . "', language_id = '" . (int)$this->config->get('config_language_id') . "', currency_id = '" . (int)$currency_id . "', currency_code = '" . $this->db->escape($currency_code) . "', currency_value = '" . (float)$currency_value . "', date_added = NOW(), date_modified = NOW()");]]></search>
+			<add><![CDATA[
+				if ($this->config->get('fields_register_brazil_status')){
+					$dataparts = explode('/', $data['data_nascimento']);
+					if (sizeof($dataparts) == '3'){
+						$data['data_nascimento'] = $dataparts[2]."-".$dataparts[1]."-".$dataparts[0];
+					}else{
+						$data['data_nascimento'] = '0000-00-00';
+					}
+
+					$data['firstname']          = ucwords(strtr(strtolower($data['firstname']),"ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß","àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ"));
+					$data['lastname']           = ucwords(strtr(strtolower($data['lastname']),"ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß","àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ"));
+					$data['email']              = strtr(strtolower($data['email']),"ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß","àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ");
+					$data['telephone']          = preg_replace('/([^0-9])/i','',$data['telephone']);
+					$data['fax']                = preg_replace('/([^0-9])/i','',$data['fax']);
+					$data['cpf']                = preg_replace('/([^0-9])/i','',$data['cpf']);
+					$data['rg']                 = preg_replace('/([^0-9])/i','',$data['rg']);
+					$data['cnpj']               = preg_replace('/([^0-9])/i','',$data['cnpj']);
+					$data['inscricao_estadual'] = preg_replace('/([^a-z0-9])/i','',$data['inscricao_estadual']);
+
+					$this->db->query("INSERT INTO `" . DB_PREFIX . "order` SET invoice_prefix = '" . $this->db->escape($invoice_prefix) . "', store_id = '" . (int)$data['store_id'] . "', store_name = '" . $this->db->escape($store_name) . "',store_url = '" . $this->db->escape($store_url) . "', customer_id = '" . (int)$data['customer_id'] . "', customer_group_id = '" . (int)$data['customer_group_id'] . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', cpf = '" . $this->db->escape($data['cpf']) . "', cnpj = '" . $this->db->escape($data['cnpj']) . "', rg = '" . $this->db->escape($data['rg']) . "', razao_social = '" . $this->db->escape($data['razao_social']) . "', inscricao_estadual = '" . $this->db->escape($data['inscricao_estadual']) . "', data_nascimento = '" . $this->db->escape($data['data_nascimento']) . "', sexo = '" . $this->db->escape($data['sexo']) . "', payment_apelido = '" . $this->db->escape($data['payment_apelido']) . "', payment_firstname = '" . $this->db->escape($data['payment_firstname']) . "', payment_lastname = '" . $this->db->escape($data['payment_lastname']) . "', payment_company = '" . $this->db->escape($data['payment_company']) . "', payment_company_id = '" . $this->db->escape($data['payment_company_id']) . "', payment_tax_id = '" . $this->db->escape($data['payment_tax_id']) . "', payment_address_1 = '" . $this->db->escape($data['payment_address_1']) . "', payment_numero = '" . $this->db->escape($data['payment_numero']) . "', payment_address_2 = '" . $this->db->escape($data['payment_address_2']) . "', payment_complemento = '" . $this->db->escape($data['payment_complemento']) . "', payment_city = '" . $this->db->escape($data['payment_city']) . "', payment_postcode = '" . $this->db->escape($data['payment_postcode']) . "', payment_country = '" . $this->db->escape($payment_country) . "', payment_country_id = '" . (int)$data['payment_country_id'] . "', payment_zone = '" . $this->db->escape($payment_zone) . "', payment_zone_id = '" . (int)$data['payment_zone_id'] . "', payment_address_format = '" . $this->db->escape($payment_address_format) . "', payment_method = '" . $this->db->escape($data['payment_method']) . "', payment_code = '" . $this->db->escape($data['payment_code']) . "', shipping_apelido = '" . $this->db->escape($data['shipping_apelido']) . "', shipping_firstname = '" . $this->db->escape($data['shipping_firstname']) . "', shipping_lastname = '" . $this->db->escape($data['shipping_lastname']) . "', shipping_company = '" . $this->db->escape($data['shipping_company']) . "', shipping_address_1 = '" . $this->db->escape($data['shipping_address_1']) . "', shipping_numero = '" . $this->db->escape($data['shipping_numero']) . "', shipping_address_2 = '" . $this->db->escape($data['shipping_address_2']) . "', shipping_complemento = '" . $this->db->escape($data['shipping_complemento']) . "', shipping_city = '" . $this->db->escape($data['shipping_city']) . "', shipping_postcode = '" . $this->db->escape($data['shipping_postcode']) . "', shipping_country = '" . $this->db->escape($shipping_country) . "', shipping_country_id = '" . (int)$data['shipping_country_id'] . "', shipping_zone = '" . $this->db->escape($shipping_zone) . "', shipping_zone_id = '" . (int)$data['shipping_zone_id'] . "', shipping_address_format = '" . $this->db->escape($shipping_address_format) . "', shipping_method = '" . $this->db->escape($data['shipping_method']) . "', shipping_code = '" . $this->db->escape($data['shipping_code']) . "', comment = '" . $this->db->escape($data['comment']) . "', order_status_id = '" . (int)$data['order_status_id'] . "', affiliate_id  = '" . (int)$data['affiliate_id'] . "', language_id = '" . (int)$this->config->get('config_language_id') . "', currency_id = '" . (int)$currency_id . "', currency_code = '" . $this->db->escape($currency_code) . "', currency_value = '" . (float)$currency_value . "', date_added = NOW(), date_modified = NOW()");
+				}else{
+					$this->db->query("INSERT INTO `" . DB_PREFIX . "order` SET invoice_prefix = '" . $this->db->escape($invoice_prefix) . "', store_id = '" . (int)$data['store_id'] . "', store_name = '" . $this->db->escape($store_name) . "',store_url = '" . $this->db->escape($store_url) . "', customer_id = '" . (int)$data['customer_id'] . "', customer_group_id = '" . (int)$data['customer_group_id'] . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', payment_firstname = '" . $this->db->escape($data['payment_firstname']) . "', payment_lastname = '" . $this->db->escape($data['payment_lastname']) . "', payment_company = '" . $this->db->escape($data['payment_company']) . "', payment_company_id = '" . $this->db->escape($data['payment_company_id']) . "', payment_tax_id = '" . $this->db->escape($data['payment_tax_id']) . "', payment_address_1 = '" . $this->db->escape($data['payment_address_1']) . "', payment_address_2 = '" . $this->db->escape($data['payment_address_2']) . "', payment_city = '" . $this->db->escape($data['payment_city']) . "', payment_postcode = '" . $this->db->escape($data['payment_postcode']) . "', payment_country = '" . $this->db->escape($payment_country) . "', payment_country_id = '" . (int)$data['payment_country_id'] . "', payment_zone = '" . $this->db->escape($payment_zone) . "', payment_zone_id = '" . (int)$data['payment_zone_id'] . "', payment_address_format = '" . $this->db->escape($payment_address_format) . "', payment_method = '" . $this->db->escape($data['payment_method']) . "', payment_code = '" . $this->db->escape($data['payment_code']) . "', shipping_firstname = '" . $this->db->escape($data['shipping_firstname']) . "', shipping_lastname = '" . $this->db->escape($data['shipping_lastname']) . "', shipping_company = '" . $this->db->escape($data['shipping_company']) . "', shipping_address_1 = '" . $this->db->escape($data['shipping_address_1']) . "', shipping_address_2 = '" . $this->db->escape($data['shipping_address_2']) . "', shipping_city = '" . $this->db->escape($data['shipping_city']) . "', shipping_postcode = '" . $this->db->escape($data['shipping_postcode']) . "', shipping_country = '" . $this->db->escape($shipping_country) . "', shipping_country_id = '" . (int)$data['shipping_country_id'] . "', shipping_zone = '" . $this->db->escape($shipping_zone) . "', shipping_zone_id = '" . (int)$data['shipping_zone_id'] . "', shipping_address_format = '" . $this->db->escape($shipping_address_format) . "', shipping_method = '" . $this->db->escape($data['shipping_method']) . "', shipping_code = '" . $this->db->escape($data['shipping_code']) . "', comment = '" . $this->db->escape($data['comment']) . "', order_status_id = '" . (int)$data['order_status_id'] . "', affiliate_id  = '" . (int)$data['affiliate_id'] . "', language_id = '" . (int)$this->config->get('config_language_id') . "', currency_id = '" . (int)$currency_id . "', currency_code = '" . $this->db->escape($currency_code) . "', currency_value = '" . (float)$currency_value . "', date_added = NOW(), date_modified = NOW()");
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="replace" index="1"><![CDATA[$this->db->query("UPDATE `" . DB_PREFIX . "order` SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', payment_firstname = '" . $this->db->escape($data['payment_firstname']) . "', payment_lastname = '" . $this->db->escape($data['payment_lastname']) . "', payment_company = '" . $this->db->escape($data['payment_company']) . "', payment_company_id = '" . $this->db->escape($data['payment_company_id']) . "', payment_tax_id = '" . $this->db->escape($data['payment_tax_id']) . "', payment_address_1 = '" . $this->db->escape($data['payment_address_1']) . "', payment_address_2 = '" . $this->db->escape($data['payment_address_2']) . "', payment_city = '" . $this->db->escape($data['payment_city']) . "', payment_postcode = '" . $this->db->escape($data['payment_postcode']) . "', payment_country = '" . $this->db->escape($payment_country) . "', payment_country_id = '" . (int)$data['payment_country_id'] . "', payment_zone = '" . $this->db->escape($payment_zone) . "', payment_zone_id = '" . (int)$data['payment_zone_id'] . "', payment_address_format = '" . $this->db->escape($payment_address_format) . "', payment_method = '" . $this->db->escape($data['payment_method']) . "', payment_code = '" . $this->db->escape($data['payment_code']) . "', shipping_firstname = '" . $this->db->escape($data['shipping_firstname']) . "', shipping_lastname = '" . $this->db->escape($data['shipping_lastname']) . "',  shipping_company = '" . $this->db->escape($data['shipping_company']) . "', shipping_address_1 = '" . $this->db->escape($data['shipping_address_1']) . "', shipping_address_2 = '" . $this->db->escape($data['shipping_address_2']) . "', shipping_city = '" . $this->db->escape($data['shipping_city']) . "', shipping_postcode = '" . $this->db->escape($data['shipping_postcode']) . "', shipping_country = '" . $this->db->escape($shipping_country) . "', shipping_country_id = '" . (int)$data['shipping_country_id'] . "', shipping_zone = '" . $this->db->escape($shipping_zone) . "', shipping_zone_id = '" . (int)$data['shipping_zone_id'] . "', shipping_address_format = '" . $this->db->escape($shipping_address_format) . "', shipping_method = '" . $this->db->escape($data['shipping_method']) . "', shipping_code = '" . $this->db->escape($data['shipping_code']) . "', comment = '" . $this->db->escape($data['comment']) . "', order_status_id = '" . (int)$data['order_status_id'] . "', affiliate_id  = '" . (int)$data['affiliate_id'] . "', date_modified = NOW() WHERE order_id = '" . (int)$order_id . "'");]]></search>
+			<add><![CDATA[
+				if ($this->config->get('fields_register_brazil_status')){
+					$dataparts = explode('/', $data['data_nascimento']);
+					if (sizeof($dataparts) == '3'){
+						$data['data_nascimento'] = $dataparts[2]."-".$dataparts[1]."-".$dataparts[0];
+					}else{
+						$data['data_nascimento'] = '0000-00-00';
+					}
+
+					$data['firstname']          = ucwords(strtr(strtolower($data['firstname']),"ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß","àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ"));
+					$data['lastname']           = ucwords(strtr(strtolower($data['lastname']),"ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß","àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ"));
+					$data['email']              = strtr(strtolower($data['email']),"ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß","àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ");
+					$data['telephone']          = preg_replace('/([^0-9])/i','',$data['telephone']);
+					$data['fax']                = preg_replace('/([^0-9])/i','',$data['fax']);
+					$data['cpf']                = preg_replace('/([^0-9])/i','',$data['cpf']);
+					$data['rg']                 = preg_replace('/([^0-9])/i','',$data['rg']);
+					$data['cnpj']               = preg_replace('/([^0-9])/i','',$data['cnpj']);
+					$data['inscricao_estadual'] = preg_replace('/([^a-z0-9])/i','',$data['inscricao_estadual']);
+
+					$this->db->query("UPDATE `" . DB_PREFIX . "order` SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', cpf = '" . $this->db->escape($data['cpf']) . "', cnpj = '" . $this->db->escape($data['cnpj']) . "', rg = '" . $this->db->escape($data['rg']) . "', razao_social = '" . $this->db->escape($data['razao_social']) . "', inscricao_estadual = '" . $this->db->escape($data['inscricao_estadual']) . "', data_nascimento = '" . $this->db->escape($data['data_nascimento']) . "', sexo = '" . $this->db->escape($data['sexo']) . "', payment_apelido = '" . $this->db->escape($data['payment_apelido']) . "', payment_firstname = '" . $this->db->escape($data['payment_firstname']) . "', payment_lastname = '" . $this->db->escape($data['payment_lastname']) . "', payment_company = '" . $this->db->escape($data['payment_company']) . "', payment_company_id = '" . $this->db->escape($data['payment_company_id']) . "', payment_tax_id = '" . $this->db->escape($data['payment_tax_id']) . "', payment_address_1 = '" . $this->db->escape($data['payment_address_1']) . "', payment_numero = '" . $this->db->escape($data['payment_numero']) . "', payment_address_2 = '" . $this->db->escape($data['payment_address_2']) . "', payment_complemento = '" . $this->db->escape($data['payment_complemento']) . "', payment_city = '" . $this->db->escape($data['payment_city']) . "', payment_postcode = '" . $this->db->escape($data['payment_postcode']) . "', payment_country = '" . $this->db->escape($payment_country) . "', payment_country_id = '" . (int)$data['payment_country_id'] . "', payment_zone = '" . $this->db->escape($payment_zone) . "', payment_zone_id = '" . (int)$data['payment_zone_id'] . "', payment_address_format = '" . $this->db->escape($payment_address_format) . "', payment_method = '" . $this->db->escape($data['payment_method']) . "', payment_code = '" . $this->db->escape($data['payment_code']) . "', shipping_apelido = '" . $this->db->escape($data['shipping_apelido']) . "', shipping_firstname = '" . $this->db->escape($data['shipping_firstname']) . "', shipping_lastname = '" . $this->db->escape($data['shipping_lastname']) . "',  shipping_company = '" . $this->db->escape($data['shipping_company']) . "', shipping_address_1 = '" . $this->db->escape($data['shipping_address_1']) . "', shipping_numero = '" . $this->db->escape($data['shipping_numero']) . "', shipping_address_2 = '" . $this->db->escape($data['shipping_address_2']) . "', shipping_complemento = '" . $this->db->escape($data['shipping_complemento']) . "', shipping_city = '" . $this->db->escape($data['shipping_city']) . "', shipping_postcode = '" . $this->db->escape($data['shipping_postcode']) . "', shipping_country = '" . $this->db->escape($shipping_country) . "', shipping_country_id = '" . (int)$data['shipping_country_id'] . "', shipping_zone = '" . $this->db->escape($shipping_zone) . "', shipping_zone_id = '" . (int)$data['shipping_zone_id'] . "', shipping_address_format = '" . $this->db->escape($shipping_address_format) . "', shipping_method = '" . $this->db->escape($data['shipping_method']) . "', shipping_code = '" . $this->db->escape($data['shipping_code']) . "', comment = '" . $this->db->escape($data['comment']) . "', order_status_id = '" . (int)$data['order_status_id'] . "', affiliate_id  = '" . (int)$data['affiliate_id'] . "', date_modified = NOW() WHERE order_id = '" . (int)$order_id . "'");
+				}else{
+					$this->db->query("UPDATE `" . DB_PREFIX . "order` SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', payment_firstname = '" . $this->db->escape($data['payment_firstname']) . "', payment_lastname = '" . $this->db->escape($data['payment_lastname']) . "', payment_company = '" . $this->db->escape($data['payment_company']) . "', payment_company_id = '" . $this->db->escape($data['payment_company_id']) . "', payment_tax_id = '" . $this->db->escape($data['payment_tax_id']) . "', payment_address_1 = '" . $this->db->escape($data['payment_address_1']) . "', payment_address_2 = '" . $this->db->escape($data['payment_address_2']) . "', payment_city = '" . $this->db->escape($data['payment_city']) . "', payment_postcode = '" . $this->db->escape($data['payment_postcode']) . "', payment_country = '" . $this->db->escape($payment_country) . "', payment_country_id = '" . (int)$data['payment_country_id'] . "', payment_zone = '" . $this->db->escape($payment_zone) . "', payment_zone_id = '" . (int)$data['payment_zone_id'] . "', payment_address_format = '" . $this->db->escape($payment_address_format) . "', payment_method = '" . $this->db->escape($data['payment_method']) . "', payment_code = '" . $this->db->escape($data['payment_code']) . "', shipping_firstname = '" . $this->db->escape($data['shipping_firstname']) . "', shipping_lastname = '" . $this->db->escape($data['shipping_lastname']) . "',  shipping_company = '" . $this->db->escape($data['shipping_company']) . "', shipping_address_1 = '" . $this->db->escape($data['shipping_address_1']) . "', shipping_address_2 = '" . $this->db->escape($data['shipping_address_2']) . "', shipping_city = '" . $this->db->escape($data['shipping_city']) . "', shipping_postcode = '" . $this->db->escape($data['shipping_postcode']) . "', shipping_country = '" . $this->db->escape($shipping_country) . "', shipping_country_id = '" . (int)$data['shipping_country_id'] . "', shipping_zone = '" . $this->db->escape($shipping_zone) . "', shipping_zone_id = '" . (int)$data['shipping_zone_id'] . "', shipping_address_format = '" . $this->db->escape($shipping_address_format) . "', shipping_method = '" . $this->db->escape($data['shipping_method']) . "', shipping_code = '" . $this->db->escape($data['shipping_code']) . "', comment = '" . $this->db->escape($data['comment']) . "', order_status_id = '" . (int)$data['order_status_id'] . "', affiliate_id  = '" . (int)$data['affiliate_id'] . "', date_modified = NOW() WHERE order_id = '" . (int)$order_id . "'");
+				}
+			]]></add>
+		</operation>
+		
+		<operation>
+			<search position="replace"><![CDATA[$this->db->query("INSERT INTO " . DB_PREFIX . "order_history SET order_id = '" . (int)$order_id . "', order_status_id = '" . (int)$data['order_status_id'] . "', notify = '" . (isset($data['notify']) ? (int)$data['notify'] : 0) . "', comment = '" . $this->db->escape(strip_tags($data['comment'])) . "', date_added = NOW()");]]></search>
+			<add><![CDATA[
+				$this->db->query("INSERT INTO " . DB_PREFIX . "order_history SET order_id = '" . (int)$order_id . "', order_status_id = '" . (int)$data['order_status_id'] . "', notify = '" . (isset($data['notify']) ? (int)$data['notify'] : 0) . "', comment = '" . $this->db->escape($data['comment']) . "', date_added = NOW()");
+			]]></add>
+		</operation>
+		
+		<operation>
+			<search position="replace"><![CDATA[$message  = $language->get('text_order') . ' ' . $order_id . "\n";]]></search>
+			<add><![CDATA[
+				$message  = "<img src='http://www.capasparaiphone.com.br/lojatemp/image/data/logo/logo-capasparaiphone.png' width='280' /><br /><br />";
+				$message  .= $language->get('text_order') . ' ' . $order_id . "<br />";
+			]]></add>
+		</operation>
+		
+		<operation>
+			<search position="replace"><![CDATA[$message .= $language->get('text_date_added') . ' ' . date($language->get('date_format_short'), strtotime($order_info['date_added'])) . "\n\n";]]></search>
+			<add><![CDATA[
+				$message .= $language->get('text_date_added') . ' ' . date($language->get('date_format_short'), strtotime($order_info['date_added'])) . "<br /><br />";
+			]]></add>
+		</operation>
+		
+		<operation>
+			<search position="replace" offset="2"><![CDATA[$message .= $language->get('text_order_status') . "\n";]]></search>
+			<add><![CDATA[
+				$message .= $language->get('text_order_status') . "<br /><br />";
+				$message .= $order_status_query->row['name'] . "<br /><br />";
+			]]></add>
+		</operation>
+		
+		<operation>
+			<search position="replace" offset="2"><![CDATA[$message .= $language->get('text_link') . "\n";]]></search>
+			<add><![CDATA[
+				$message .= $language->get('text_link') . "<br /><br />";
+				$message .= html_entity_decode($order_info['store_url'] . 'ver-pedido&order_id=' . $order_id, ENT_QUOTES, 'UTF-8') . "<br /><br />";
+			]]></add>
+		</operation>	
+		<!--
+		<operation>
+			<search position="replace" offset="2"><![CDATA[$message .= $language->get('text_link') . "\n";]]></search>
+			<add><![CDATA[
+				$message .= $language->get('text_link') . "<br /><br />";
+				$message .= html_entity_decode($order_info['store_url'] . 'index.php?route=account/order/info&order_id=' . $order_id, ENT_QUOTES, 'UTF-8') . "<br /><br />";
+			]]></add>
+		</operation>
+		-->
+		<operation>
+			<search position="replace" offset="2"><![CDATA[$message .= $language->get('text_comment') . "\n\n";]]></search>
+			<add><![CDATA[
+				$message .= $language->get('text_comment') . "<br /><br />";
+				$message .= nl2br($data['comment']) . "<br /><br />";
+				
+			]]></add>
+		</operation>
+											
+		
+		<operation>
+			<search position="replace"><![CDATA[$mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));]]></search>
+			<add><![CDATA[
+				$mail->setHtml($message);
+			]]></add>
+		</operation>				
+		
+	</file>
+	<!-- Fim: Admin/Model/Sale/Order -->
+
+	<!-- Inicio: Admin/Controller/Sale/Order -->
+	<file name="admin/controller/sale/order.php">
+		<operation>
+			<search position="before" index="1"><![CDATA[public function insert() {]]></search>
+			<add><![CDATA[
+				public function isCpf($cpf){
+					$cpf        = preg_replace('/([^0-9])/i','',$cpf);
+					$digitoUm   = 0;
+					$digitoDois = 0;
+				
+					for($i = 0, $x = 10; $i <= 8; $i++, $x--){
+						$digitoUm += $cpf[$i] * $x;
+					}
+				
+					for($i = 0, $x = 11; $i <= 9; $i++, $x--){
+						if(str_repeat($i, 11) == $cpf){
+							return false;
+						}
+						$digitoDois += $cpf[$i] * $x;
+					}
+				
+					$calculoUm   = (($digitoUm % 11) < 2) ? 0 : 11 - ($digitoUm % 11);
+					$calculoDois = (($digitoDois % 11) < 2) ? 0 : 11 - ($digitoDois % 11);
+				
+					if($calculoUm != $cpf[9] || $calculoDois != $cpf[10]){
+						return false;
+					}
+				
+					return true;
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before" index="1"><![CDATA[if ($order_info['customer_id']) {]]></search>
+			<add><![CDATA[
+				if ($this->config->get('fields_register_brazil_status')){
+					$this->data['sexo']               = $order_info['sexo'];
+					$this->data['data_nascimento']    = $order_info['data_nascimento'];
+					$this->data['cpf']                = $order_info['cpf'];
+					$this->data['rg']                 = $order_info['rg'];
+					$this->data['cnpj']               = $order_info['cnpj'];
+					$this->data['razao_social']       = $order_info['razao_social'];
+					$this->data['inscricao_estadual'] = $order_info['inscricao_estadual'];
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1"><![CDATA[$this->data['date_modified'] = date($this->language->get('date_format_short'), strtotime($order_info['date_modified']));]]></search>
+			<add><![CDATA[
+				$this->data['payment_apelido']     = ($this->config->get('fields_register_brazil_status')) ? $order_info['payment_apelido'] : '';
+				$this->data['payment_numero']      = ($this->config->get('fields_register_brazil_status')) ? $order_info['payment_numero'] : '';
+				$this->data['payment_complemento'] = ($this->config->get('fields_register_brazil_status')) ? $order_info['payment_complemento'] : '';
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1"><![CDATA[$this->data['payment_country'] = $order_info['payment_country'];]]></search>
+			<add><![CDATA[
+				$this->data['shipping_apelido']     = ($this->config->get('fields_register_brazil_status')) ? $order_info['shipping_apelido'] : '';
+				$this->data['shipping_numero']      = ($this->config->get('fields_register_brazil_status')) ? $order_info['shipping_numero'] : '';
+				$this->data['shipping_complemento'] = ($this->config->get('fields_register_brazil_status')) ? $order_info['shipping_complemento'] : '';
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[$this->data['error_telephone'] = '';]]></search>
+			<add><![CDATA[
+				if ($this->config->get('fields_register_brazil_status')){
+					if (isset($this->error['data_nascimento'])) {
+						$this->data['error_data_nascimento'] = $this->error['data_nascimento'];
+					} else {
+						$this->data['error_data_nascimento'] = '';
+					}
+
+					if (isset($this->error['cpf'])) {
+						$this->data['error_cpf'] = $this->error['cpf'];
+					} else {
+						$this->data['error_cpf'] = '';
+					}
+
+					if (isset($this->error['cnpj'])) {
+						$this->data['error_cnpj'] = $this->error['cnpj'];
+					} else {
+						$this->data['error_cnpj'] = '';
+					}
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[$this->data['error_shipping_address_1'] = '';]]></search>
+			<add><![CDATA[
+				if ($this->config->get('fields_register_brazil_status')){
+					if (isset($this->error['shipping_numero'])) {
+						$this->data['error_shipping_numero'] = $this->error['shipping_numero'];
+					} else {
+						$this->data['error_shipping_numero'] = '';
+					}
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[$this->data['error_payment_address_1'] = '';]]></search>
+			<add><![CDATA[
+				if ($this->config->get('fields_register_brazil_status')){
+					if (isset($this->error['payment_numero'])) {
+						$this->data['error_payment_numero'] = $this->error['payment_numero'];
+					} else {
+						$this->data['error_payment_numero'] = '';
+					}
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[$this->data['fax'] = '';]]></search>
+			<add><![CDATA[
+				if ($this->config->get('fields_register_brazil_status')){
+					if (isset($this->request->post['pessoa'])) {
+						$this->data['pessoa'] = $this->request->post['pessoa'];
+					} else {
+						$this->data['pessoa'] = '';
+					}
+
+					if (isset($this->request->post['sexo'])) {
+						$this->data['sexo'] = $this->request->post['sexo'];
+					} elseif (!empty($order_info)) { 
+						$this->data['sexo'] = $order_info['sexo'];
+					} else {
+						$this->data['sexo'] = '';
+					}
+
+					if (isset($this->request->post['data_nascimento'])) {
+						$this->data['data_nascimento'] = $this->request->post['data_nascimento'];
+					} elseif (!empty($order_info)) { 
+						$this->data['data_nascimento'] = $order_info['data_nascimento'];
+					} else {
+						$this->data['data_nascimento'] = '';
+					}
+
+					if (isset($this->request->post['cpf'])) {
+						$this->data['cpf'] = preg_replace('/([^0-9])/i','',$this->request->post['cpf']);
+					} elseif (!empty($order_info)) { 
+						$this->data['cpf'] = $order_info['cpf'];
+					} else {
+						$this->data['cpf'] = '';
+					}
+
+					if (isset($this->request->post['rg'])) {
+						$this->data['rg'] = preg_replace('/([^0-9])/i','',$this->request->post['rg']);
+					} elseif (!empty($order_info)) { 
+						$this->data['rg'] = $order_info['rg'];
+					} else {
+						$this->data['rg'] = '';
+					}
+
+					if (isset($this->request->post['cnpj'])) {
+						$this->data['cnpj'] = preg_replace('/([^0-9])/i','',$this->request->post['cnpj']);
+					} elseif (!empty($order_info)) { 
+						$this->data['cnpj'] = $order_info['cnpj'];
+					} else {
+						$this->data['cnpj'] = '';
+					}
+
+					if (isset($this->request->post['razao_social'])) {
+						$this->data['razao_social'] = $this->request->post['razao_social'];
+					} elseif (!empty($order_info)) { 
+						$this->data['razao_social'] = $order_info['razao_social'];
+					} else {
+						$this->data['razao_social'] = '';
+					}
+
+					if (isset($this->request->post['inscricao_estadual'])) {
+						$this->data['inscricao_estadual'] = preg_replace('/([^a-z0-9])/i','',$this->request->post['inscricao_estadual']);
+					} elseif (!empty($order_info)) { 
+						$this->data['inscricao_estadual'] = $order_info['inscricao_estadual'];
+					} else {
+						$this->data['inscricao_estadual'] = '';
+					}
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[$this->data['shipping_zone_id'] = '';]]></search>
+			<add><![CDATA[
+				if ($this->config->get('fields_register_brazil_status')){
+					if (isset($this->request->post['shipping_apelido'])) {
+						$this->data['shipping_apelido'] = $this->request->post['shipping_apelido'];
+					} elseif (!empty($order_info)) { 
+						$this->data['shipping_apelido'] = $order_info['shipping_apelido'];
+					} else {
+						$this->data['shipping_apelido'] = '';
+					}
+
+					if (isset($this->request->post['shipping_numero'])) {
+						$this->data['shipping_numero'] = preg_replace('/([^0-9])/i','',$this->request->post['shipping_numero']);
+					} elseif (!empty($order_info)) {
+						$this->data['shipping_numero'] = $order_info['shipping_numero'];
+					} else {
+						$this->data['shipping_numero'] = '';
+					}
+
+					if (isset($this->request->post['shipping_complemento'])) {
+						$this->data['shipping_complemento'] = $this->request->post['shipping_complemento'];
+					} elseif (!empty($order_info)) { 
+						$this->data['shipping_complemento'] = $order_info['shipping_complemento'];
+					} else {
+						$this->data['shipping_complemento'] = '';
+					}
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[$this->data['payment_zone_id'] = '';]]></search>
+			<add><![CDATA[
+				if ($this->config->get('fields_register_brazil_status')){
+					if (isset($this->request->post['payment_apelido'])) {
+						$this->data['payment_apelido'] = $this->request->post['payment_apelido'];
+					} elseif (!empty($order_info)) { 
+						$this->data['payment_apelido'] = $order_info['payment_apelido'];
+					} else {
+						$this->data['payment_apelido'] = '';
+					}
+
+					if (isset($this->request->post['payment_numero'])) {
+						$this->data['payment_numero'] = preg_replace('/([^0-9])/i','',$this->request->post['payment_numero']);
+					} elseif (!empty($order_info)) { 
+						$this->data['payment_numero'] = $order_info['payment_numero'];
+					} else {
+						$this->data['payment_numero'] = '';
+					}
+
+					if (isset($this->request->post['payment_complemento'])) {
+						$this->data['payment_complemento'] = $this->request->post['payment_complemento'];
+					} elseif (!empty($order_info)) { 
+						$this->data['payment_complemento'] = $order_info['payment_complemento'];
+					} else {
+						$this->data['payment_complemento'] = '';
+					}
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[$this->error['telephone'] = $this->language->get('error_telephone');]]></search>
+			<add><![CDATA[
+				if ($this->config->get('fields_register_brazil_status')){
+					// Valida campo Data de Nascimento
+					$dataparts = explode("/",$this->request->post['data_nascimento']);
+					if (strlen(utf8_decode($this->request->post['data_nascimento'])) > 0) {
+						// Se o array não tiver 3 posições a data esta incorreta
+						if (sizeof($dataparts) != '3'){
+							$this->error['data_nascimento'] = "Atenção: A data informada é inválida";
+						}else{
+							// Checa validade da data
+							if (!checkdate($dataparts[1],$dataparts[0],$dataparts[2])) {
+								$this->error['data_nascimento'] = "Atenção: A data informada é inválida";
+							}
+						}
+					}
+
+					// Valida CPF e CNPJ
+					if ($this->request->post['pessoa'] == "fisica"){
+						if(isset($this->request->post['cpf'])){
+							$cpf = preg_replace('/([^0-9])/i','',$this->request->post['cpf']);
+							if ((strlen(utf8_decode($cpf)) < 1) || (strlen(utf8_decode($cpf)) > 14)) {
+								$this->error['cpf'] = "Atenção: O CPF não deve passar de 14 caracteres";  
+							}elseif(!$this->isCpf($cpf)){
+								$this->error['cpf'] = "Atenção: O CPF informado é inválido";
+							}
+						}
+					}else if ($this->request->post['pessoa'] == "juridica"){
+						if(isset($this->request->post['cnpj'])){
+							$cnpj = preg_replace('/([^0-9])/i','',$this->request->post['cnpj']);
+							if ((strlen(utf8_decode($cnpj)) < 1) || (strlen(utf8_decode($cnpj)) > 18)&&($this->request->post['pessoa'] == "juridica")) {
+								$this->error['cnpj'] = "Atenção: O CNPJ não deve passar de 18 caracteres";
+							}
+						}
+					}
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[$this->error['payment_address_1'] = $this->language->get('error_address_1');]]></search>
+			<add><![CDATA[
+				if ($this->config->get('fields_register_brazil_status')){
+					$numero = preg_replace('/([^0-9])/i','',$this->request->post['payment_numero']);
+					if ((utf8_strlen($numero) < 1) || (utf8_strlen($numero) > 6)) {
+						$this->error['payment_numero'] = 'Atenção: O número deve ter entre 1 e 6 caracteres!';
+					}
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[$this->error['shipping_address_1'] = $this->language->get('error_address_1');]]></search>
+			<add><![CDATA[
+				if ($this->config->get('fields_register_brazil_status')){
+					$numero = preg_replace('/([^0-9])/i','',$this->request->post['shipping_numero']);
+					if ((utf8_strlen($numero) < 1) || (utf8_strlen($numero) > 6)) {
+						$this->error['shipping_numero'] = 'Atenção: O número deve ter entre 1 e 6 caracteres!';
+					}
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="replace" index="1,2"><![CDATA[$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';]]></search>
+			<add><![CDATA[
+				if ($this->config->get('fields_register_brazil_status')){
+					$format = '{company}' . "\n" . '{cnpj}' . "\n" . '{firstname} {lastname}' . "\n" . '{cpf}' . "\n" . '{address_1}, {numero}, {complemento}' . "\n" . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
+				}else{
+					$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before" index="1,2"><![CDATA['{firstname}',]]></search>
+			<add><![CDATA[
+				'{cnpj}',
+				'{cpf}',
+				'{numero}',
+				'{complemento}',
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before" index="1"><![CDATA['firstname' => $order_info['shipping_firstname'],]]></search>
+			<add><![CDATA[
+				'cnpj'        => '',
+				'cpf'         => '',
+				'numero'      => ($this->config->get('fields_register_brazil_status')) ? $order_info['shipping_numero'] : '',
+				'complemento' => ($this->config->get('fields_register_brazil_status')) ? $order_info['shipping_complemento'] : '',
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before" index="1"><![CDATA['firstname' => $order_info['payment_firstname'],]]></search>
+			<add><![CDATA[
+				'cnpj'        => ($this->config->get('fields_register_brazil_status')) ? $order_info['cnpj'] : '',
+				'cpf'         => ($this->config->get('fields_register_brazil_status')) ? $order_info['cpf'] : '',
+				'numero'      => ($this->config->get('fields_register_brazil_status')) ? $order_info['payment_numero'] : '',
+				'complemento' => ($this->config->get('fields_register_brazil_status')) ? $order_info['payment_complemento'] : '',
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[$total_data = $this->model_sale_order->getOrderTotals($order_id);]]></search>
+			<add><![CDATA[
+				$telephone_mask  = '(' . substr($order_info['telephone'], 0, 2) . ') ';
+				$telephone_mask .= strlen($order_info['telephone']) == 10 ? substr($order_info['telephone'], 2, 4) . '-' : substr($order_info['telephone'], 2, 5) . '-';
+				$telephone_mask .= strlen($order_info['telephone']) == 10 ? substr($order_info['telephone'], 6, 8) : substr($order_info['telephone'], 7, 9);
+			]]></add>
+		</operation>
+		<operation>
+			<search position="replace" index="1"><![CDATA['telephone'          => $order_info['telephone'],]]></search>
+			<add><![CDATA[
+				'telephone'          => $telephone_mask,
+			]]></add>
+		</operation>
+	</file>
+	<!-- Fim: Admin/Controller/Sale/Order -->
+
+	<!-- Inicio: Admin/View/Template/Sale/Order_Info -->
+	<file name="admin/view/template/sale/order_info.tpl">
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[<td><?php echo $telephone; ?></td>]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+					<?php if ($cpf != ''){?>
+					<tr>
+					  <td>CPF:</td>
+					  <td><?php echo $cpf; ?></td>
+					</tr>
+					<?php if($rg != ''){ ?>
+					<tr>
+					  <td>RG:</td>
+					  <td><?php echo $rg; ?></td>
+					</tr>
+					<?php } ?>
+					<?php }else if ($cnpj != '') {?>
+					<tr>
+					  <td>CNPJ:</td>
+					  <td><?php echo $cnpj; ?></td>
+					</tr>
+					<?php if($razao_social != ''){ ?>
+					<tr>
+					  <td>Razao Social:</td>
+					  <td><?php echo $razao_social; ?></td>
+					</tr>
+					<?php } ?>
+					<?php if($inscricao_estadual != ''){ ?>
+					<tr>
+					  <td>Inscrição Estadual:</td>
+					  <td><?php echo $inscricao_estadual; ?></td>
+					</tr>
+					<?php } ?>
+					<?php } ?>
+					<?php if ($sexo != '') {?>
+					<tr>
+					  <td>Sexo:</td>
+					  <?php
+					  if ($sexo == 'm'){
+						$sexo = 'Masculino';
+					  }else{
+						$sexo = 'Feminino';
+					  }
+					  ?>
+					  <td><?php echo $sexo; ?></td>
+					</tr>
+					<?php } ?>
+					<tr>
+					  <td>Data de Nascimento:</td>
+					  <?php
+					  $dataparts = explode("-",$data_nascimento);
+					  if (sizeof($dataparts) != '3'){
+						$data = $data_nascimento;
+					  }else{
+						$data = $dataparts[2]."/".$dataparts[1]."/".$dataparts[0]; 
+					  }
+					  $data = ($data != '00/00/0000') ? $data : '';
+					  ?>					  
+					  <td><?php echo $data; ?></td>
+					</tr>
+				<?php } ?>
+			]]></add>
+		</operation>
+		<!--		
+		<operation>
+			<search position="before" index="1" offset="2"><![CDATA[<td><?php echo $payment_firstname; ?></td>]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				<?php if($payment_apelido != ''){ ?>
+				<tr>
+				  <td>Local:</td>
+				  <td><?php echo $payment_apelido; ?></td>
+				</tr>
+				<?php } ?>
+				<?php } ?>
+			]]></add>
+		</operation>
+		-->		
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[<td><?php echo $payment_address_1; ?></td>]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				<!--<?php if($payment_numero != ''){ ?>-->
+				<tr>
+				  <td>Número:</td>
+				  <td><?php echo $payment_numero; ?></td>
+				</tr>
+				<!--<?php } ?>-->
+				<?php } ?>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[<td><?php echo $payment_address_2; ?></td>]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				<!--<?php if($payment_complemento != ''){ ?>-->
+				<tr>
+				  <td>Complemento:</td>
+				  <td><?php echo $payment_complemento; ?></td>
+				</tr>
+				<!--<?php } ?>-->
+				<?php } ?>
+			]]></add>
+		</operation>
+		<!--
+		<operation>
+			<search position="before" index="1" offset="2"><![CDATA[<td><?php echo $shipping_firstname; ?></td>]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				<tr>
+				  <td>Local:</td>
+				  <td><?php echo $shipping_apelido; ?></td>
+				</tr>
+				<?php } ?>
+			]]></add>
+		</operation>
+		-->
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[<td><?php echo $shipping_address_1; ?></td>]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				<tr>
+				  <td>Número:</td>
+				  <td><?php echo $shipping_numero; ?></td>
+				</tr>
+				<?php } ?>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[<td><?php echo $shipping_numero; ?></td>]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				<tr>
+				  <td>Complemento:</td>
+				  <td><?php echo $shipping_complemento; ?></td>
+				</tr>
+				<?php } ?>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[<td><?php echo $shipping_firstname; ?></td>]]></search>
+			<add><![CDATA[
+				<td><?php echo $shipping_firstname; ?> <?php echo $shipping_lastname; ?></td>
+			]]></add>
+		</operation>		
+	</file>
+	<!-- Fim: Admin/View/Template/Sale/Order_Info -->
+
+	<!-- Inicio: Admin/View/Template/Sale/Order_Form -->
+	<file name="admin/view/template/sale/order_form.tpl">
+		<operation>
+			<search position="after" index="1"><![CDATA[<?php echo $header; ?>]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				<script type="text/javascript">
+				 $(document).ready(function() {
+					/* Registro - Tipo de Pessoa (PF/PJ) */
+					if ($("#fisica").is(':checked')) {
+						$('.pessoa_fisica').show();
+						$('.pessoa_juridica').hide();    
+					}
+					if ($("#juridica").is(':checked')) {
+						$('.pessoa_fisica').hide();
+						$('.pessoa_juridica').show(); 
+					}
+					$('#juridica').click( function() {
+					$('.pessoa_fisica').hide();
+						$("#cpf").val("");
+						$("#rg").val("");
+						$('.pessoa_juridica').show();    
+					});
+					$('#fisica').click( function() {
+					$('.pessoa_fisica').show();
+						$("#cnpj").val("");
+						$("#razao_social").val("");
+						$("#inscricao_estadual").val("");
+						$('.pessoa_juridica').hide();
+					}); 
+				});    
+				</script>
+				<?php } ?>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1"><![CDATA[fax: item['fax'],]]></search>
+			<add><![CDATA[
+				sexo: item['sexo'],
+				data_nascimento: item['data_nascimento'],
+				cpf: item['cpf'],
+				rg: item['rg'],
+				cnpj: item['cnpj'],
+				razao_social: item['razao_social'],
+				inscricao_estadual: item['inscricao_estadual'],
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1"><![CDATA[$('input[name=\'fax\']').attr('value', ui.item['fax']);]]></search>
+			<add><![CDATA[
+				$('input[name=\'sexo\']').attr('checked', false);
+				$('input[id="sexo_'+ ui.item['sexo'] +'"]').attr('checked', true);
+
+				var dataparts = ui.item['data_nascimento'].split('-');
+				$('input[name=\'data_nascimento\']').attr('value', dataparts[2] + '/' + dataparts[1] + '/' + dataparts[0]);
+
+				if(ui.item['cpf'] != ''){
+					$('input#fisica').trigger('click');
+				}else if(ui.item['cnpj'] != ''){
+					$('input#juridica').trigger('click');
+				}else{
+					$('input#fisica').trigger('click');
+				}
+
+				$('input[name=\'cpf\']').attr('value', ui.item['cpf']);
+				$('input[name=\'rg\']').attr('value', ui.item['rg']);
+				$('input[name=\'cnpj\']').attr('value', ui.item['cnpj']);
+				$('input[name=\'razao_social\']').attr('value', ui.item['razao_social']);
+				$('input[name=\'inscricao_estadual\']').attr('value', ui.item['inscricao_estadual']);
+			]]></add>
+		</operation>
+		<operation>
+			<search position="replace" index="1,2"><![CDATA[<option value="<?php echo $address['address_id']; ?>"><?php echo $address['firstname'] . ' ' . $address['lastname'] . ', ' . $address['address_1'] . ', ' . $address['city'] . ', ' . $address['country']; ?></option>]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				<?php
+				$address_apelido_info     = ($address['apelido'] != '') ? '('. $address['apelido'] .') ' : '';
+				$address_complemento_info = ($address['complemento'] != '') ? ', ' . $address['complemento'] : '';
+				?>
+				<option value="<?php echo $address['address_id']; ?>"><?php echo $address_apelido_info . $address['firstname'] . ' ' . $address['lastname'] . ', ' . $address['address_1'] . ', ' . $address['numero'] . $address_complemento_info . ', ' . $address['city'] . ', ' . $address['country']; ?></option>
+				<?php }else{ ?>
+				<option value="<?php echo $address['address_id']; ?>"><?php echo $address['firstname'] . ' ' . $address['lastname'] . ', ' . $address['address_1'] . ', ' . $address['city'] . ', ' . $address['country']; ?></option>
+				<?php } ?>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="replace" index="1"><![CDATA[html += '<option value="' + ui.item['address'][i]['address_id'] + '">' + ui.item['address'][i]['firstname'] + ' ' + ui.item['address'][i]['lastname'] + ', ' + ui.item['address'][i]['address_1'] + ', ' + ui.item['address'][i]['city'] + ', ' + ui.item['address'][i]['country'] + '</option>';]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				var address_apelido_info     = (ui.item['address'][i]['apelido'] != '') ? '('+ ui.item['address'][i]['apelido'] +') ' : '';
+				var address_complemento_info = (ui.item['address'][i]['complemento'] != '') ? ', ' + ui.item['address'][i]['complemento'] : '';
+				html += '<option value="' + ui.item['address'][i]['address_id'] + '">' + address_apelido_info + ui.item['address'][i]['firstname'] + ' ' + ui.item['address'][i]['lastname'] + ', ' + ui.item['address'][i]['address_1'] + ', ' + ui.item['address'][i]['numero'] + address_complemento_info + ', ' + ui.item['address'][i]['city'] + ', ' + ui.item['address'][i]['country'] + '</option>';
+				<?php }else{ ?>
+				html += '<option value="' + ui.item['address'][i]['address_id'] + '">' + ui.item['address'][i]['firstname'] + ' ' + ui.item['address'][i]['lastname'] + ', ' + ui.item['address'][i]['address_1'] + ', ' + ui.item['address'][i]['city'] + ', ' + ui.item['address'][i]['country'] + '</option>';
+				<?php } ?>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before" index="1"><![CDATA[$('input[name=\'payment_firstname\']').attr('value', json['firstname']);]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				$('input[name=\'payment_apelido\']').attr('value', json['apelido']);
+				$('input[name=\'payment_numero\']').attr('value', json['numero']);
+				$('input[name=\'payment_complemento\']').attr('value', json['complemento']);
+				<?php } ?>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before" index="1"><![CDATA[$('input[name=\'shipping_firstname\']').attr('value', json['firstname']);]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				$('input[name=\'shipping_apelido\']').attr('value', json['apelido']);
+				$('input[name=\'shipping_numero\']').attr('value', json['numero']);
+				$('input[name=\'shipping_complemento\']').attr('value', json['complemento']);
+				<?php } ?>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[<td><input type="text" name="fax" value="<?php echo $fax; ?>" /></td>]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				<tr>
+				  <td>Sexo:</td>
+				  <td>
+				    <?php if($sexo == 'm'){ ?>
+					<input type="radio" name="sexo" id="sexo_m" checked value="m" />Masculino
+					<input type="radio" name="sexo" id="sexo_f" value="f" />Feminino
+					<?php }elseif($sexo == 'f'){ ?>
+					<input type="radio" name="sexo" id="sexo_m" value="m" />Masculino
+					<input type="radio" name="sexo" id="sexo_f" checked value="f" />Feminino
+					<?php }else{ ?>
+					<input type="radio" name="sexo" id="sexo_m" checked value="m" />Masculino
+					<input type="radio" name="sexo" id="sexo_f" value="f" />Feminino
+					<?php } ?>
+				  </td>
+				</tr>
+				<tr>
+				  <td>Data de Nascimento:</td>
+				  <td>
+				    <?php
+					$dataparts = explode('-', $data_nascimento);
+					if (sizeof($dataparts) == '3'){
+						$data_nascimento = $dataparts[2]."/".$dataparts[1]."/".$dataparts[0];
+					}
+					$data_nascimento = ($data_nascimento != '00/00/0000') ? $data_nascimento : '';
+					?>
+				    <input type="text" name="data_nascimento" value="<?php echo $data_nascimento; ?>" />
+					<?php if ($error_data_nascimento) { ?>
+					<span class="error"><?php echo $error_data_nascimento; ?></span>
+					<?php } ?>
+				  </td>
+				</tr>
+				<tr>
+				  <td>Tipo:</td>
+				  <td>
+				    <?php if($pessoa == 'fisica'){ ?>
+					<input type="radio" name="pessoa" id="fisica" checked value="fisica">Pessoa Física
+					<input type="radio" id="juridica" name="pessoa" value="juridica">Pessoa Juridica
+					<?php }else if($pessoa == 'juridica'){ ?>
+					<input type="radio" name="pessoa" id="fisica" value="fisica">Pessoa Física
+					<input type="radio" id="juridica" name="pessoa" checked value="juridica">Pessoa Juridica
+					<?php }else{ ?>
+					<?php if($cpf != ''){ ?>
+					<input type="radio" name="pessoa" id="fisica" checked value="fisica">Pessoa Física
+					<input type="radio" id="juridica" name="pessoa" value="juridica">Pessoa Juridica
+					<?php }elseif($cnpj != ''){ ?>
+					<input type="radio" name="pessoa" id="fisica" value="fisica">Pessoa Física
+					<input type="radio" id="juridica" name="pessoa" checked value="juridica">Pessoa Juridica
+					<?php }else{ ?>
+					<input type="radio" name="pessoa" id="fisica" checked value="fisica">Pessoa Física
+					<input type="radio" id="juridica" name="pessoa" value="juridica">Pessoa Juridica
+					<?php } ?>
+					<?php } ?>
+			      </td>
+				</tr>
+				<tr class="pessoa_fisica">
+				  <td><span class="required">*</span> CPF:</td>
+				  <td>
+					<input type="text" name="cpf"  id="cpf" value="<?php echo $cpf; ?>" > 
+					<?php if ($error_cpf) { ?>
+					<span class="error"><?php echo $error_cpf; ?></span>
+					<?php } ?>
+				  </td>
+				</tr>
+				<tr class="pessoa_fisica">
+				  <td>RG:</td>
+				  <td><input type="text" name="rg" id="rg" value="<?php echo $rg; ?>" ></td>
+				</tr>
+				<tr class="pessoa_juridica">
+				  <td><span class="required">*</span> CNPJ:</td>
+				  <td>
+					<input type="text" name="cnpj" id="cnpj" value="<?php echo $cnpj; ?>">
+					<?php if ($error_cnpj) { ?>
+					<span class="error"><?php echo $error_cnpj; ?></span>
+					<?php } ?>
+				  </td>
+				</tr>
+				<tr class="pessoa_juridica">
+				  <td>Razão Social:</td>
+				  <td><input type="text" name="razao_social" id="razao_social" value="<?php echo $razao_social; ?>"></td>
+				</tr>
+				<tr class="pessoa_juridica">
+				  <td>Inscrição Estadual:</td>
+				  <td><input type="text" name="inscricao_estadual" id="inscricao_estadual" value="<?php echo $inscricao_estadual; ?>"></td>
+				</tr>
+				<?php } ?>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before" index="1" offset="2"><![CDATA[<td><input type="text" name="payment_firstname" value="<?php echo $payment_firstname; ?>" />]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				<tr>
+				  <td>Local:</td>
+				  <td><input type="text" name="payment_apelido" value="<?php echo $payment_apelido; ?>" /></td>
+				</tr>
+				<?php } ?>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before" index="1" offset="2"><![CDATA[<td><input type="text" name="payment_address_1" value="<?php echo $payment_address_1; ?>" />]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				<tr>
+				  <td><span class="required">*</span> Número:</td>
+				  <td>
+				    <input type="text" name="payment_numero" value="<?php echo $payment_numero; ?>" />
+				    <?php if ($error_payment_numero) { ?>
+				    <span class="error"><?php echo $error_payment_numero; ?></span>
+				    <?php } ?>
+				  </td>
+				</tr>
+				<?php } ?>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before" index="1" offset="2"><![CDATA[<td><input type="text" name="payment_address_2" value="<?php echo $payment_address_2; ?>" /></td>]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				<tr>
+				  <td>Complemento:</td>
+				  <td><input type="text" name="payment_complemento" value="<?php echo $payment_complemento; ?>" /></td>
+				</tr>
+				<?php } ?>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before" index="1" offset="2"><![CDATA[<td><input type="text" name="shipping_firstname" value="<?php echo $shipping_firstname; ?>" />]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				<tr>
+				  <td>Local:</td>
+				  <td><input type="text" name="shipping_apelido" value="<?php echo $shipping_apelido; ?>" /></td>
+				</tr>
+				<?php } ?>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before" index="1" offset="2"><![CDATA[<td><input type="text" name="shipping_address_1" value="<?php echo $shipping_address_1; ?>" />]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				<tr>
+				  <td><span class="required">*</span> Número:</td>
+				  <td>
+				    <input type="text" name="shipping_numero" value="<?php echo $shipping_numero; ?>" />
+				    <?php if ($error_shipping_numero) { ?>
+				    <span class="error"><?php echo $error_shipping_numero; ?></span>
+				    <?php } ?>
+				  </td>
+				</tr>
+				<?php } ?>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before" index="1" offset="2"><![CDATA[<td><input type="text" name="shipping_address_2" value="<?php echo $shipping_address_2; ?>" /></td>]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				<tr>
+				  <td>Complemento:</td>
+				  <td><input type="text" name="shipping_complemento" value="<?php echo $shipping_complemento; ?>" /></td>
+				</tr>
+				<?php } ?>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[$('input[name=\'payment_address_1\']').after('<span class="error">' + json['error']['payment']['address_1'] + '</span>');]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				if (json['error']['payment']['numero']) {
+					$('input[name=\'payment_numero\']').after('<span class="error">' + json['error']['payment']['numero'] + '</span>');
+				}
+				<?php } ?>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[$('input[name=\'shipping_address_1\']').after('<span class="error">' + json['error']['shipping']['address_1'] + '</span>');]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				if (json['error']['numero']['address_1']) {
+					$('input[name=\'shipping_numero\']').after('<span class="error">' + json['error']['shipping']['numero'] + '</span>');
+				}
+				<?php } ?>
+			]]></add>
+		</operation>
+	</file>
+	<!-- Fim: Admin/View/Template/Sale/Order_Form -->
+
+	<!-- Inicio: Admin/Model/Sale/Customer -->
+	<file name="admin/model/sale/customer.php">
+		<operation>
+			<search position="replace" index="1"><![CDATA[$this->db->query("INSERT INTO " . DB_PREFIX . "customer SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', newsletter = '" . (int)$data['newsletter'] . "', customer_group_id = '" . (int)$data['customer_group_id'] . "', salt = '" . $this->db->escape($salt = substr(md5(uniqid(rand(), true)), 0, 9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "', status = '" . (int)$data['status'] . "', date_added = NOW()");]]></search>
+			<add><![CDATA[
+				if ($this->config->get('fields_register_brazil_status')){
+					if ($data['data_nascimento'] == ""){
+						$dataparts[0] = "00";
+						$dataparts[1] = "00";
+						$dataparts[2] = "0000";
+					}else{
+						$dataparts = explode("/",$data['data_nascimento']);
+					}
+
+					$data['firstname']          = ucwords(strtr(strtolower($data['firstname']),"ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß","àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ"));
+					$data['lastname']           = ucwords(strtr(strtolower($data['lastname']),"ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß","àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ"));
+					$data['email']              = strtr(strtolower($data['email']),"ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß","àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ");
+					$data['telephone']          = preg_replace('/([^0-9])/i','',$data['telephone']);
+					$data['fax']                = preg_replace('/([^0-9])/i','',$data['fax']);
+					$data['cpf']                = preg_replace('/([^0-9])/i','',$data['cpf']);
+					$data['rg']                 = preg_replace('/([^0-9])/i','',$data['rg']);
+					$data['cnpj']               = preg_replace('/([^0-9])/i','',$data['cnpj']);
+					$data['inscricao_estadual'] = preg_replace('/([^a-z0-9])/i','',$data['inscricao_estadual']);
+
+					$this->db->query("INSERT INTO " . DB_PREFIX . "customer SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', newsletter = '" . (int)$data['newsletter'] . "', customer_group_id = '" . (int)$data['customer_group_id'] . "', salt = '" . $this->db->escape($salt = substr(md5(uniqid(rand(), true)), 0, 9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "', status = '" . (int)$data['status'] . "', date_added = NOW()" . "',cpf = '" . $this->db->escape($data['cpf']) . "',rg = '" . $this->db->escape($data['rg']) . "',cnpj = '" . $this->db->escape($data['cnpj']) . "',razao_social = '" . $this->db->escape($data['razao_social']) . "',inscricao_estadual = '" . $this->db->escape($data['inscricao_estadual']) . "',data_nascimento = '" . $this->db->escape($dataparts[2]."-".$dataparts[1]."-".$dataparts[0]) . "',sexo = '" . $this->db->escape($data['sexo']));
+				}else{
+					$this->db->query("INSERT INTO " . DB_PREFIX . "customer SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', newsletter = '" . (int)$data['newsletter'] . "', customer_group_id = '" . (int)$data['customer_group_id'] . "', salt = '" . $this->db->escape($salt = substr(md5(uniqid(rand(), true)), 0, 9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "', status = '" . (int)$data['status'] . "', date_added = NOW()");
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="replace" index="1"><![CDATA[$this->db->query("UPDATE " . DB_PREFIX . "customer SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', newsletter = '" . (int)$data['newsletter'] . "', customer_group_id = '" . (int)$data['customer_group_id'] . "', status = '" . (int)$data['status'] . "' WHERE customer_id = '" . (int)$customer_id . "'");]]></search>
+			<add><![CDATA[
+				if ($this->config->get('fields_register_brazil_status')){ 
+					if ($data['data_nascimento'] == ""){
+						$dataparts[0] = "00";
+						$dataparts[1] = "00";
+						$dataparts[2] = "0000";
+					}else{
+						$dataparts = explode("/",$data['data_nascimento']);
+					}
+
+					$data['firstname']          = ucwords(strtr(strtolower($data['firstname']),"ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß","àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ"));
+					$data['lastname']           = ucwords(strtr(strtolower($data['lastname']),"ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß","àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ"));
+					$data['email']              = strtr(strtolower($data['email']),"ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß","àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ");
+					$data['telephone']          = preg_replace('/([^0-9])/i','',$data['telephone']);
+					$data['fax']                = preg_replace('/([^0-9])/i','',$data['fax']);
+					$data['cpf']                = preg_replace('/([^0-9])/i','',$data['cpf']);
+					$data['rg']                 = preg_replace('/([^0-9])/i','',$data['rg']);
+					$data['cnpj']               = preg_replace('/([^0-9])/i','',$data['cnpj']);
+					$data['inscricao_estadual'] = preg_replace('/([^a-z0-9])/i','',$data['inscricao_estadual']);
+
+					$this->db->query("UPDATE " . DB_PREFIX . "customer SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "',cpf = '" . $this->db->escape($data['cpf']) . "',rg = '" . $this->db->escape($data['rg']) . "',cnpj = '" . $this->db->escape($data['cnpj']) . "',razao_social = '" . $this->db->escape($data['razao_social']) . "',inscricao_estadual = '" . $this->db->escape($data['inscricao_estadual']) . "',data_nascimento = '" . $this->db->escape($dataparts[2]."-".$dataparts[1]."-".$dataparts[0]) . "',sexo = '" . $this->db->escape($data['sexo']) . "', fax = '" . $this->db->escape($data['fax']) . "', newsletter = '" . (int)$data['newsletter'] . "', customer_group_id = '" . (int)$data['customer_group_id'] . "', status = '" . (int)$data['status'] . "' WHERE customer_id = '" . (int)$customer_id . "'");
+				}else{
+					$this->db->query("UPDATE " . DB_PREFIX . "customer SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', newsletter = '" . (int)$data['newsletter'] . "', customer_group_id = '" . (int)$data['customer_group_id'] . "', status = '" . (int)$data['status'] . "' WHERE customer_id = '" . (int)$customer_id . "'");
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="replace" index="1"><![CDATA[$this->db->query("INSERT INTO " . DB_PREFIX . "address SET customer_id = '" . (int)$customer_id . "', firstname = '" . $this->db->escape($address['firstname']) . "', lastname = '" . $this->db->escape($address['lastname']) . "', company = '" . $this->db->escape($address['company']) . "', company_id = '" . $this->db->escape($address['company_id']) . "', tax_id = '" . $this->db->escape($address['tax_id']) . "', address_1 = '" . $this->db->escape($address['address_1']) . "', address_2 = '" . $this->db->escape($address['address_2']) . "', city = '" . $this->db->escape($address['city']) . "', postcode = '" . $this->db->escape($address['postcode']) . "', country_id = '" . (int)$address['country_id'] . "', zone_id = '" . (int)$address['zone_id'] . "'");]]></search>
+			<add><![CDATA[
+				if ($this->config->get('fields_register_brazil_status')){
+					$address['apelido']   = ucwords(strtr(strtolower($address['apelido']),"ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß","àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ"));
+					$address['firstname'] = ucwords(strtr(strtolower($address['firstname']),"ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß","àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ"));
+					$address['lastname']  = ucwords(strtr(strtolower($address['lastname']),"ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß","àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ"));
+					$address['address_1'] = ucwords(strtr(strtolower($address['address_1']),"ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß","àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ"));
+					$address['address_2'] = ucwords(strtr(strtolower($address['address_2']),"ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß","àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ"));
+					$address['city']      = ucwords(strtr(strtolower($address['city']),"ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß","àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ"));
+					$address['numero']    = preg_replace('/([^0-9])/i','',$address['numero']);
+					$address['postcode']  = preg_replace('/([^0-9])/i','',$address['postcode']);
+
+					$this->db->query("INSERT INTO " . DB_PREFIX . "address SET customer_id = '" . (int)$customer_id . "', firstname = '" . $this->db->escape($address['firstname']) . "', lastname = '" . $this->db->escape($address['lastname']) . "', apelido = '" . $this->db->escape($address['apelido']) . "', company = '" . $this->db->escape($address['company']) . "', company_id = '" . $this->db->escape($address['company_id']) . "', tax_id = '" . $this->db->escape($address['tax_id']) . "', address_1 = '" . $this->db->escape($address['address_1']) . "', numero = '" . $this->db->escape($address['numero']) . "', address_2 = '" . $this->db->escape($address['address_2']) . "', complemento = '" . $this->db->escape($address['complemento']) . "', city = '" . $this->db->escape($address['city']) . "', postcode = '" . $this->db->escape($address['postcode']) . "', country_id = '" . (int)$address['country_id'] . "', zone_id = '" . (int)$address['zone_id'] . "'");
+				}else{
+					$this->db->query("INSERT INTO " . DB_PREFIX . "address SET customer_id = '" . (int)$customer_id . "', firstname = '" . $this->db->escape($address['firstname']) . "', lastname = '" . $this->db->escape($address['lastname']) . "', company = '" . $this->db->escape($address['company']) . "', company_id = '" . $this->db->escape($address['company_id']) . "', tax_id = '" . $this->db->escape($address['tax_id']) . "', address_1 = '" . $this->db->escape($address['address_1']) . "', address_2 = '" . $this->db->escape($address['address_2']) . "', city = '" . $this->db->escape($address['city']) . "', postcode = '" . $this->db->escape($address['postcode']) . "', country_id = '" . (int)$address['country_id'] . "', zone_id = '" . (int)$address['zone_id'] . "'");
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="replace" index="1"><![CDATA[$this->db->query("INSERT INTO " . DB_PREFIX . "address SET address_id = '" . (int)$address['address_id'] . "', customer_id = '" . (int)$customer_id . "', firstname = '" . $this->db->escape($address['firstname']) . "', lastname = '" . $this->db->escape($address['lastname']) . "', company = '" . $this->db->escape($address['company']) . "', company_id = '" . $this->db->escape($address['company_id']) . "', tax_id = '" . $this->db->escape($address['tax_id']) . "', address_1 = '" . $this->db->escape($address['address_1']) . "', address_2 = '" . $this->db->escape($address['address_2']) . "', city = '" . $this->db->escape($address['city']) . "', postcode = '" . $this->db->escape($address['postcode']) . "', country_id = '" . (int)$address['country_id'] . "', zone_id = '" . (int)$address['zone_id'] . "'");]]></search>
+			<add><![CDATA[
+				if ($this->config->get('fields_register_brazil_status')){
+					$address['apelido']   = ucwords(strtr(strtolower($address['apelido']),"ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß","àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ"));
+					$address['firstname'] = ucwords(strtr(strtolower($address['firstname']),"ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß","àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ"));
+					$address['lastname']  = ucwords(strtr(strtolower($address['lastname']),"ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß","àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ"));
+					$address['address_1'] = ucwords(strtr(strtolower($address['address_1']),"ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß","àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ"));
+					$address['address_2'] = ucwords(strtr(strtolower($address['address_2']),"ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß","àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ"));
+					$address['city']      = ucwords(strtr(strtolower($address['city']),"ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß","àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ"));
+					$address['numero']    = preg_replace('/([^0-9])/i','',$address['numero']);
+					$address['postcode']  = preg_replace('/([^0-9])/i','',$address['postcode']);
+
+					$this->db->query("INSERT INTO " . DB_PREFIX . "address SET address_id = '" . (int)$address['address_id'] . "', customer_id = '" . (int)$customer_id . "', firstname = '" . $this->db->escape($address['firstname']) . "', lastname = '" . $this->db->escape($address['lastname']) . "', apelido = '" . $this->db->escape($address['apelido']) . "', company = '" . $this->db->escape($address['company']) . "', company_id = '" . $this->db->escape($address['company_id']) . "', tax_id = '" . $this->db->escape($address['tax_id']) . "', address_1 = '" . $this->db->escape($address['address_1']) . "', numero = '" . $this->db->escape($address['numero']) . "', address_2 = '" . $this->db->escape($address['address_2']) . "', complemento = '" . $this->db->escape($address['complemento']) . "', city = '" . $this->db->escape($address['city']) . "', postcode = '" . $this->db->escape($address['postcode']) . "', country_id = '" . (int)$address['country_id'] . "', zone_id = '" . (int)$address['zone_id'] . "'");
+				}else{
+					$this->db->query("INSERT INTO " . DB_PREFIX . "address SET address_id = '" . (int)$address['address_id'] . "', customer_id = '" . (int)$customer_id . "', firstname = '" . $this->db->escape($address['firstname']) . "', lastname = '" . $this->db->escape($address['lastname']) . "', company = '" . $this->db->escape($address['company']) . "', company_id = '" . $this->db->escape($address['company_id']) . "', tax_id = '" . $this->db->escape($address['tax_id']) . "', address_1 = '" . $this->db->escape($address['address_1']) . "', address_2 = '" . $this->db->escape($address['address_2']) . "', city = '" . $this->db->escape($address['city']) . "', postcode = '" . $this->db->escape($address['postcode']) . "', country_id = '" . (int)$address['country_id'] . "', zone_id = '" . (int)$address['zone_id'] . "'");
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before" index="1"><![CDATA['firstname'      => $address_query->row['firstname'],]]></search>
+			<add><![CDATA[
+				'apelido'      => ($this->config->get('fields_register_brazil_status')) ? $address_query->row['apelido'] : '',
+				'numero'       => ($this->config->get('fields_register_brazil_status')) ? $address_query->row['numero'] : '',
+				'complemento'  => ($this->config->get('fields_register_brazil_status')) ? $address_query->row['complemento'] : '',
+			]]></add>
+		</operation>
+	</file>
+	<!-- Fim: Admin/Model/Sale/Customer -->
+
+	<!-- Inicio: Admin/Controller/Sale/Customer -->
+	<file name="admin/controller/sale/customer.php">
+		<operation>
+			<search position="before" index="1"><![CDATA[public function insert() {]]></search>
+			<add><![CDATA[
+				public function isCpf($cpf){
+					$cpf        = preg_replace('/([^0-9])/i','',$cpf);
+					$digitoUm   = 0;
+					$digitoDois = 0;
+				
+					for($i = 0, $x = 10; $i <= 8; $i++, $x--){
+						$digitoUm += $cpf[$i] * $x;
+					}
+				
+					for($i = 0, $x = 11; $i <= 9; $i++, $x--){
+						if(str_repeat($i, 11) == $cpf){
+							return false;
+						}
+						$digitoDois += $cpf[$i] * $x;
+					}
+				
+					$calculoUm   = (($digitoUm % 11) < 2) ? 0 : 11 - ($digitoUm % 11);
+					$calculoDois = (($digitoDois % 11) < 2) ? 0 : 11 - ($digitoDois % 11);
+				
+					if($calculoUm != $cpf[9] || $calculoDois != $cpf[10]){
+						return false;
+					}
+				
+					return true;
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1"><![CDATA['fax'               => $result['fax'],]]></search>
+			<add><![CDATA[
+				'sexo'               => ($this->config->get('fields_register_brazil_status')) ? $result['sexo'] : '',
+				'data_nascimento'    => ($this->config->get('fields_register_brazil_status')) ? $result['data_nascimento'] : '',
+				'cpf'                => ($this->config->get('fields_register_brazil_status')) ? $result['cpf'] : '',
+				'rg'                 => ($this->config->get('fields_register_brazil_status')) ? $result['rg'] : '',
+				'cnpj'               => ($this->config->get('fields_register_brazil_status')) ? $result['cnpj'] : '',
+				'razao_social'       => ($this->config->get('fields_register_brazil_status')) ? $result['razao_social'] : '',
+				'inscricao_estadual' => ($this->config->get('fields_register_brazil_status')) ? $result['inscricao_estadual'] : '',
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1" offset="2"><![CDATA[$this->data['error_lastname'] = '';]]></search>
+			<add><![CDATA[
+				if ($this->config->get('fields_register_brazil_status')){
+					if (isset($this->error['data_nascimento'])) {
+						$this->data['error_data_nascimento'] = $this->error['data_nascimento'];
+					} else {
+						$this->data['error_data_nascimento'] = '';
+					}
+	
+					if (isset($this->error['cpf'])) {
+						$this->data['error_cpf'] = $this->error['cpf'];
+					} else {
+						$this->data['error_cpf'] = '';
+					}
+	
+					if (isset($this->error['cnpj'])) {
+						$this->data['error_cnpj'] = $this->error['cnpj'];
+					} else {
+						$this->data['error_cnpj'] = '';
+					}
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[$this->data['telephone'] = '';]]></search>
+			<add><![CDATA[
+				if ($this->config->get('fields_register_brazil_status')){
+					if (isset($this->request->post['pessoa'])) {
+						$this->data['pessoa'] = $this->request->post['pessoa'];
+					} else {
+						$this->data['pessoa'] = '';
+					}
+
+					if (isset($this->request->post['sexo'])) {
+						$this->data['sexo'] = $this->request->post['sexo'];
+					} elseif (isset($customer_info)) {
+						$this->data['sexo'] = $customer_info['sexo'];
+					} else {
+						$this->data['sexo'] = '';
+					}
+	
+					if (isset($this->request->post['data_nascimento'])) {
+						$this->data['data_nascimento'] = $this->request->post['data_nascimento'];
+					} elseif (isset($customer_info)) {
+						$this->data['data_nascimento'] = $customer_info['data_nascimento'];
+					} else {
+						$this->data['data_nascimento'] = '';
+					}
+	
+					if (isset($this->request->post['cpf'])) {
+						$this->data['cpf'] = preg_replace('/([^0-9])/i','',$this->request->post['cpf']);
+					} elseif (isset($customer_info)) {
+						$this->data['cpf'] = $customer_info['cpf'];
+					} else {
+						$this->data['cpf'] = '';
+					}
+	
+					if (isset($this->request->post['rg'])) {
+						$this->data['rg'] = preg_replace('/([^0-9])/i','',$this->request->post['rg']);
+					} elseif (isset($customer_info)) {
+						$this->data['rg'] = $customer_info['rg'];
+					} else {
+						$this->data['rg'] = '';
+					}
+	
+					if (isset($this->request->post['cnpj'])) {
+						$this->data['cnpj'] = preg_replace('/([^0-9])/i','',$this->request->post['cnpj']);
+					} elseif (isset($customer_info)) {
+						$this->data['cnpj'] = $customer_info['cnpj'];
+					} else {
+						$this->data['cnpj'] = '';
+					}
+	
+					if (isset($this->request->post['razao_social'])) {
+						$this->data['razao_social'] = $this->request->post['razao_social'];
+					} elseif (isset($customer_info)) {
+						$this->data['razao_social'] = $customer_info['razao_social'];
+					} else {
+						$this->data['razao_social'] = '';
+					}
+	
+					if (isset($this->request->post['inscricao_estadual'])) {
+						$this->data['inscricao_estadual'] = preg_replace('/([^a-z0-9])/i','',$this->request->post['inscricao_estadual']);
+					} elseif (isset($customer_info)) {
+						$this->data['inscricao_estadual'] = $customer_info['inscricao_estadual'];
+					} else {
+						$this->data['inscricao_estadual'] = '';
+					}
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[$this->error['email'] = $this->language->get('error_email');]]></search>
+			<add><![CDATA[
+				if ($this->config->get('fields_register_brazil_status')){
+					// Valida campo Data de Nascimento
+					$dataparts = explode("/",$this->request->post['data_nascimento']);
+					if (strlen(utf8_decode($this->request->post['data_nascimento'])) > 0) {
+						// Se o array não tiver 3 posições a data esta incorreta
+						if (sizeof($dataparts) != '3'){
+							$this->error['data_nascimento'] = "Atenção: A data informada é inválida";
+						}else{
+							// Checa validade da data
+							if (!checkdate($dataparts[1],$dataparts[0],$dataparts[2])) {
+								$this->error['data_nascimento'] = "Atenção: A data informada é inválida";
+							}
+						}
+					}
+
+					// Valida CPF e CNPJ
+					if ($this->request->post['pessoa'] == "fisica"){
+						if(isset($this->request->post['cpf'])){
+							$cpf = preg_replace('/([^0-9])/i','',$this->request->post['cpf']);
+							if ((strlen(utf8_decode($cpf)) < 1) || (strlen(utf8_decode($cpf)) > 14)) {
+								$this->error['cpf'] = "Atenção: O CPF não deve passar de 14 caracteres";  
+							}elseif(!$this->isCpf($cpf)){
+								$this->error['cpf'] = "Atenção: O CPF informado é inválido";
+							}
+						}
+					}else if ($this->request->post['pessoa'] == "juridica"){
+						if(isset($this->request->post['cnpj'])){
+							$cnpj = preg_replace('/([^0-9])/i','',$this->request->post['cnpj']);
+							if ((strlen(utf8_decode($cnpj)) < 1) || (strlen(utf8_decode($cnpj)) > 18)&&($this->request->post['pessoa'] == "juridica")) {
+								$this->error['cnpj'] = "Atenção: O CNPJ não deve passar de 18 caracteres";
+							}
+						}
+					}
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1" offset="2"><![CDATA[$this->data['error_address_address_1'] = '';]]></search>
+			<add><![CDATA[
+				if ($this->config->get('fields_register_brazil_status')){
+					if (isset($this->error['address_numero'])) {
+						$this->data['error_address_numero'] = $this->error['address_numero'];
+					} else {
+						$this->data['error_address_numero'] = '';
+					}
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[$this->error['address_address_1'][$key] = $this->language->get('error_address_1');]]></search>
+			<add><![CDATA[
+				if ($this->config->get('fields_register_brazil_status')){
+					$numero = preg_replace('/([^0-9])/i','',$value['numero']);
+					if ((utf8_strlen($numero) < 1) || (utf8_strlen($numero) > 6)) {
+						$this->error['address_numero'][$key] = 'Atenção: O número deve ter entre 1 e 6 caracteres!';
+					}
+				}
+			]]></add>
+		</operation>
+	</file>
+	<!-- Fim: Admin/Controller/Sale/Customer -->
+
+	<!-- Inicio: Admin/View/Template/Sale/Customer_Form -->
+	<file name="admin/view/template/sale/customer_form.tpl">
+		<operation>
+			<search position="after" index="1"><![CDATA[<?php echo $header; ?>]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				<script type="text/javascript">
+				 $(document).ready(function() {
+					/* Registro - Tipo de Pessoa (PF/PJ) */
+					if ($("#fisica").is(':checked')) {
+						$('.pessoa_fisica').show();
+						$('.pessoa_juridica').hide();    
+					}
+					if ($("#juridica").is(':checked')) {
+						$('.pessoa_fisica').hide();
+						$('.pessoa_juridica').show(); 
+					}
+					$('#juridica').click( function() {
+					$('.pessoa_fisica').hide();
+						$("#cpf").val("");
+						$("#rg").val("");
+						$('.pessoa_juridica').show();    
+					});
+					$('#fisica').click( function() {
+					$('.pessoa_fisica').show();
+						$("#cnpj").val("");
+						$("#razao_social").val("");
+						$("#inscricao_estadual").val("");
+						$('.pessoa_juridica').hide();
+					}); 
+				});    
+				</script>
+				<?php } ?>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[<td><input type="text" name="fax" value="<?php echo $fax; ?>" /></td>]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				<tr>
+				  <td>Sexo:</td>
+				  <td>
+				    <?php if ($sexo == 'm'){ ?>
+					<input type="radio" name="sexo" checked value="m">Masculino
+					<input type="radio" name="sexo" value="f">Feminino
+					<?php }else if($sexo == 'f'){ ?>
+					<input type="radio" name="sexo" value="m">Masculino
+					<input type="radio" name="sexo" checked value="f">Feminino
+					<?php }else{ ?>
+					<input type="radio" name="sexo" checked value="m">Masculino
+					<input type="radio" name="sexo" value="f">Feminino
+					<?php } ?>
+			      </td>
+			    </tr>
+				<tr>
+				  <td>Data de Nascimento:</td>
+				  <?php
+				  $dataparts = explode("-",$data_nascimento);
+				  if (sizeof($dataparts) != '3'){
+				    $data = $data_nascimento;
+				  }else{
+				    $data = $dataparts[2]."/".$dataparts[1]."/".$dataparts[0]; 
+				  }
+				  $data = ($data != '00/00/0000') ? $data : '';
+				  ?>
+				  <td>
+				    <input type="text" name="data_nascimento" value="<?php echo $data; ?>">
+				    <?php if ($error_data_nascimento) { ?>
+					<span class="error"><?php echo $error_data_nascimento; ?></span>
+					<?php } ?>
+				  </td>
+				</tr>
+				<tr>
+				  <td>Tipo:</td>
+				  <td>
+				    <?php if($pessoa == 'fisica'){ ?>
+					<input type="radio" name="pessoa" id="fisica" checked value="fisica">Pessoa Física
+					<input type="radio" id="juridica" name="pessoa" value="juridica">Pessoa Juridica
+					<?php }else if($pessoa == 'juridica'){ ?>
+					<input type="radio" name="pessoa" id="fisica" value="fisica">Pessoa Física
+					<input type="radio" id="juridica" name="pessoa" checked value="juridica">Pessoa Juridica
+					<?php }else{ ?>
+					<?php if($cpf != ''){ ?>
+					<input type="radio" name="pessoa" id="fisica" checked value="fisica">Pessoa Física
+					<input type="radio" id="juridica" name="pessoa" value="juridica">Pessoa Juridica
+					<?php }elseif($cnpj != ''){ ?>
+					<input type="radio" name="pessoa" id="fisica" value="fisica">Pessoa Física
+					<input type="radio" id="juridica" name="pessoa" checked value="juridica">Pessoa Juridica
+					<?php }else{ ?>
+					<input type="radio" name="pessoa" id="fisica" checked value="fisica">Pessoa Física
+					<input type="radio" id="juridica" name="pessoa" value="juridica">Pessoa Juridica
+					<?php } ?>
+					<?php } ?>
+				</td>
+			</tr>
+			<tr class="pessoa_fisica">
+			  <td><span class="required">*</span> CPF:</td>
+			  <td>
+			    <input type="text" name="cpf"  id="cpf" value="<?php echo $cpf; ?>" > 
+			    <?php if ($error_cpf) { ?>
+			    <span class="error"><?php echo $error_cpf; ?></span>
+			    <?php } ?>
+			  </td>
+			</tr>
+			<tr class="pessoa_fisica">
+			  <td>RG:</td>
+			  <td><input type="text" name="rg" id="rg" value="<?php echo $rg; ?>" ></td>
+			</tr>
+			<tr class="pessoa_juridica">
+			  <td><span class="required">*</span> CNPJ:</td>
+			  <td>
+			    <input type="text" name="cnpj" id="cnpj" value="<?php echo $cnpj; ?>">
+			    <?php if ($error_cnpj) { ?>
+			    <span class="error"><?php echo $error_cnpj; ?></span>
+			    <?php } ?>
+			  </td>
+			</tr>
+			<tr class="pessoa_juridica">
+			  <td>Razão Social:</td>
+			  <td><input type="text" name="razao_social" id="razao_social" value="<?php echo $razao_social; ?>"></td>
+			</tr>
+			<tr class="pessoa_juridica">
+			  <td>Inscrição Estadual:</td>
+			  <td><input type="text" name="inscricao_estadual" id="inscricao_estadual" value="<?php echo $inscricao_estadual; ?>"></td>
+			</tr>
+			<?php } ?>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before" index="1" offset="2"><![CDATA[<td><input type="text" name="address[<?php echo $address_row; ?>][firstname]" value="<?php echo $address['firstname']; ?>" />]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				<tr>
+				  <td>Local:</td>
+				  <td><input type="text" name="address[<?php echo $address_row; ?>][apelido]" value="<?php echo $address['apelido']; ?>" /></td>
+				</tr>
+				<?php } ?>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1" offset="2"><![CDATA[<span class="error"><?php echo $error_address_address_1[$address_row]; ?></span>]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				<tr>
+				  <td><span class="required">*</span> Número:</td>
+				  <td>
+				    <input type="text" name="address[<?php echo $address_row; ?>][numero]" value="<?php echo $address['numero']; ?>" />
+				    <?php if (isset($error_address_numero[$address_row])) { ?>
+				    <span class="error"><?php echo $error_address_numero[$address_row]; ?></span>
+				    <?php } ?>
+				  </td>
+				</tr>
+				<?php } ?>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[<td><input type="text" name="address[<?php echo $address_row; ?>][address_2]" value="<?php echo $address['address_2']; ?>" /></td>]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				<tr>
+				  <td>Complemento:</td>
+				  <td><input type="text" name="address[<?php echo $address_row; ?>][complemento]" value="<?php echo $address['complemento']; ?>" /></td>
+				</tr>
+				<?php } ?>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[html += '  <input type="hidden" name="address[' + address_row + '][address_id]" value="" />';]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				html += '    <tr>';
+				html += '	   <td>Local:</td>';
+				html += '	   <td><input type="text" name="address[' + address_row + '][apelido]" value="" /></td>';
+				html += '    </tr>';
+				<?php } ?>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[html += '      <td><input type="text" name="address[' + address_row + '][address_1]" value="" /></td>';]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				html += '    <tr>';
+				html += '	   <td>Número:</td>';
+				html += '	   <td><input type="text" name="address[' + address_row + '][numero]" value="" /></td>';
+				html += '    </tr>';
+				<?php } ?>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[html += '      <td><input type="text" name="address[' + address_row + '][address_2]" value="" /></td>';]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				html += '    <tr>';
+				html += '	   <td>Complemento:</td>';
+				html += '	   <td><input type="text" name="address[' + address_row + '][complemento]" value="" /></td>';
+				html += '    </tr>';
+				<?php } ?>
+			]]></add>
+		</operation>
+	</file>
+	<!-- Fim: Admin/View/Template/Sale/Customer_Form -->
+	
+	<!-- Inicio: Catalog/View/Theme/dilecta/Template/Common/Header -->
+	<file name="catalog/view/theme/dilecta/template/common/header.tpl">
+		<operation>
+			<search position="after" index="1"><![CDATA[<script type="text/javascript" src="catalog/view/theme/dilecta/js/jquery.flexslider-min.js"></script>]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				<script type="text/javascript" src="catalog/view/javascript/jquery/jquery.alphanumeric.js"></script>
+				<script type="text/javascript" src="catalog/view/javascript/jquery/jquery.maskedinput-1.3.min.js"></script>
+				<?php } ?>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1"><![CDATA[<?php echo $google_analytics; ?>]]></search>
+			<add><![CDATA[
+				<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+				<script type="text/javascript">
+				 $(document).ready(function() {
+				 				 
+				  $("input[name='data_nasc'] ").mask("99/99/9999");
+				  $("input[name='data_nascimento'] ").mask("99/99/9999");
+				  $("input[name='fax'] ").mask("(99) 9999-9999");
+				  $("input[name='postcode'] ").mask("99999-999");
+				  $("input[name='cpf'] ").mask("999.999.999-99");
+				  
+				  // jQuery Masked Input
+				  $("input[name='telephone'] ").mask("(99) 9999-9999?9").ready(function(event) {
+					  var target, phone, element;
+					  target = (event.currentTarget) ? event.currentTarget : event.srcElement;
+					  phone = target.value.replace(/\D/g, '');
+					  element = $(target);
+					  element.unmask();
+					  if(phone.length > 10) {
+						  element.mask("(99) 99999-999?9");
+					  } else {
+						  element.mask("(99) 9999-9999?9");  
+					  }
+				  });
+				  
+				  /* Mascaras e Formatos 
+				  if($('input.phone').length > 0) $('input.phone').mask('(99) 9999-9999');
+				  if($('input.date').length > 0) $('input.date').mask('99/99/9999');
+				  if($('input.cpf').length > 0) $('input.cpf').mask('999.999.999-99');
+				  if($('input.cnpj').length > 0) $('input.cnpj').mask('99.999.999/9999-99');
+				  if($('input.alphanumeric').length > 0) $('input.alphanumeric').alphanumeric();
+				  if($('input.numeric').length > 0) $('input.numeric').numeric();
+				  */
+				   				  
+				});
+				</script>
+				<?php } ?>
+			]]></add>
+		</operation>
+	</file>
+	<!-- Fim: Catalog/View/Theme/*/Template/Common/Header -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+    <file name="catalog/view/theme/dilecta/template/account/register.tpl">
+		<operation>
+			<search position="replace"><![CDATA[
+				<input type="text" name="firstname" value="<?php echo $firstname; ?>" />
+			]]>
+			</search>
+			<add><![CDATA[
+				<input type="text" name="firstname" value="<?php echo $firstname; ?>" style="width:400px;" />
+			]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[
+				<input type="text" name="lastname" value="<?php echo $lastname; ?>" />
+			]]>
+			</search>
+			<add><![CDATA[
+				<input type="text" name="lastname" value="<?php echo $lastname; ?>" style="width:400px;" />
+			]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[
+				<input type="text" name="email" value="<?php echo $email; ?>" />
+			]]>
+			</search>
+			<add><![CDATA[
+				<input type="text" name="email" value="<?php echo $email; ?>" style="width:400px;" />
+			]]></add>
+		</operation>
+        <operation>
+            <search position="replace" offset="1"><![CDATA[
+                <td><?php echo $entry_fax; ?></td>
+            ]]></search>
+            <add><![CDATA[
+				<td><span class="required">*</span> <?php echo $entry_fax; ?></td>
+				<td><input type="text" name="fax" value="<?php echo $fax; ?>" /></td>
+			  </tr>
+			  <tr>
+                <td><span class="required">*</span> <?php echo $entry_cpf; ?></td>
+                <td><input type="text" name="cpf" id="cpf" value="<?php echo $cpf; ?>" /><?php if ($error_cpf) { ?><span class="error"><?php echo $error_cpf; ?></span><?php } ?></td>
+              </tr>
+			  <tr>
+                <td><span class="required">*</span> <?php echo $entry_rg; ?></td>
+                <td><input type="text" name="rg" value="<?php echo $rg; ?>" maxlength="12" /><?php if ($error_rg) { ?><span class="error"><?php echo $error_rg; ?></span><?php } ?></td>
+              </tr>
+			  <tr>
+                <td><span class="required">*</span> <?php echo $entry_data_nasc; ?></td>
+                <td><input type="text" name="data_nasc" value="<?php echo $data_nasc; ?>" /><?php if ($error_data_nasc) { ?><span class="error"><?php echo $error_data_nasc; ?></span><?php } ?></td>
+              </tr>
+			  <tr>
+				<td><span class="required">*</span> <?php echo $entry_sexo; ?></td>
+				<td>
+				  <?php if ($sexo == 'm'){ ?>
+				  <input type="radio" name="sexo" checked value="m">Masculino
+				  <input type="radio" name="sexo" value="f">Feminino
+				  <?php }else if($sexo == 'f'){ ?>
+				  <input type="radio" name="sexo" value="m">Masculino
+				  <input type="radio" name="sexo" checked value="f">Feminino
+				  <?php }else{ ?>
+				  <input type="radio" name="sexo" checked value="m">Masculino
+				  <input type="radio" name="sexo" value="f">Feminino
+				  <?php } ?>
+				  <?php if ($error_sexo) { ?><span class="error"><?php echo $error_sexo; ?></span><?php } ?>
+				</td>
+			  </tr>
+			  
+            ]]></add>
+        </operation>
+		<operation>
+			<search position="replace" offset="2"><![CDATA[
+				<td><input type="text" name="fax" value="<?php echo $fax; ?>" /></td>
+			]]>
+			</search>
+			<add><![CDATA[
+			  <td><input type="text" name="fax" value="<?php echo $fax; ?>" />
+				<?php if ($error_fax) { ?>
+				<span class="error"><?php echo $error_fax; ?></span>
+				<?php } ?></td>
+			 </tr>
+			]]></add>
+		</operation>						
+		<operation>
+			<search position="replace" offset="85"><![CDATA[<h2><?php echo $text_your_address; ?></h2>]]></search>
+			<add><![CDATA[
+    <h2><?php echo $text_your_address; ?></h2>
+    <div class="content">
+      <table class="form">
+        <tr>
+          <td><span id="postcode-required" class="required">*</span> <?php echo $entry_postcode; ?></td>
+          <td><input type="text" name="postcode" value="<?php echo $postcode; ?>" />
+            <?php if ($error_postcode) { ?>
+            <span class="error"><?php echo $error_postcode; ?></span>
+            <?php } ?></td>
+        </tr>
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_address_1; ?></td>
+          <td><input type="text" name="address_1" value="<?php echo $address_1; ?>" style="width:350px;" />
+            <?php if ($error_address_1) { ?>
+            <span class="error"><?php echo $error_address_1; ?></span>
+            <?php } ?></td>
+        </tr>
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_numero; ?></td>
+          <td><input type="text" name="numero" value="<?php echo $numero; ?>" />
+            <?php if ($error_numero) { ?>
+            <span class="error"><?php echo $error_numero; ?></span>
+            <?php } ?></td>
+        </tr>
+		<!--
+        <tr>
+          <td><?php echo $entry_company; ?></td>
+          <td><input type="text" name="company" value="<?php echo $company; ?>" style="width:350px;" /> <span class="required">(Apto, Bloco, Andar, Casa, Etc)</span></td>
+        </tr>
+		-->  
+        <tr>
+          <td><?php echo $entry_complemento; ?></td>
+          <td><input type="text" name="complemento" value="<?php echo $complemento; ?>" style="width:350px;" /> <span class="required">(Apto, Bloco, Andar, Casa, Etc)</span></td>
+        </tr>		      
+        <tr style="display: <?php echo (count($customer_groups) > 1 ? 'table-row' : 'none'); ?>;">
+          <td><?php echo $entry_customer_group; ?></td>
+          <td><?php foreach ($customer_groups as $customer_group) { ?>
+            <?php if ($customer_group['customer_group_id'] == $customer_group_id) { ?>
+            <input type="radio" name="customer_group_id" value="<?php echo $customer_group['customer_group_id']; ?>" id="customer_group_id<?php echo $customer_group['customer_group_id']; ?>" checked="checked" />
+            <label for="customer_group_id<?php echo $customer_group['customer_group_id']; ?>"><?php echo $customer_group['name']; ?></label>
+            <br />
+            <?php } else { ?>
+            <input type="radio" name="customer_group_id" value="<?php echo $customer_group['customer_group_id']; ?>" id="customer_group_id<?php echo $customer_group['customer_group_id']; ?>" />
+            <label for="customer_group_id<?php echo $customer_group['customer_group_id']; ?>"><?php echo $customer_group['name']; ?></label>
+            <br />
+            <?php } ?>
+            <?php } ?></td>
+        </tr>      
+        <tr id="tax-id-display">
+          <td><span id="tax-id-required" class="required">*</span> <?php echo $entry_tax_id; ?></td>
+          <td><input type="text" name="tax_id" value="<?php echo $tax_id; ?>" />
+            <?php if ($error_tax_id) { ?>
+            <span class="error"><?php echo $error_tax_id; ?></span>
+            <?php } ?></td>
+        </tr>
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_address_2; ?></td>
+          <td><input type="text" name="address_2" value="<?php echo $address_2; ?>" style="width:350px;" />
+            <?php if ($error_address_2) { ?>
+            <span class="error"><?php echo $error_address_2; ?></span>
+            <?php } ?></td>		  
+        </tr>
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_city; ?></td>
+          <td><input type="text" name="city" value="<?php echo $city; ?>" style="width:350px;" />
+            <?php if ($error_city) { ?>
+            <span class="error"><?php echo $error_city; ?></span>
+            <?php } ?></td>
+        </tr>
+        <tr style="display:none;">
+          <td><span class="required">*</span> <?php echo $entry_country; ?></td>
+          <td><select name="country_id">
+              <option value=""><?php echo $text_select; ?></option>
+              <?php foreach ($countries as $country) { ?>
+              <?php if ($country['country_id'] == $country_id) { ?>
+              <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo $country['name']; ?></option>
+              <?php } else { ?>
+              <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option>
+              <?php } ?>
+              <?php } ?>
+            </select>
+            <?php if ($error_country) { ?>
+            <span class="error"><?php echo $error_country; ?></span>
+            <?php } ?></td>
+        </tr>
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_zone; ?></td>
+          <td><select name="zone_id">
+            </select>
+            <?php if ($error_zone) { ?>
+            <span class="error"><?php echo $error_zone; ?></span>
+            <?php } ?></td>
+        </tr>
+      </table>
+    </div>
+				]]></add>
+		</operation>
+		
+		
+    </file>
+    <file name="catalog/language/portuguese-br/account/register.php">
+        <operation>
+            <search position="before"><![CDATA[
+                $_['entry_firstname']      = 'Nome:';
+            ]]></search>
+            <add><![CDATA[
+                $_['entry_cpf'] = 'CPF:';
+                $_['entry_rg'] = 'RG:';
+                $_['entry_data_nasc'] = 'Data de Nascimento:';
+                $_['entry_sexo'] = 'Sexo:';
+                $_['entry_numero'] = 'Número:';
+                $_['entry_complemento'] = 'Complemento:';
+            ]]></add>
+        </operation>
+        <operation>
+            <search position="before"><![CDATA[
+                $_['error_firstname']      = 'O nome deve ter entre 1 e 32 caracteres!';
+            ]]></search>
+            <add><![CDATA[
+                $_['error_cpf'] = 'Faltou o CPF';
+                $_['error_rg'] = 'Faltou o RG';
+                $_['error_fax'] = 'Faltou o Telefone';
+                $_['error_data_nasc'] = 'Faltou a Data de Nascimento.';
+                $_['error_sexo'] = 'Preencha o Sexo';
+                $_['error_address_2'] = 'Preencha o Bairro';
+                $_['error_numero'] = 'Preencha o Número';
+            ]]></add>
+        </operation>
+		
+    </file>
+    <file name="catalog/controller/account/register.php">
+		<operation>
+			<search position="before" index="1"><![CDATA[public function country() {]]></search>
+			<add><![CDATA[
+				public function isCpf($cpf){
+					$cpf        = preg_replace('/([^0-9])/i','',$cpf);
+					$digitoUm   = 0;
+					$digitoDois = 0;
+				
+					for($i = 0, $x = 10; $i <= 8; $i++, $x--){
+						$digitoUm += $cpf[$i] * $x;
+					}
+				
+					for($i = 0, $x = 11; $i <= 9; $i++, $x--){
+						if(str_repeat($i, 11) == $cpf){
+							return false;
+						}
+						$digitoDois += $cpf[$i] * $x;
+					}
+				
+					$calculoUm   = (($digitoUm % 11) < 2) ? 0 : 11 - ($digitoUm % 11);
+					$calculoDois = (($digitoDois % 11) < 2) ? 0 : 11 - ($digitoDois % 11);
+				
+					if($calculoUm != $cpf[9] || $calculoDois != $cpf[10]){
+						return false;
+					}
+				
+					return true;
+				}
+			]]></add>
+		</operation>
+	
+        <operation>
+            <search position="before"><![CDATA[
+                $this->data['entry_firstname'] = $this->language->get('entry_firstname');
+            ]]></search>
+            <add><![CDATA[
+                $this->data['entry_cpf'] = $this->language->get('entry_cpf');
+                $this->data['entry_rg'] = $this->language->get('entry_rg');
+                $this->data['entry_fax'] = $this->language->get('entry_fax');
+                $this->data['entry_data_nasc'] = $this->language->get('entry_data_nasc');
+                $this->data['entry_sexo'] = $this->language->get('entry_sexo');
+                $this->data['entry_numero'] = $this->language->get('entry_numero');
+                $this->data['entry_complemento'] = $this->language->get('entry_complemento');
+            ]]></add>
+        </operation>
+        <operation>
+            <search position="before"><![CDATA[
+				if (isset($this->error['firstname'])) {
+            ]]></search>
+            <add><![CDATA[
+				if (isset($this->error['cpf'])) {
+					$this->data['error_cpf'] = $this->error['cpf'];
+				} else {
+					$this->data['error_cpf'] = '';
+				}
+				if (isset($this->error['rg'])) {
+					$this->data['error_rg'] = $this->error['rg'];
+				} else {
+					$this->data['error_rg'] = '';
+				}
+				if (isset($this->error['fax'])) {
+					$this->data['error_fax'] = $this->error['fax'];
+				} else {
+					$this->data['error_fax'] = '';
+				}
+				if (isset($this->error['data_nasc'])) {
+					$this->data['error_data_nasc'] = $this->error['data_nasc'];
+				} else {
+					$this->data['error_data_nasc'] = '';
+				}
+				if (isset($this->error['sexo'])) {
+					$this->data['error_sexo'] = $this->error['sexo'];
+				} else {
+					$this->data['error_sexo'] = '';
+				}
+				if (isset($this->error['address_2'])) {
+					$this->data['error_address_2'] = $this->error['address_2'];
+				} else {
+					$this->data['error_address_2'] = '';
+				}
+				if (isset($this->error['numero'])) {
+					$this->data['error_numero'] = $this->error['numero'];
+				} else {
+					$this->data['error_numero'] = '';
+				}
+            ]]></add>
+        </operation>
+		
+        <operation>
+            <search position="before"><![CDATA[
+                if (isset($this->request->post['firstname'])) {
+            ]]></search>
+            <add><![CDATA[
+				if (isset($this->request->post['cpf'])) {
+					$this->data['cpf'] = preg_replace('/([^0-9])/i','',$this->request->post['cpf']);
+				} else {
+					$this->data['cpf'] = '';
+				}
+
+				if (isset($this->request->post['rg'])) {
+					$this->data['rg'] = preg_replace('/([^0-9])/i','',$this->request->post['rg']);
+				} else {
+					$this->data['rg'] = '';
+				}
+                if (isset($this->request->post['fax'])) {
+                    $this->data['fax'] = $this->request->post['fax'];
+                } else {
+                    $this->data['fax'] = '';
+                }
+                if (isset($this->request->post['data_nasc'])) {
+                    $this->data['data_nasc'] = $this->request->post['data_nasc'];
+                } else {
+                    $this->data['data_nasc'] = '';
+                }
+                if (isset($this->request->post['sexo'])) {
+                    $this->data['sexo'] = $this->request->post['sexo'];
+                } else {
+                    $this->data['sexo'] = '';
+                }
+                if (isset($this->request->post['address_2'])) {
+                    $this->data['address_2'] = $this->request->post['address_2'];
+                } else {
+                    $this->data['address_2'] = '';
+                }
+                if (isset($this->request->post['numero'])) {
+                    $this->data['numero'] = $this->request->post['numero'];
+                } else {
+                    $this->data['numero'] = '';
+                }
+                if (isset($this->request->post['complemento'])) {
+                    $this->data['complemento'] = $this->request->post['complemento'];
+                } else {
+                    $this->data['complemento'] = '';
+                }
+            ]]></add>
+        </operation>
+		<!--
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[$this->error['email'] = $this->language->get('error_email');]]></search>
+			<add><![CDATA[
+				if ($this->config->get('fields_register_brazil_status')){ 
+					// Valida Data de Nascimento
+					$dataparts = explode("/",$this->request->post['data_nasc']);
+					if (strlen(utf8_decode($this->request->post['data_nasc'])) > 0) {
+						// Se o array não tiver 3 posições a data esta incorreta
+						if (sizeof($dataparts) != '3'){
+							$this->error['data_nasc'] = "Atenção: A data informada é inválida";
+						}else{
+							// Checa validade da data
+							if (!checkdate($dataparts[1],$dataparts[0],$dataparts[2])) {
+								$this->error['data_nasc'] = "Atenção: A data informada é inválida";
+							}
+						}
+					}
+
+					// Valida CPF
+					if(isset($this->request->post['cpf'])){
+						$cpf = preg_replace('/([^0-9])/i','',$this->request->post['cpf']);
+						if ((strlen(utf8_decode($cpf)) < 1) || (strlen(utf8_decode($cpf)) > 14)) {
+							$this->error['cpf'] = "Atenção: O CPF não deve passar de 14 caracteres";  
+						}elseif(!$this->isCpf($cpf)){
+							$this->error['cpf'] = "Atenção: O CPF informado é inválido";
+						}
+					}
+				}
+			]]></add>
+		</operation>
+		-->
+		
+		
+		
+        <operation>
+            <search position="after"><![CDATA[
+				private function validate() {
+            ]]></search>
+            <add><![CDATA[
+			
+				if ($this->config->get('fields_register_brazil_status')){ 
+					// Valida Data de Nascimento
+					$dataparts = explode("/",$this->request->post['data_nasc']);
+					if (strlen(utf8_decode($this->request->post['data_nasc'])) > 0) {
+						// Se o array não tiver 3 posições a data esta incorreta
+						if (sizeof($dataparts) != '3'){
+							$this->error['data_nasc'] = "Atenção: A data informada é inválida";
+						}else{
+							// Checa validade da data
+							if (!checkdate($dataparts[1],$dataparts[0],$dataparts[2])) {
+								$this->error['data_nasc'] = "Atenção: A data informada é inválida";
+							}
+						}
+					}
+
+					// Valida CPF
+					if(isset($this->request->post['cpf'])){
+						$cpf = preg_replace('/([^0-9])/i','',$this->request->post['cpf']);
+						if ((strlen(utf8_decode($cpf)) < 1) || (strlen(utf8_decode($cpf)) > 14)) {
+							$this->error['cpf'] = "Atenção: O CPF não deve passar de 14 caracteres";  
+						}elseif(!$this->isCpf($cpf)){
+							$this->error['cpf'] = "Atenção: O CPF informado é inválido";
+						}
+					}
+				}
+			
+			
+				if ((utf8_strlen($this->request->post['cpf']) < 11) || (utf8_strlen($this->request->post['cpf']) > 14)) {
+					$this->error['cpf'] = $this->language->get('error_cpf');
+				}
+				if ((utf8_strlen($this->request->post['rg']) < 8) || (utf8_strlen($this->request->post['rg']) > 13)) {
+					$this->error['rg'] = $this->language->get('error_rg');
+				}
+				if ((utf8_strlen($this->request->post['fax']) < 1) || (utf8_strlen($this->request->post['fax']) > 20)) {
+					$this->error['fax'] = $this->language->get('error_fax');
+				}
+				if ((utf8_strlen($this->request->post['data_nasc']) < 8) || (utf8_strlen($this->request->post['data_nasc']) > 10)) {
+					$this->error['data_nasc'] = $this->language->get('error_data_nasc');
+				}
+				if ((utf8_strlen($this->request->post['address_2']) < 2)) {
+					$this->error['address_2'] = $this->language->get('error_address_2');
+				}
+				if ((utf8_strlen($this->request->post['numero']) < 1)) {
+					$this->error['numero'] = $this->language->get('error_numero');
+				}
+            ]]></add>
+        </operation>
+		
+		
+    </file>
+	
+    <file name="catalog/language/portuguese-br/account/edit.php">
+        <operation>
+            <search position="before"><![CDATA[
+                $_['entry_fax']        = 'Telefone para Contato:';
+            ]]></search>
+            <add><![CDATA[
+                $_['entry_cpf'] = 'CPF:';
+                $_['entry_rg'] = 'RG:';
+                $_['entry_data_nascimento'] = 'Data de Nascimento:';
+                $_['entry_sexo'] = 'Sexo:';
+                $_['entry_numero'] = 'Número:';
+                $_['entry_complemento'] = 'Complemento:';
+            ]]></add>
+        </operation>
+        <operation>
+            <search position="after"><![CDATA[
+                $_['error_telephone']  = 'O telefone deve ter de 3 a 32 caracteres!';
+            ]]></search>
+            <add><![CDATA[
+                $_['error_cpf'] = 'Faltou o CPF';
+                $_['error_rg'] = 'Faltou o RG';
+                $_['error_data_nascimento'] = 'Faltou a Data de Nascimento';			
+                $_['error_sexo'] = 'Preencha o Sexo';			
+                $_['error_fax'] = 'Faltou o Telefone';
+                $_['error_numero'] = 'Preencha o Número';
+            ]]></add>
+        </operation>
+		
+    </file>
+	
+    <file name="catalog/language/portuguese-br/account/address.php">
+        <operation>
+            <search position="before"><![CDATA[
+                $_['entry_zone']        = 'Estado:';
+            ]]></search>
+            <add><![CDATA[
+                $_['entry_numero']        = 'Número:';
+                $_['entry_complemento']        = 'Complemento:';
+            ]]></add>
+        </operation>
+        <operation>
+            <search position="after"><![CDATA[
+                $_['error_zone']        = 'Por favor, selecione um estado';
+            ]]></search>
+            <add><![CDATA[
+                $_['error_numero']        = 'Preencha o Número';
+            ]]></add>
+        </operation>
+		
+    </file>
+	
+    <file name="catalog/language/portuguese-br/account/address-insert.php">
+        <operation>
+            <search position="before"><![CDATA[
+                $_['entry_zone']        = 'Estado:';
+            ]]></search>
+            <add><![CDATA[
+                $_['entry_numero']        = 'Número:';
+                $_['entry_complemento']        = 'Complemento:';
+            ]]></add>
+        </operation>
+        <operation>
+            <search position="after"><![CDATA[
+                $_['error_zone']        = 'Por favor, selecione um estado';
+            ]]></search>
+            <add><![CDATA[
+                $_['error_numero']        = 'Preencha o Número';
+            ]]></add>
+        </operation>
+		
+    </file>
+	
+	
+	<!-- Inicio: Catalog/Controller/Account/Edit -->
+	<file name="catalog/controller/account/edit.php">
+        <operation>
+            <search position="before"><![CDATA[
+                $this->data['entry_firstname'] = $this->language->get('entry_firstname');
+            ]]></search>
+            <add><![CDATA[
+                $this->data['entry_cpf'] = $this->language->get('entry_cpf');
+                $this->data['entry_rg'] = $this->language->get('entry_rg');
+                $this->data['entry_data_nascimento'] = $this->language->get('entry_data_nascimento');			
+                $this->data['entry_sexo'] = $this->language->get('entry_sexo');			
+                $this->data['entry_fax'] = $this->language->get('entry_fax');
+                //$this->data['entry_numero'] = $this->language->get('entry_numero');
+                //$this->data['entry_complemento'] = $this->language->get('entry_complemento');
+            ]]></add>
+        </operation>
+	
+		<operation>
+			<search position="after" index="1" offset="2"><![CDATA[$this->data['error_telephone'] = '';]]></search>
+			<add><![CDATA[
+				if ($this->config->get('fields_register_brazil_status')){ 
+	
+					if (isset($this->error['cpf'])) {
+						$this->data['error_cpf'] = $this->error['cpf'];
+					} else {
+						$this->data['error_cpf'] = '';
+					}
+	
+					if (isset($this->error['rg'])) {
+						$this->data['error_rg'] = $this->error['rg'];
+					} else {
+						$this->data['error_rg'] = '';
+					}
+					
+	
+					if (isset($this->error['data_nascimento'])) {
+						$this->data['error_data_nascimento'] = $this->error['data_nascimento'];
+					} else {
+						$this->data['error_data_nascimento'] = '';
+					}
+					
+	
+					if (isset($this->error['fax'])) {
+						$this->data['error_fax'] = $this->error['fax'];
+					} else {
+						$this->data['error_fax'] = '';
+					}
+	
+					if (isset($this->error['sexo'])) {
+						$this->data['error_sexo'] = $this->error['sexo'];
+					} else {
+						$this->data['error_sexo'] = '';
+					}
+					
+					
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[$this->data['telephone'] = '';]]></search>
+			<add><![CDATA[
+				if ($this->config->get('fields_register_brazil_status')){ 
+	
+					if (isset($this->request->post['cpf'])) {
+						$this->data['cpf'] = preg_replace('/([^0-9])/i','',$this->request->post['cpf']);
+					} elseif (isset($customer_info)) {
+						$this->data['cpf'] = $customer_info['cpf'];
+					} else {
+						$this->data['cpf'] = '';
+					}
+	
+					if (isset($this->request->post['rg'])) {
+						$this->data['rg'] = preg_replace('/([^0-9])/i','',$this->request->post['rg']);
+					} elseif (isset($customer_info)) {
+						$this->data['rg'] = $customer_info['rg'];
+					} else {
+						$this->data['rg'] = '';
+					}
+					
+					if (isset($this->request->post['data_nascimento'])) {
+						$this->data['data_nascimento'] = $this->request->post['data_nascimento'];
+					} elseif (isset($customer_info)) {
+						$this->data['data_nascimento'] = $customer_info['data_nascimento'];
+					} else {
+						$this->data['data_nascimento'] = '';
+					}
+					
+					if (isset($this->request->post['sexo'])) {
+						$this->data['sexo'] = $this->request->post['sexo'];
+					} elseif (isset($customer_info)) {
+						$this->data['sexo'] = $customer_info['sexo'];
+					} else {
+						$this->data['sexo'] = '';
+					}
+						
+					
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="1" offset="1"><![CDATA[$this->error['email'] = $this->language->get('error_email');]]></search>
+			<add><![CDATA[
+				if ($this->config->get('fields_register_brazil_status')){ 
+					// Valida campo Data de Nascimento
+					$dataparts = explode("/",$this->request->post['data_nascimento']);
+					if (strlen(utf8_decode($this->request->post['data_nascimento'])) > 0) {
+						// Se o array não tiver 3 posições a data esta incorreta
+						if (sizeof($dataparts) != '3'){
+							$this->error['data_nascimento'] = "Atenção: A data informada é inválida";
+						}else{
+							// Checa validade da data
+							if (!checkdate($dataparts[1],$dataparts[0],$dataparts[2])) {
+								$this->error['data_nascimento'] = "Atenção: A data informada é inválida";
+							}
+						} 
+					}
+
+				}
+				
+				if ((utf8_strlen($this->request->post['cpf']) < 11) || (utf8_strlen($this->request->post['cpf']) > 14)) {
+					$this->error['cpf'] = $this->language->get('error_cpf');
+				}
+				if ((utf8_strlen($this->request->post['rg']) < 8) || (utf8_strlen($this->request->post['rg']) > 13)) {
+					$this->error['rg'] = $this->language->get('error_rg');
+				}
+				if ((utf8_strlen($this->request->post['fax']) < 1) || (utf8_strlen($this->request->post['fax']) > 20)) {
+					$this->error['fax'] = $this->language->get('error_fax');
+				}
+				if ((utf8_strlen($this->request->post['data_nascimento']) < 8) || (utf8_strlen($this->request->post['data_nascimento']) > 10)) {
+					$this->error['data_nascimento'] = $this->language->get('error_data_nascimento');
+				}
+				
+				
+			]]></add>
+		</operation>	 
+		
+	</file>
+	<!-- Fim: Catalog/Controller/Account/Edit -->	
+	
+	
+    <file name="catalog/controller/account/address.php">
+    
+		<operation>
+			<search position="replace"><![CDATA[
+      			$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
+			]]></search>
+			<add><![CDATA[
+			$format = '{firstname} {lastname}' . "\n" . '{address_1} {numero}' . "\n" . '{complemento}' . "\n" . '{address_2}' . "\n" . '{postcode}' . "\n" . '{city}' . " / " .'{zone}' . "\n" . '{country}';
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[
+      			'{address_1}',
+			]]></search>
+			<add><![CDATA[
+			'{numero}',
+      			'{complemento}',
+      			]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[
+      			'address_1' => $result['address_1'],
+			]]></search>
+			<add><![CDATA[
+			'numero' => $result['numero'],
+      			'complemento' => $result['complemento'],
+      			]]></add>
+		</operation>
+		
+        <operation>
+            <search position="before"><![CDATA[
+                if (!isset($this->request->get['address_id'])) {
+            ]]></search>
+            <add><![CDATA[
+				if (isset($this->error['numero'])) {
+					$this->data['error_numero'] = $this->error['numero'];
+				} else {
+					$this->data['error_numero'] = '';
+				}
+
+            ]]></add>
+        </operation>		  
+    
+        <operation>
+            <search position="before"><![CDATA[
+                $this->data['entry_default'] = $this->language->get('entry_default');
+            ]]></search>
+            <add><![CDATA[
+                $this->data['entry_numero'] = $this->language->get('entry_numero');
+                $this->data['entry_complemento'] = $this->language->get('entry_complemento');
+            ]]></add>
+        </operation>
+
+        <operation>
+            <search position="before"><![CDATA[
+                if (isset($this->request->post['zone_id'])) {
+            ]]></search>
+            <add><![CDATA[
+				if (isset($this->request->post['numero'])) {
+					$this->data['numero'] = $this->request->post['numero'];
+				} elseif (!empty($address_info)) {
+					$this->data['numero'] = $address_info['numero'];			
+				} else {
+					$this->data['numero'] = '';
+				}
+				if (isset($this->request->post['complemento'])) {
+					$this->data['complemento'] = $this->request->post['complemento'];
+				} elseif (!empty($address_info)) {
+					$this->data['complemento'] = $address_info['complemento'];			
+				} else {
+					$this->data['complemento'] = '';
+				}
+		  ]]></add>
+        </operation>
+        <operation>
+            <search position="before"><![CDATA[
+                if ((utf8_strlen($this->request->post['city']) < 2) || (utf8_strlen($this->request->post['city']) > 128)) {
+            ]]></search>
+            <add><![CDATA[
+				if ((utf8_strlen($this->request->post['numero']) < 1)) {
+					$this->error['numero'] = $this->language->get('error_numero');
+				}
+		  ]]></add>
+        </operation>
+        
+        
+
+
+     
+		
+    </file>
+	
+	
+	
+	
+	
+	<file name="catalog/view/theme/dilecta/template/account/edit.tpl">
+		<operation>
+			<search position="replace" offset="33"><![CDATA[
+      <table class="form">
+			]]></search>
+			<add><![CDATA[
+      <table class="form">
+	  
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>
+          <td><input type="text" name="firstname" value="<?php echo $firstname; ?>" style="width:350px;" />
+            <?php if ($error_firstname) { ?>
+            <span class="error"><?php echo $error_firstname; ?></span>
+            <?php } ?></td>
+        </tr>
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_lastname; ?></td>
+          <td><input type="text" name="lastname" value="<?php echo $lastname; ?>" style="width:350px;" />
+            <?php if ($error_lastname) { ?>
+            <span class="error"><?php echo $error_lastname; ?></span>
+            <?php } ?></td>
+        </tr>
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_email; ?></td>
+          <td><input type="text" name="email" value="<?php echo $email; ?>" style="width:350px;" />
+            <?php if ($error_email) { ?>
+            <span class="error"><?php echo $error_email; ?></span>
+            <?php } ?></td>
+        </tr>
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_telephone; ?></td>
+          <td><input type="text" name="telephone" value="<?php echo $telephone; ?>" />
+            <?php if ($error_telephone) { ?>
+            <span class="error"><?php echo $error_telephone; ?></span>
+            <?php } ?></td>
+        </tr>
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_fax; ?></td>
+          <td><input type="text" name="fax" value="<?php echo $fax; ?>" />
+			<?php if ($error_fax) { ?>
+            <span class="error"><?php echo $error_fax; ?></span>
+            <?php } ?></td>
+        </tr>
+		<?php if ($this->config->get('fields_register_brazil_status')){ ?>
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_cpf; ?></td>
+          <td><input type="text" name="cpf" value="<?php echo $cpf; ?>" readonly="readonly"  />
+			<?php if ($error_cpf) { ?>
+            <span class="error"><?php echo $error_cpf; ?></span>
+            <?php } ?></td>
+        </tr>
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_rg; ?></td>
+          <td><input type="text" name="rg" value="<?php echo $rg; ?>" readonly="readonly" />
+			<?php if ($error_rg) { ?>
+            <span class="error"><?php echo $error_rg; ?></span>
+            <?php } ?></td>
+        </tr>
+        <tr>
+		<?php 
+		$dataparts = explode("-",$data_nascimento);
+		if (sizeof($dataparts) != '3'){
+			$data = $data_nascimento;
+		}else{
+			$data = $dataparts[2]."/".$dataparts[1]."/".$dataparts[0]; 
+		}
+		$data = ($data != '00/00/0000') ? $data : '';
+		?>		
+          <td><span class="required">*</span> <?php echo $entry_data_nascimento; ?></td>
+          <td><input type="text" name="data_nascimento" value="<?php echo $data; ?>" />
+			<?php if ($error_data_nascimento) { ?>
+            <span class="error"><?php echo $error_data_nascimento; ?></span>
+            <?php } ?></td>
+        </tr>
+		<tr>
+		  <td><span class="required">*</span> <?php echo $entry_sexo; ?></td>
+		  <td>
+			<?php if ($sexo == 'm'){ ?>
+			<input type="radio" name="sexo" checked value="m">Masculino
+			<input type="radio" name="sexo" value="f">Feminino
+			<?php }else if($sexo == 'f'){ ?>
+			<input type="radio" name="sexo" value="m">Masculino
+			<input type="radio" name="sexo" checked value="f">Feminino
+			<?php }else{ ?>
+			<input type="radio" name="sexo" checked value="m">Masculino
+			<input type="radio" name="sexo" value="f">Feminino
+			<?php } ?>
+		  </td>
+		</tr>
+		
+		<?php } ?>
+      </table>
+				]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/view/theme/dilecta/template/account/address_form.tpl">
+		<operation>
+			<search position="replace" offset="100"><![CDATA[
+      <table class="form">
+			]]></search>
+			<add><![CDATA[
+      <table class="form">
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>
+          <td><input type="text" name="firstname" value="<?php echo $firstname; ?>" style="width:350px;" />
+            <?php if ($error_firstname) { ?>
+            <span class="error"><?php echo $error_firstname; ?></span>
+            <?php } ?></td>
+        </tr>
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_lastname; ?></td>
+          <td><input type="text" name="lastname" value="<?php echo $lastname; ?>" style="width:350px;" />
+            <?php if ($error_lastname) { ?>
+            <span class="error"><?php echo $error_lastname; ?></span>
+            <?php } ?></td>
+        </tr>
+        <tr>
+          <td><span id="postcode-required" class="required">*</span> <?php echo $entry_postcode; ?></td>
+          <td><input type="text" name="postcode" value="<?php echo $postcode; ?>" />
+            <?php if ($error_postcode) { ?>
+            <span class="error"><?php echo $error_postcode; ?></span>
+            <?php } ?></td>
+
+        </tr>        <tr>
+          <td><span class="required">*</span> <?php echo $entry_address_1; ?></td>
+          <td><input type="text" name="address_1" value="<?php echo $address_1; ?>" style="width:350px;" />
+            <?php if ($error_address_1) { ?>
+            <span class="error"><?php echo $error_address_1; ?></span>
+            <?php } ?></td>
+        </tr>
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_numero; ?></td>
+          <td><input type="text" name="numero" value="<?php echo $numero; ?>" />
+            <?php if ($error_numero) { ?>
+            <span class="error"><?php echo $error_numero; ?></span>
+            <?php } ?></td>
+        </tr>
+        <tr>
+          <td><?php echo $entry_complemento; ?></td>
+          <td><input type="text" name="complemento" value="<?php echo $complemento; ?>" style="width:350px;" /> <span class="required">(Apto, Bloco, Andar, Casa, Etc)</span></td>
+        </tr>
+        <?php if ($tax_id_display) { ?>
+        <tr>
+          <td><?php echo $entry_tax_id; ?></td>
+          <td><input type="text" name="tax_id" value="<?php echo $tax_id; ?>" />
+            <?php if ($error_tax_id) { ?>
+            <span class="error"><?php echo $error_tax_id; ?></span>
+            <?php } ?></td>
+        </tr>
+        <?php } ?>
+        <tr>
+          <td><?php echo $entry_address_2; ?></td>
+          <td><input type="text" name="address_2" value="<?php echo $address_2; ?>" style="width:350px;" /></td>
+        </tr>
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_city; ?></td>
+          <td><input type="text" name="city" value="<?php echo $city; ?>" style="width:350px;" />
+            <?php if ($error_city) { ?>
+            <span class="error"><?php echo $error_city; ?></span>
+            <?php } ?></td>
+        </tr>
+        <tr style="display:none">
+          <td><span class="required">*</span> <?php echo $entry_country; ?></td>
+          <td><select name="country_id">
+              <option value=""><?php echo $text_select; ?></option>
+              <?php foreach ($countries as $country) { ?>
+              <?php if ($country['country_id'] == $country_id) { ?>
+              <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo $country['name']; ?></option>
+              <?php } else { ?>
+              <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option>
+              <?php } ?>
+              <?php } ?>
+            </select>
+            <?php if ($error_country) { ?>
+            <span class="error"><?php echo $error_country; ?></span>
+            <?php } ?></td>
+        </tr>
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_zone; ?></td>
+          <td><select name="zone_id" style="width:250px;">
+            </select>
+            <?php if ($error_zone) { ?>
+            <span class="error"><?php echo $error_zone; ?></span>
+            <?php } ?></td>
+        </tr>
+        <tr>
+          <td><?php echo $entry_default; ?></td>
+          <td><?php if ($default) { ?>
+            <input type="radio" name="default" value="1" checked="checked" />
+            <?php echo $text_yes; ?>
+            <input type="radio" name="default" value="0" />
+            <?php echo $text_no; ?>
+            <?php } else { ?>
+            <input type="radio" name="default" value="1" />
+            <?php echo $text_yes; ?>
+            <input type="radio" name="default" value="0" checked="checked" />
+            <?php echo $text_no; ?>
+            <?php } ?></td>
+        </tr>
+      </table>
+				]]></add>
+		</operation>
+	</file>
+	
+	<file name="admin/view/template/sale/order_invoice.tpl">
+		<operation>
+		  <search position="replace" offset="7"><![CDATA[
+			<td><?php echo $order['store_name']; ?><br />
+		  ]]></search>
+		  <add><![CDATA[
+			<td><img src="http://www.capasparaiphone.com.br/lojatemp/image/data/logo/logo-capasparaiphone.png" width="270" /><br /><br /><!--<?php echo $order['store_name']; ?><br />
+			<?php echo $order['store_address']; ?><br />
+			<?php echo $text_telephone; ?> <?php echo $order['store_telephone']; ?><br />
+			<?php if ($order['store_fax']) { ?>
+			<?php echo $text_fax; ?> <?php echo $order['store_fax']; ?><br />
+			<?php } ?>-->
+			<?php echo $order['store_email']; ?><br />
+			<?php echo $order['store_url']; ?></td>
+		  ]]></add>
+		</operation>
+		<operation>
+		  <search position="replace"><![CDATA[
+			<?php echo $order['telephone']; ?>
+		  ]]></search>
+		  <add><![CDATA[
+			<!-- <?php echo $order['telephone']; ?> -->
+		  ]]></add>
+		</operation>
+  	</file>	
+	
+	
+	<file name="catalog/controller/checkout/shipping_address.php">
+		<operation>
+		  <search position="before"><![CDATA[
+			$this->data['entry_company'] = $this->language->get('entry_company');
+		  ]]></search>
+		  <add><![CDATA[
+			$this->data['entry_numero'] = $this->language->get('entry_numero');
+			$this->data['entry_complemento'] = $this->language->get('entry_complemento');
+		  ]]></add>
+		</operation>
+		<operation>
+		  <search position="before"><![CDATA[
+			$this->data['entry_company'] = $this->language->get('entry_company');
+		  ]]></search>
+		  <add><![CDATA[
+			$this->data['entry_numero'] = $this->language->get('entry_numero');
+			$this->data['entry_complemento'] = $this->language->get('entry_complemento');
+		  ]]></add>
+		</operation>		
+  	</file>
+	
+	
+	<file name="catalog/view/theme/dilecta/template/checkout/shipping_address.tpl">
+			<operation>
+		  <search position="replace"><![CDATA[
+			<select name="address_id" style="width: 100%; margin-bottom: 15px;" size="5">
+		  ]]></search>
+		  <add><![CDATA[
+			<select name="address_id" style="width: 100%; margin-bottom: 15px; height:80px" size="50">
+		  ]]></add>
+		</operation>
+		<operation>
+		  <search position="replace"><![CDATA[
+			<option value="<?php echo $address['address_id']; ?>" selected="selected"><?php echo $address['firstname']; ?> <?php echo $address['lastname']; ?>, <?php echo $address['address_1']; ?>, <?php echo $address['city']; ?>, <?php echo $address['zone']; ?>, <?php echo $address['country']; ?></option>
+		  ]]></search>
+		  <add><![CDATA[
+			<option value="<?php echo $address['address_id']; ?>" selected="selected"><?php echo $address['firstname']; ?> <?php echo $address['lastname']; ?>, <?php echo $address['address_1']; ?>, <?php echo $address['numero']; ?>, <?php echo $address['complemento']; ?>, <?php echo $address['city']; ?>, <?php echo $address['zone']; ?>, <?php echo $address['country']; ?></option>
+		  ]]></add>
+		</operation>
+		<operation>
+		  <search position="replace"><![CDATA[
+			<option value="<?php echo $address['address_id']; ?>"><?php echo $address['firstname']; ?> <?php echo $address['lastname']; ?>, <?php echo $address['address_1']; ?>, <?php echo $address['city']; ?>, <?php echo $address['zone']; ?>, <?php echo $address['country']; ?></option>
+		  ]]></search>
+		  <add><![CDATA[
+			<option value="<?php echo $address['address_id']; ?>" selected="selected"><?php echo $address['firstname']; ?> <?php echo $address['lastname']; ?>, <?php echo $address['address_1']; ?>, <?php echo $address['numero']; ?>, <?php echo $address['complemento']; ?>, <?php echo $address['city']; ?>, <?php echo $address['zone']; ?>, <?php echo $address['country']; ?></option>
+		  ]]></add>
+		</operation>			
+		<operation>
+			<search position="replace" offset="47"><![CDATA[
+      <table class="form">
+			]]></search>
+			<add><![CDATA[
+  <table class="form">
+    <tr>
+      <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>
+      <td><input type="text" name="firstname" value="" class="large-field" style="width:350px;" /></td>
+    </tr>
+    <tr>
+      <td><span class="required">*</span> <?php echo $entry_lastname; ?></td>
+      <td><input type="text" name="lastname" value="" class="large-field" style="width:350px;" /></td>
+    </tr>
+    <tr>
+      <td><span id="shipping-postcode-required" class="required">*</span> <?php echo $entry_postcode; ?></td>
+      <td><input type="text" name="postcode" value="" class="large-field" /></td>
+    </tr>
+    <tr>
+      <td><span class="required">*</span> <?php echo $entry_address_1; ?></td>
+      <td><input type="text" name="address_1" value="" class="large-field" style="width:350px;" /></td>
+    </tr>
+    <tr>
+      <td><span class="required">*</span> <?php echo $entry_company_id; ?></td>
+      <td><input type="text" name="company_id" value="" class="large-field" /></td>
+    </tr>
+    <tr>
+      <td><span class="required">*</span> <?php echo $entry_company; ?></td>
+      <td><input type="text" name="company" value="" class="large-field" style="width:350px;" /> <span class="required">(Apto, Bloco, Andar, Casa, Etc)</span></td>
+    </tr>
+    <tr>
+      <td><span class="required">*</span> <?php echo $entry_address_2; ?></td>
+      <td><input type="text" name="address_2" value="" class="large-field" style="width:350px;" /></td>
+    </tr>
+    <tr>
+      <td><span class="required">*</span> <?php echo $entry_city; ?></td>
+      <td><input type="text" name="city" value="" class="large-field" style="width:350px;" /></td>
+    </tr>
+    <tr style="display:none">
+      <td><span class="required">*</span> <?php echo $entry_country; ?></td>
+      <td><select name="country_id" class="large-field">
+          <option value=""><?php echo $text_select; ?></option>
+          <?php foreach ($countries as $country) { ?>
+          <?php if ($country['country_id'] == $country_id) { ?>
+          <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo $country['name']; ?></option>
+          <?php } else { ?>
+          <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option>
+          <?php } ?>
+          <?php } ?>
+        </select></td>
+    </tr>
+    <tr>
+      <td><span class="required">*</span> <?php echo $entry_zone; ?></td>
+      <td><select name="zone_id" class="large-field" style="width:250px;">
+        </select></td>
+    </tr>
+  </table>
+				]]></add>
+		</operation>
+	</file>	
+	
+	<file name="catalog/controller/checkout/confirm.php">
+		<operation> <!-- Linha 181 Geral - pegar numero e complemento de entrega dentro da função index()  -->
+			<search position="after" ><![CDATA[
+			$data['fax'] = $this->customer->getFax();
+			]]></search>
+			<add><![CDATA[
+				$data['data_nascimento'] = $this->customer->getDataNascimento();
+			]]></add>
+		</operation>
+		<operation> <!-- Linha 181 Geral - pegar numero e complemento de entrega dentro da função index()  -->
+			<search position="after" ><![CDATA[
+			$data['shipping_address_1'] = $shipping_address['address_1'];
+			]]></search>
+			<add><![CDATA[
+				$data['shipping_numero'] = $shipping_address['numero'];
+				$data['shipping_complemento'] = $shipping_address['complemento'];				
+			]]></add>
+		</operation>
+		<operation><!-- Linha 206 Geral - zerar numero e complemento de entrega dentro da função index()  -->
+			<search position="after" ><![CDATA[
+			$data['shipping_address_1'] = '';
+			]]></search>
+			<add><![CDATA[
+				$data['shipping_numero'] = '';
+				$data['shipping_complemento'] = '';				
+			]]></add>
+		</operation>
+		<operation> <!-- Linha 181 Geral - pegar numero e complemento de entrega dentro da função index()  -->
+			<search position="after" ><![CDATA[
+			$data['payment_address_1'] = $payment_address['address_1'];
+			]]></search>
+			<add><![CDATA[
+				$data['payment_numero'] = $payment_address['numero'];
+				$data['payment_complemento'] = $payment_address['complemento'];				
+			]]></add>
+		</operation>
+	</file>
+	
+    <file name="catalog/model/account/customer.php">
+        <operation>
+            <search position="replace"><![CDATA[
+                $this->db->query("INSERT INTO " . DB_PREFIX . "customer SET store_id = '" . (int)$this->config->get('config_store_id') . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', salt = '" . $this->db->escape($salt = substr(md5(uniqid(rand(), true)), 0, 9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "', newsletter = '" . (isset($data['newsletter']) ? (int)$data['newsletter'] : 0) . "', customer_group_id = '" . (int)$customer_group_id . "', ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "', status = '1', approved = '" . (int)!$customer_group_info['approval'] . "', date_added = NOW()");
+            ]]></search>
+            <add><![CDATA[
+				$dataparts = explode("/",$data['data_nasc']);
+                $this->db->query("INSERT INTO " . DB_PREFIX . "customer SET store_id = '" . (int)$this->config->get('config_store_id') . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', salt = '" . $this->db->escape($salt = substr(md5(uniqid(rand(), true)), 0, 9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "', newsletter = '" . (isset($data['newsletter']) ? (int)$data['newsletter'] : 0) . "', customer_group_id = '" . (int)$customer_group_id . "', ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "', status = '1', approved = '" . (int)!$customer_group_info['approval'] . "', cpf = '" . $this->db->escape($data['cpf']) . "', rg = '" . $this->db->escape($data['rg']) . "', data_nascimento = '" . $this->db->escape($dataparts[2]."-".$dataparts[1]."-".$dataparts[0]) . "', sexo = '" . $this->db->escape($data['sexo']) . "', date_added = NOW()");
+            ]]></add>
+        </operation>
+        <operation>
+            <search position="replace"><![CDATA[
+                $this->db->query("INSERT INTO " . DB_PREFIX . "address SET customer_id = '" . (int)$customer_id . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', company = '" . $this->db->escape($data['company']) . "', company_id = '" . $this->db->escape($data['company_id']) . "', tax_id = '" . $this->db->escape($data['tax_id']) . "', address_1 = '" . $this->db->escape($data['address_1']) . "', address_2 = '" . $this->db->escape($data['address_2']) . "', city = '" . $this->db->escape($data['city']) . "', postcode = '" . $this->db->escape($data['postcode']) . "', country_id = '" . (int)$data['country_id'] . "', zone_id = '" . (int)$data['zone_id'] . "'");
+            ]]></search>
+            <add><![CDATA[
+				$this->db->query("INSERT INTO " . DB_PREFIX . "address SET customer_id = '" . (int)$customer_id . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', numero = '" . $this->db->escape($data['numero']) . "', complemento = '" . $this->db->escape($data['complemento']) . "', tax_id = '" . $this->db->escape($data['tax_id']) . "', address_1 = '" . $this->db->escape($data['address_1']) . "', address_2 = '" . $this->db->escape($data['address_2']) . "', city = '" . $this->db->escape($data['city']) . "', postcode = '" . $this->db->escape($data['postcode']) . "', country_id = '" . (int)$data['country_id'] . "', zone_id = '" . (int)$data['zone_id'] . "'");
+            ]]></add>
+        </operation>		
+		<operation>
+			<search position="replace"><![CDATA[
+				$this->db->query("UPDATE " . DB_PREFIX . "customer SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "' WHERE customer_id = '" . (int)$this->customer->getId() . "'");
+		]]></search>
+		<add><![CDATA[
+				$dataparts = explode("/",$data['data_nascimento']);
+				$this->db->query("UPDATE " . DB_PREFIX . "customer SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', cpf = '" . $this->db->escape($data['cpf']) . "', rg = '" . $this->db->escape($data['rg']) . "', data_nascimento = '" . $this->db->escape($dataparts[2]."-".$dataparts[1]."-".$dataparts[0]) . "', sexo = '" . $this->db->escape($data['sexo']) . "' WHERE customer_id = '" . (int)$this->customer->getId() . "'");
+		]]></add>
+		</operation>
+    </file>
+    
+
+    <file name="catalog/model/account/address.php">
+        <operation>
+            <search position="replace"><![CDATA[
+                $this->db->query("INSERT INTO " . DB_PREFIX . "address SET customer_id = '" . (int)$this->customer->getId() . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', company = '" . $this->db->escape($data['company']) . "', company_id = '" . $this->db->escape(isset($data['company_id']) ? $data['company_id'] : '') . "', tax_id = '" . $this->db->escape(isset($data['tax_id']) ? $data['tax_id'] : '') . "', address_1 = '" . $this->db->escape($data['address_1']) . "', address_2 = '" . $this->db->escape($data['address_2']) . "', postcode = '" . $this->db->escape($data['postcode']) . "', city = '" . $this->db->escape($data['city']) . "', zone_id = '" . (int)$data['zone_id'] . "', country_id = '" . (int)$data['country_id'] . "'");
+            ]]></search>
+            <add><![CDATA[
+		$this->db->query("INSERT INTO " . DB_PREFIX . "address SET customer_id = '" . (int)$this->customer->getId() . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', numero = '" . $this->db->escape($data['numero']) . "', complemento = '" . $this->db->escape($data['complemento']) . "', tax_id = '" . $this->db->escape(isset($data['tax_id']) ? $data['tax_id'] : '') . "', address_1 = '" . $this->db->escape($data['address_1']) . "', address_2 = '" . $this->db->escape($data['address_2']) . "', postcode = '" . $this->db->escape($data['postcode']) . "', city = '" . $this->db->escape($data['city']) . "', zone_id = '" . (int)$data['zone_id'] . "', country_id = '" . (int)$data['country_id'] . "'");
+            ]]></add>
+        </operation>
+        <operation>
+            <search position="replace"><![CDATA[
+                $this->db->query("UPDATE " . DB_PREFIX . "address SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', company = '" . $this->db->escape($data['company']) . "', company_id = '" . $this->db->escape(isset($data['company_id']) ? $data['company_id'] : '') . "', tax_id = '" . $this->db->escape(isset($data['tax_id']) ? $data['tax_id'] : '') . "', address_1 = '" . $this->db->escape($data['address_1']) . "', address_2 = '" . $this->db->escape($data['address_2']) . "', postcode = '" . $this->db->escape($data['postcode']) . "', city = '" . $this->db->escape($data['city']) . "', zone_id = '" . (int)$data['zone_id'] . "', country_id = '" . (int)$data['country_id'] . "' WHERE address_id  = '" . (int)$address_id . "' AND customer_id = '" . (int)$this->customer->getId() . "'");
+            ]]></search>
+            <add><![CDATA[
+		$this->db->query("UPDATE " . DB_PREFIX . "address SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', numero = '" . $this->db->escape($data['numero']) . "', complemento = '" . $this->db->escape($data['complemento']) . "', tax_id = '" . $this->db->escape(isset($data['tax_id']) ? $data['tax_id'] : '') . "', address_1 = '" . $this->db->escape($data['address_1']) . "', address_2 = '" . $this->db->escape($data['address_2']) . "', postcode = '" . $this->db->escape($data['postcode']) . "', city = '" . $this->db->escape($data['city']) . "', zone_id = '" . (int)$data['zone_id'] . "', country_id = '" . (int)$data['country_id'] . "' WHERE address_id  = '" . (int)$address_id . "' AND customer_id = '" . (int)$this->customer->getId() . "'");
+            ]]></add>
+        </operation>        
+        <operation>
+            <search position="after"><![CDATA[
+                'address_2'      => $address_query->row['address_2'],
+            ]]></search>
+            <add><![CDATA[
+		'numero'      => $address_query->row['numero'],
+		'complemento'      => $address_query->row['complemento'],
+            ]]></add>
+        </operation>
+        <operation>
+            <search position="after"><![CDATA[
+                'address_2'      => $result['address_2'],
+            ]]></search>
+            <add><![CDATA[
+		'numero'      => $result['numero'],
+		'complemento'      => $result['complemento'],
+            ]]></add>
+        </operation>                
+    </file>    
+	
+	<file name="catalog/model/checkout/order.php">
+		<operation> <!-- Linha 4 geral - na função addOrder() insere DDD, payment_numero, payment_complemento, shiping_numero, shiping_complemento e apaga conteudo lastname, company -->
+			<search position="replace" ><![CDATA[
+			$this->db->query("INSERT INTO `" . DB_PREFIX . "order` SET invoice_prefix = '" . $this->db->escape($data['invoice_prefix']) . "', store_id = '" . (int)$data['store_id'] . "', store_name = '" . $this->db->escape($data['store_name']) . "', store_url = '" . $this->db->escape($data['store_url']) . "', customer_id = '" . (int)$data['customer_id'] . "', customer_group_id = '" . (int)$data['customer_group_id'] . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', payment_firstname = '" . $this->db->escape($data['payment_firstname']) . "', payment_lastname = '" . $this->db->escape($data['payment_lastname']) . "', payment_company = '" . $this->db->escape($data['payment_company']) . "', payment_company_id = '" . $this->db->escape($data['payment_company_id']) . "', payment_tax_id = '" . $this->db->escape($data['payment_tax_id']) . "', payment_address_1 = '" . $this->db->escape($data['payment_address_1']) . "', payment_address_2 = '" . $this->db->escape($data['payment_address_2']) . "', payment_city = '" . $this->db->escape($data['payment_city']) . "', payment_postcode = '" . $this->db->escape($data['payment_postcode']) . "', payment_country = '" . $this->db->escape($data['payment_country']) . "', payment_country_id = '" . (int)$data['payment_country_id'] . "', payment_zone = '" . $this->db->escape($data['payment_zone']) . "', payment_zone_id = '" . (int)$data['payment_zone_id'] . "', payment_address_format = '" . $this->db->escape($data['payment_address_format']) . "', payment_method = '" . $this->db->escape($data['payment_method']) . "', payment_code = '" . $this->db->escape($data['payment_code']) . "', shipping_firstname = '" . $this->db->escape($data['shipping_firstname']) . "', shipping_lastname = '" . $this->db->escape($data['shipping_lastname']) . "', shipping_company = '" . $this->db->escape($data['shipping_company']) . "', shipping_address_1 = '" . $this->db->escape($data['shipping_address_1']) . "', shipping_address_2 = '" . $this->db->escape($data['shipping_address_2']) . "', shipping_city = '" . $this->db->escape($data['shipping_city']) . "', shipping_postcode = '" . $this->db->escape($data['shipping_postcode']) . "', shipping_country = '" . $this->db->escape($data['shipping_country']) . "', shipping_country_id = '" . (int)$data['shipping_country_id'] . "', shipping_zone = '" . $this->db->escape($data['shipping_zone']) . "', shipping_zone_id = '" . (int)$data['shipping_zone_id'] . "', shipping_address_format = '" . $this->db->escape($data['shipping_address_format']) . "', shipping_method = '" . $this->db->escape($data['shipping_method']) . "', shipping_code = '" . $this->db->escape($data['shipping_code']) . "', comment = '" . $this->db->escape($data['comment']) . "', total = '" . (float)$data['total'] . "', affiliate_id = '" . (int)$data['affiliate_id'] . "', commission = '" . (float)$data['commission'] . "', language_id = '" . (int)$data['language_id'] . "', currency_id = '" . (int)$data['currency_id'] . "', currency_code = '" . $this->db->escape($data['currency_code']) . "', currency_value = '" . (float)$data['currency_value'] . "', ip = '" . $this->db->escape($data['ip']) . "', forwarded_ip = '" .  $this->db->escape($data['forwarded_ip']) . "', user_agent = '" . $this->db->escape($data['user_agent']) . "', accept_language = '" . $this->db->escape($data['accept_language']) . "', date_added = NOW(), date_modified = NOW()");
+			]]></search>
+			<add><![CDATA[
+				$this->db->query("INSERT INTO `" . DB_PREFIX . "order` SET invoice_prefix = '" . $this->db->escape($data['invoice_prefix']) . "', store_id = '" . (int)$data['store_id'] . "', store_name = '" . $this->db->escape($data['store_name']) . "', store_url = '" . $this->db->escape($data['store_url']) . "', customer_id = '" . (int)$data['customer_id'] . "', customer_group_id = '" . (int)$data['customer_group_id'] . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', payment_firstname = '" . $this->db->escape($data['payment_firstname']) . "', payment_lastname = '" . $this->db->escape($data['payment_lastname']) . "', payment_company = '" . $this->db->escape($data['payment_company']) . "', payment_company_id = '" . $this->db->escape($data['payment_company_id']) . "', payment_tax_id = '" . $this->db->escape($data['payment_tax_id']) . "', payment_address_1 = '" . $this->db->escape($data['payment_address_1']) . "', payment_address_2 = '" . $this->db->escape($data['payment_address_2']) . "', payment_city = '" . $this->db->escape($data['payment_city']) . "', payment_postcode = '" . $this->db->escape($data['payment_postcode']) . "', payment_country = '" . $this->db->escape($data['payment_country']) . "', payment_country_id = '" . (int)$data['payment_country_id'] . "', payment_zone = '" . $this->db->escape($data['payment_zone']) . "', payment_zone_id = '" . (int)$data['payment_zone_id'] . "', payment_address_format = '" . $this->db->escape($data['payment_address_format']) . "', payment_method = '" . $this->db->escape($data['payment_method']) . "', payment_code = '" . $this->db->escape($data['payment_code']) . "', shipping_firstname = '" . $this->db->escape($data['shipping_firstname']) . "', shipping_lastname = '" . $this->db->escape($data['shipping_lastname']) . "', shipping_company = '" . $this->db->escape($data['shipping_company']) . "', shipping_address_1 = '" . $this->db->escape($data['shipping_address_1']) . "', shipping_address_2 = '" . $this->db->escape($data['shipping_address_2']) . "', shipping_city = '" . $this->db->escape($data['shipping_city']) . "', shipping_postcode = '" . $this->db->escape($data['shipping_postcode']) . "', shipping_country = '" . $this->db->escape($data['shipping_country']) . "', shipping_country_id = '" . (int)$data['shipping_country_id'] . "', shipping_zone = '" . $this->db->escape($data['shipping_zone']) . "', shipping_zone_id = '" . (int)$data['shipping_zone_id'] . "', shipping_address_format = '" . $this->db->escape($data['shipping_address_format']) . "', shipping_method = '" . $this->db->escape($data['shipping_method']) . "', shipping_code = '" . $this->db->escape($data['shipping_code']) . "', comment = '" . $this->db->escape($data['comment']) . "', total = '" . (float)$data['total'] . "', affiliate_id = '" . (int)$data['affiliate_id'] . "', commission = '" . (float)$data['commission'] . "', language_id = '" . (int)$data['language_id'] . "', currency_id = '" . (int)$data['currency_id'] . "', currency_code = '" . $this->db->escape($data['currency_code']) . "', currency_value = '" . (float)$data['currency_value'] . "', ip = '" . $this->db->escape($data['ip']) . "', forwarded_ip = '" .  $this->db->escape($data['forwarded_ip']) . "', user_agent = '" . $this->db->escape($data['user_agent']) . "', accept_language = '" . $this->db->escape($data['accept_language']) . "', shipping_numero = '" . $this->db->escape($data['shipping_numero']) . "', shipping_complemento = '" . $this->db->escape($data['shipping_complemento']) . "', payment_numero = '" . $this->db->escape($data['payment_numero']) . "', payment_complemento = '" . $this->db->escape($data['payment_complemento']) . "', data_nascimento = '" . $this->db->escape($data['data_nascimento']) . "', date_added = NOW(), date_modified = NOW()");
+			]]></add>
+		</operation>
+		
+
+		<operation> <!-- Linha 103 geral - pega numero e complemento de cobrança na função getOrder() -->
+			<search position="after" ><![CDATA[
+			'payment_address_1'       => $order_query->row['payment_address_1'],
+			]]></search>
+			<add><![CDATA[
+			'payment_numero'      => $order_query->row['payment_numero'],
+			'payment_complemento'      => $order_query->row['payment_complemento'],
+				
+			]]></add>
+		</operation>
+		<operation> <!-- Linha 120 geral - pega numero e complemento de entrega na função getOrder() -->
+			<search position="after" ><![CDATA[
+			'shipping_address_1'      => $order_query->row['shipping_address_1'],
+			]]></search>
+			<add><![CDATA[
+			'shipping_numero'      => $order_query->row['shipping_numero'],
+			'shipping_complemento'      => $order_query->row['shipping_complemento'],			
+			]]></add>
+		</operation>
+		
+		<operation>  <!-- Linha 314 e 348 geral - pega dados para mandar por email na função confirm() -->
+			<search position="replace" ><![CDATA[
+			$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
+			]]></search>
+			<add><![CDATA[
+			$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1} {numero} {complemento}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
+			]]></add>
+		</operation>
+		<operation>  <!-- Linha 321 e 355 geral - pega dados para mandar por email na função confirm() -->
+			<search position="after" ><![CDATA[
+			'{address_1}',
+			]]></search>
+			<add><![CDATA[
+			'{numero}',
+			'{complemento}',	
+			]]></add>
+		</operation>
+		
+		<operation>  <!-- Linha 334 geral - pega dados para mandar por email na função confirm() -->
+			<search position="after" ><![CDATA[
+			'address_1' => $order_info['payment_address_1'],
+			]]></search>
+			<add><![CDATA[
+			'numero' => $order_info['payment_numero'],	
+			'complemento' => $order_info['payment_complemento'],
+			]]></add>
+		</operation>
+		
+		<operation>  <!-- Linha 368 geral - pega dados para mandar por email na função confirm() -->
+			<search position="after" ><![CDATA[
+			'address_1' => $order_info['shipping_address_1'],
+			]]></search>
+			<add><![CDATA[
+			'numero' => $order_info['shipping_numero'],	
+			'complemento' => $order_info['shipping_complemento'],
+			]]></add>
+		</operation>
+		
+			
+	
+	</file>
+	
+
+
+	
+	
+</modification>

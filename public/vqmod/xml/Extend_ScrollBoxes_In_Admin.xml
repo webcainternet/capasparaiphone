@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+
+	<id>Extend_ScrollBoxes_In_Admin</id>
+	<version>OC15xx</version>
+	<vqmver>2.2.1</vqmver>
+	<author>Codegirl Studio - Copyright (c) 2012 KatGirl/Codegirl Studio (support@codegirlstudio.com). All Rights Reserved. No part of this document may be reproduced, copied, sold, or given away without written consent from the author.</author>
+
+<file name="admin/view/template/catalog/product_form.tpl" error="log">
+	<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<td><?php echo $entry_category; ?></td>
+			]]></search>
+			<add><![CDATA[
+			<td><?php echo $entry_category; ?></td>
+			<td><div class="scrollbox" style="min-height: 300px;">
+			]]></add>
+	</operation>
+	<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<td><?php echo $entry_store; ?></td>
+			]]></search>
+			<add><![CDATA[
+			<td><?php echo $entry_store; ?></td>
+			<td><div class="scrollbox" style="min-height: 300px;">
+			]]></add>
+	</operation>
+	<operation>
+			<search position="replace" offset="1"><![CDATA[
+			<td><?php echo $entry_download; ?></td>
+			]]></search>
+			<add><![CDATA[
+			<td><?php echo $entry_download; ?></td>
+			<td><div class="scrollbox" style="min-height:300px;">
+			]]></add>
+	</operation>
+		<operation>
+			<search position="replace" offset="5"><![CDATA[
+			 <td><?php echo $entry_related; ?></td>
+			]]></search>
+			<add><![CDATA[
+			<td><?php echo $entry_related; ?></td>
+              <td><input type="text" name="related" value="" /></td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td><div id="product-related" class="scrollbox" style="min-height: 300px;">
+			]]></add>
+	</operation>
+</file>	
+
+<file name="admin/view/template/user/user_group_form.tpl">
+	<operation>
+			<search position="replace"><![CDATA[
+			<td><div class="scrollbox">
+			]]></search>
+			<add><![CDATA[
+			<td><div class="scrollbox" style="min-height: 300px;">
+			]]></add>
+	</operation>
+</file>	
+</modification>

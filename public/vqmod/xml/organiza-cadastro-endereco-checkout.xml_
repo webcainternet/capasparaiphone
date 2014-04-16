@@ -1,0 +1,83 @@
+<modification>
+
+	<id>Organiza formulário cadastro de endereço no checkout</id>
+	<version>1.0.0</version>
+	<vqmver>2.1</vqmver>
+	<author>Thiago Torres</author>
+	
+	<file name="catalog/controller/checkout/shipping_address.php">
+		<operation>
+		  <search position="before"><![CDATA[
+			$this->data['entry_company'] = $this->language->get('entry_company');
+		  ]]></search>
+		  <add><![CDATA[
+			$this->data['entry_company'] = $this->language->get('entry_company');
+			$this->data['entry_company_id'] = $this->language->get('entry_company_id');
+		  ]]></add>
+		</operation>
+  	</file>
+	
+	
+	<file name="catalog/view/theme/dilecta/template/checkout/shipping_address.tpl">
+		<operation>
+			<search position="replace" offset="47"><![CDATA[
+      <table class="form">
+			]]></search>
+			<add><![CDATA[
+  <table class="form">
+    <tr>
+      <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>
+      <td><input type="text" name="firstname" value="" class="large-field" style="width:350px;" /></td>
+    </tr>
+    <tr>
+      <td><span class="required">*</span> <?php echo $entry_lastname; ?></td>
+      <td><input type="text" name="lastname" value="" class="large-field" style="width:350px;" /></td>
+    </tr>
+    <tr>
+      <td><span id="shipping-postcode-required" class="required">*</span> <?php echo $entry_postcode; ?></td>
+      <td><input type="text" name="postcode" value="" class="large-field" /></td>
+    </tr>
+    <tr>
+      <td><span class="required">*</span> <?php echo $entry_address_1; ?></td>
+      <td><input type="text" name="address_1" value="" class="large-field" style="width:350px;" /></td>
+    </tr>
+    <tr>
+      <td><span class="required">*</span> <?php echo $entry_company_id; ?></td>
+      <td><input type="text" name="company_id" value="" class="large-field" /></td>
+    </tr>
+    <tr>
+      <td><span class="required">*</span> <?php echo $entry_company; ?></td>
+      <td><input type="text" name="company" value="" class="large-field" style="width:350px;" /> <span class="required">(Apto, Bloco, Andar, Casa, Etc)</span></td>
+    </tr>
+    <tr>
+      <td><span class="required">*</span> <?php echo $entry_address_2; ?></td>
+      <td><input type="text" name="address_2" value="" class="large-field" style="width:350px;" /></td>
+    </tr>
+    <tr>
+      <td><span class="required">*</span> <?php echo $entry_city; ?></td>
+      <td><input type="text" name="city" value="" class="large-field" style="width:350px;" /></td>
+    </tr>
+    <tr style="display:none">
+      <td><span class="required">*</span> <?php echo $entry_country; ?></td>
+      <td><select name="country_id" class="large-field">
+          <option value=""><?php echo $text_select; ?></option>
+          <?php foreach ($countries as $country) { ?>
+          <?php if ($country['country_id'] == $country_id) { ?>
+          <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo $country['name']; ?></option>
+          <?php } else { ?>
+          <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option>
+          <?php } ?>
+          <?php } ?>
+        </select></td>
+    </tr>
+    <tr>
+      <td><span class="required">*</span> <?php echo $entry_zone; ?></td>
+      <td><select name="zone_id" class="large-field" style="width:250px;">
+        </select></td>
+    </tr>
+  </table>
+				]]></add>
+		</operation>
+	</file>
+	
+</modification>
