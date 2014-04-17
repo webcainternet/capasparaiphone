@@ -202,22 +202,22 @@ else {*/
 			
 			<h3 class="passall">
     			<div id="stepitemcirc1" class="c4ystepnumber" style="color: #FFFFFF; background-color: #53ccdd;">1</div>
-  				<div id="stepitemtitle1" class="fontc4y2 c4ysteptitle  pass1i">SELECIONE O MODELO DE SEU CELULAR!</div>
+  				<div id="stepitemtitle1" class="fontc4y2 c4ysteptitle  pass1i">MODELO DE SEU CELULAR</div>
   			</h3>
 
   			<h3 class="passall">
     			<div id="stepitemcirc2" class="c4ystepnumber" style="color: #FFFFFF; background-color: #DDDDDD;">2</div>
-  				<div id="stepitemtitle2" class="fontc4y2 c4ysteptitle  pass2i">ESCOLHA O TIPO DE LAYOUT!</div>
+  				<div id="stepitemtitle2" class="fontc4y2 c4ysteptitle  pass2i">TIPO DE LAYOUT</div>
   			</h3>
 
   			<h3 class="passall">
     			<div id="stepitemcirc3" class="c4ystepnumber" style="color: #FFFFFF; background-color: #DDDDDD;">3</div>
-  				<div id="stepitemtitle3" class="fontc4y2 c4ysteptitle  pass3i">SELECIONE SUAS FOTOS!</div>
+  				<div id="stepitemtitle3" class="fontc4y2 c4ysteptitle  pass3i">SELECIONE SUAS FOTOS</div>
   			</h3>
 
   			<h3 class="passall">
     			<div id="stepitemcirc4" class="c4ystepnumber" style="color: #FFFFFF; background-color: #DDDDDD;">4</div>
-  				<div id="stepitemtitle4" class="fontc4y2 c4ysteptitle  pass4i">APLICAR FILTRO DE CORES!</div>
+  				<div id="stepitemtitle4" class="fontc4y2 c4ysteptitle  pass4i">FINALIZAR CONSTRUÇÃO</div>
   			</h3>
 
 		</div>
@@ -250,10 +250,7 @@ else {*/
 
   			<div class="passall pass1">
 
-  				
-				<div class="fontc4y1 c4ysteptext">AJUDA: Temos diversas opções como Iphone4/4S, Iphone5/5S, Galaxy S2, Galaxy S3, Galaxy S4, Samsung Note 2 e em breve outros modelos!</div>
-
-				<div style="float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
+  				<div style="float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
 						<div style="float: left; text-align: left">
 							<input onChange="selecionarmodelo(this)" type="radio" name="modelo" id="miphone4" value="0">
 						</div>
@@ -343,8 +340,6 @@ else {*/
 
   			<div class="passall pass2">
 
-				<div class="fontc4y1 c4ysteptext">AJUDA: De acordo com o layout que for selecionado, você deverá escolher um determinado numero de fotos!<br />&nbsp;<br />Layout 1: 1 foto; <br />Layout 2: 2 fotos;<br />Layout 3: 15 fotos</div>
-
 				<div style="float: left; margin-left: 20px;">
 			      <p>
 			        Selecione o layout de sua capinha: <br />&nbsp;<br />
@@ -368,12 +363,10 @@ else {*/
 
 			<!-- passo 3 -->
 			<h3 class="passall pass3">
-  				<div class="fontc4y2 c4ysteptitle">SELECIONE SUAS FOTOS!</div>
+  				<div class="fontc4y2 c4ysteptitle">OBTENHA SUAS FOTOS!</div>
   			</h3>
 
   			<div class="passall pass3">
-
-				<div class="fontc4y1 c4ysteptext">AJUDA: Agora escolha de onde deseja buscar suas fotos: De seu computador, Facebook ou Instagram.</div>
 
 				<div style="float: left; margin-left: 20px; width: 360px; background-image: url('/app/img/setaarraste.png'); background-repeat: no-repeat; background-size: 110; background-position-x: 245;">
 					<input onchange="showcomputador()" type="radio" name="modelo" id="ishowcomp" value="" style="display: inline; float: none;position: relative; top: -23px;">
@@ -431,7 +424,7 @@ else {*/
 
 			<!-- passo 4 -->
 			<h3 class="passall pass4">
-  				<div class="fontc4y2 c4ysteptitle">APLICAR FILTRO DE CORES!</div>
+  				<div class="fontc4y2 c4ysteptitle">CONSTRUÇÃO FINALIZADA!</div>
   			</h3>
 
   			<div class="passall pass4">
