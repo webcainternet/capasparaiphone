@@ -297,12 +297,12 @@ ini_set("memory_limit","128M");
 $dblink = mysql_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
 mysql_select_db(DB_DATABASE,$dblink);
 
-$sql_statement0 = "REPLACE INTO c4y_capasconstrucao_girar (idsession, posicao, angulo)
+$sql_statement0 = "REPLACE INTO cpi_capasconstrucao_girar (idsession, posicao, angulo)
                 VALUES(".$gidcsession.", ".$gposicao.", 0)";
 
 $result0 = mysql_query($sql_statement0,$dblink);
 
-$sql_statement = "INSERT INTO  `capasparaiphone`.`c4y_capasconstrucao` (
+$sql_statement = "INSERT INTO  `capasparaiphone`.`cpi_capasconstrucao` (
 `idcsession` ,
 `modelo` ,
 `layout` ,

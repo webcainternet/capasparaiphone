@@ -458,7 +458,7 @@ ondragover="allowDrop(event)"></div>
 	mysql_select_db(DB_DATABASE,$dblink);
 
 	if ($glayout == 0) {
-		$sql_statement1  = "SELECT * FROM c4y_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 1  order by datainsert desc limit 1";
+		$sql_statement1  = "SELECT * FROM cpi_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 1  order by datainsert desc limit 1";
 		$result1 = mysql_query($sql_statement1);
 		if (!$result1) { 
 			die('Invalid query: ' . mysql_error()); 
@@ -492,7 +492,7 @@ ondragover="allowDrop(event)"></div>
 
 
         if ($glayout == 1) {
-                $sql_statement1  = "SELECT * FROM c4y_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 1  order by datainsert desc limit 1";
+                $sql_statement1  = "SELECT * FROM cpi_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 1  order by datainsert desc limit 1";
                 $result1 = mysql_query($sql_statement1);
                 if (!$result1) { 
                         die('Invalid query: ' . mysql_error()); 
@@ -514,7 +514,7 @@ ondragover="allowDrop(event)"></div>
                         }
                 }
 
-                $sql_statement2  = "SELECT * FROM c4y_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 2  order by datainsert desc limit 1";
+                $sql_statement2  = "SELECT * FROM cpi_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 2  order by datainsert desc limit 1";
                 $result2 = mysql_query($sql_statement2);
                 if (!$result2) { 
                         die('Invalid query: ' . mysql_error()); 
@@ -550,7 +550,7 @@ ondragover="allowDrop(event)"></div>
 
 
         if ($glayout == 2) {
-                $sql_statement1  = "SELECT * FROM c4y_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 1  order by datainsert desc limit 1";
+                $sql_statement1  = "SELECT * FROM cpi_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 1  order by datainsert desc limit 1";
                 $result1 = mysql_query($sql_statement1);
                 if (!$result1) { 
                         die('Invalid query: ' . mysql_error()); 
@@ -572,7 +572,7 @@ ondragover="allowDrop(event)"></div>
                         }
                 }
 
-                $sql_statement2  = "SELECT * FROM c4y_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 2  order by datainsert desc limit 1";
+                $sql_statement2  = "SELECT * FROM cpi_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 2  order by datainsert desc limit 1";
                 $result2 = mysql_query($sql_statement2);
                 if (!$result2) { 
                         die('Invalid query: ' . mysql_error()); 
@@ -594,7 +594,7 @@ ondragover="allowDrop(event)"></div>
                         }
                 }
 
-                $sql_statement3  = "SELECT * FROM c4y_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 3  order by datainsert desc limit 1";
+                $sql_statement3  = "SELECT * FROM cpi_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 3  order by datainsert desc limit 1";
                 $result3 = mysql_query($sql_statement3);
                 if (!$result3) { 
                         die('Invalid query: ' . mysql_error()); 
@@ -616,7 +616,7 @@ ondragover="allowDrop(event)"></div>
                         }
                 }
 
-                $sql_statement4  = "SELECT * FROM c4y_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 4  order by datainsert desc limit 1";
+                $sql_statement4  = "SELECT * FROM cpi_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 4  order by datainsert desc limit 1";
                 $result4 = mysql_query($sql_statement4);
                 if (!$result4) { 
                         die('Invalid query: ' . mysql_error()); 
@@ -638,7 +638,7 @@ ondragover="allowDrop(event)"></div>
                         }
                 }
 
-                $sql_statement5  = "SELECT * FROM c4y_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 5  order by datainsert desc limit 1";
+                $sql_statement5  = "SELECT * FROM cpi_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 5  order by datainsert desc limit 1";
                 $result5 = mysql_query($sql_statement5);
                 if (!$result5) { 
                         die('Invalid query: ' . mysql_error()); 
@@ -660,7 +660,7 @@ ondragover="allowDrop(event)"></div>
                         }
                 }
 
-                $sql_statement6  = "SELECT * FROM c4y_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 6  order by datainsert desc limit 1";
+                $sql_statement6  = "SELECT * FROM cpi_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 6  order by datainsert desc limit 1";
                 $result6 = mysql_query($sql_statement6);
                 if (!$result6) { 
                         die('Invalid query: ' . mysql_error()); 
@@ -682,7 +682,7 @@ ondragover="allowDrop(event)"></div>
                         }
                 }
 
-                $sql_statement7  = "SELECT * FROM c4y_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 7  order by datainsert desc limit 1";
+                $sql_statement7  = "SELECT * FROM cpi_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 7  order by datainsert desc limit 1";
                 $result7 = mysql_query($sql_statement7);
                 if (!$result7) { 
                         die('Invalid query: ' . mysql_error()); 
@@ -704,7 +704,7 @@ ondragover="allowDrop(event)"></div>
                         }
                 }
 
-                $sql_statement8  = "SELECT * FROM c4y_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 8  order by datainsert desc limit 1";
+                $sql_statement8  = "SELECT * FROM cpi_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 8  order by datainsert desc limit 1";
                 $result8 = mysql_query($sql_statement8);
                 if (!$result8) { 
                         die('Invalid query: ' . mysql_error()); 
@@ -726,7 +726,7 @@ ondragover="allowDrop(event)"></div>
                         }
                 }
 
-                $sql_statement9  = "SELECT * FROM c4y_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 9  order by datainsert desc limit 1";
+                $sql_statement9  = "SELECT * FROM cpi_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 9  order by datainsert desc limit 1";
                 $result9 = mysql_query($sql_statement9);
                 if (!$result9) { 
                         die('Invalid query: ' . mysql_error()); 
@@ -748,7 +748,7 @@ ondragover="allowDrop(event)"></div>
                         }
                 }
 
-                $sql_statement10  = "SELECT * FROM c4y_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 10  order by datainsert desc limit 1";
+                $sql_statement10  = "SELECT * FROM cpi_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 10  order by datainsert desc limit 1";
                 $result10 = mysql_query($sql_statement10);
                 if (!$result10) { 
                         die('Invalid query: ' . mysql_error()); 
@@ -770,7 +770,7 @@ ondragover="allowDrop(event)"></div>
                         }
                 }
 
-                $sql_statement11  = "SELECT * FROM c4y_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 11  order by datainsert desc limit 1";
+                $sql_statement11  = "SELECT * FROM cpi_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 11  order by datainsert desc limit 1";
                 $result11 = mysql_query($sql_statement11);
                 if (!$result11) { 
                         die('Invalid query: ' . mysql_error()); 
@@ -792,7 +792,7 @@ ondragover="allowDrop(event)"></div>
                         }
                 }
 
-                $sql_statement12  = "SELECT * FROM c4y_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 12  order by datainsert desc limit 1";
+                $sql_statement12  = "SELECT * FROM cpi_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 12  order by datainsert desc limit 1";
                 $result12 = mysql_query($sql_statement12);
                 if (!$result12) { 
                         die('Invalid query: ' . mysql_error()); 
@@ -814,7 +814,7 @@ ondragover="allowDrop(event)"></div>
                         }
                 }
 
-                $sql_statement13  = "SELECT * FROM c4y_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 13  order by datainsert desc limit 1";
+                $sql_statement13  = "SELECT * FROM cpi_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 13  order by datainsert desc limit 1";
                 $result13 = mysql_query($sql_statement13);
                 if (!$result13) { 
                         die('Invalid query: ' . mysql_error()); 
@@ -836,7 +836,7 @@ ondragover="allowDrop(event)"></div>
                         }
                 }
 
-                $sql_statement14  = "SELECT * FROM c4y_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 14  order by datainsert desc limit 1";
+                $sql_statement14  = "SELECT * FROM cpi_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 14  order by datainsert desc limit 1";
                 $result14 = mysql_query($sql_statement14);
                 if (!$result14) { 
                         die('Invalid query: ' . mysql_error()); 
@@ -858,7 +858,7 @@ ondragover="allowDrop(event)"></div>
                         }
                 }
 
-                $sql_statement15  = "SELECT * FROM c4y_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 15  order by datainsert desc limit 1";
+                $sql_statement15  = "SELECT * FROM cpi_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 15  order by datainsert desc limit 1";
                 $result15 = mysql_query($sql_statement15);
                 if (!$result15) { 
                         die('Invalid query: ' . mysql_error()); 

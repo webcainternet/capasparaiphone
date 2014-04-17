@@ -311,7 +311,7 @@ else {
 $dblink = mysql_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
 mysql_select_db(DB_DATABASE,$dblink);
 
-$sql_statement = "INSERT INTO  `capasparaiphone`.`c4y_capasconstrucao` (
+$sql_statement = "INSERT INTO  `capasparaiphone`.`cpi_capasconstrucao` (
 `idcsession` ,
 `modelo` ,
 `layout` ,

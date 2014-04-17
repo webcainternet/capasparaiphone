@@ -18,7 +18,7 @@ $qntop = $_GET["ntop"];
 $dblink = mysql_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
 mysql_select_db(DB_DATABASE,$dblink);
 
-$sql_statement = "UPDATE  `c4y_capasconstrucao` set 
+$sql_statement = "UPDATE  `cpi_capasconstrucao` set 
 `nheight` = ".$qnheight.",
 `nwidth` = ".$qnwidth.",
 `nleft` = ".$qnleft.",

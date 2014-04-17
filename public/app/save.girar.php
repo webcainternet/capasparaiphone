@@ -16,7 +16,7 @@
 
 	if (isset($_GET['idsession']) && isset($_GET['posicao']) && isset($_GET['angulo'])){
 
-		$sql = "REPLACE INTO c4y_capasconstrucao_girar (idsession, posicao, angulo)
+		$sql = "REPLACE INTO cpi_capasconstrucao_girar (idsession, posicao, angulo)
 				VALUES(".$_GET['idsession'].", ".$_GET['posicao'].", ".$_GET['angulo'].")";
 
 		$result = $mysqli->query($sql);
