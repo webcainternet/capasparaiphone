@@ -489,7 +489,7 @@ else {*/
 		<div id="ircheckout1"  style="width: 350px;
 			float: right;
 			margin-left: 10px;
-			border: 1px solid #aaaaaa;
+			border: 1px solid #FFFFFF;
 			border-radius: 5px;
 			padding-top: 10px;
 			padding-bottom: 10px;
@@ -507,7 +507,7 @@ else {*/
 		<div id="ircheckout2"  style="width: 360px;
 			float: right;
 			margin-right: 10px;
-			border: 1px solid #53ccdd;
+			border: 1px solid #FFFFFF;
 			border-radius: 5px;
 			padding-top: 10px;
 			padding-bottom: 10px;
