@@ -429,7 +429,9 @@ else {*/
 
   			<div class="passall pass4">
 
-				<div class="fontc4y1 c4ysteptext">AJUDA: Clique no filtro para selecionar o efeito desejado!<br />&nbsp;<br />OBS: Para obter qualidade na impressão é importante o upload de imagens em alta qualidade. Recomendamos fotos com pelo menos 1900x1200 pixels e 300dpi.</div>
+				<div class="fontc4y1 c4ysteptext">
+					Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos
+				</div>
 
 				<div style="float: left; margin-left: 20px; width: 250px;">
 					<div style="float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
