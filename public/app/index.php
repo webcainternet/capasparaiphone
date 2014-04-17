@@ -228,7 +228,7 @@ else {*/
 			height: 564px;
 			float: right;
 			margin-left: 10px;
-			border: 1px solid #aaaaaa;
+			border: 1px solid #FFFFFF;
 			border-radius: 5px;
 			padding-top: 10px;
 			padding-bottom: 10px;
@@ -432,46 +432,6 @@ else {*/
 				<div class="fontc4y1 c4ysteptext">
 					Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos
 				</div>
-
-				<div style="float: left; margin-left: 20px; width: 250px;">
-					<div style="float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
-					        <div style="float: left; text-align: left">
-					                <input onchange="selecionarfiltro('0')" onclick="selecionarfiltro('0')" type="radio" name="filtro" id="fsepia" value="-sp.png">
-					        </div>
-					        <div style="float: left; text-align: left;padding-left: 5px; height: 80px;">
-					                <img src="img/pic-n.png" style="width: 65px;border:" alt="">
-					        </div>
-					</div>
-
-					<div style="float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
-					        <div style="float: left; text-align: left">
-					                <input onchange="selecionarfiltro('2')" onclick="selecionarfiltro('2')" type="radio" name="filtro" id="fsepia" value="-sp.png">
-					        </div>
-					        <div style="float: left; text-align: left;padding-left: 5px; height: 80px;">
-					                <img src="img/pic-s.png" style="width: 65px;border:" alt="">
-					        </div>
-					</div>
-
-					<div style="float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
-					        <div style="float: left; text-align: left">
-					                <input onchange="selecionarfiltro('1')" onclick="selecionarfiltro('1')" type="radio" name="filtro" id="fsepia" value="-sp.png">
-					        </div>
-					        <div style="float: left; text-align: left;padding-left: 5px; height: 80px;">
-					                <img src="img/pic-p.png" style="width: 65px;border:" alt="">
-					        </div>
-					</div>
-
-					<div style="float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
-					        <div style="float: left; text-align: left">
-					                <input onchange="selecionarfiltro('3')" onclick="selecionarfiltro('3')" type="radio" name="filtro" id="fsepia" value="-sp.png">
-					        </div>
-					        <div style="float: left; text-align: left;padding-left: 5px; height: 80px;">
-					                <img src="img/pic-c.png" style="width: 65px;border:" alt="">
-					        </div>
-					</div>
-				</div>
-
-			</div>
 		</div>
 
 
