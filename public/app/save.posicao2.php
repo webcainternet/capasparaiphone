@@ -50,7 +50,7 @@ ini_set("memory_limit","128M");
         fclose($savefile);
 
         //Descobre o tipo da imagem
-        $imagemtipo = exif_imagetype('/var/www/case4you.com.br/case4you2/public/app/'.$novoarq.'.tmp');
+        $imagemtipo = exif_imagetype('/var/www/capasparaiphone.com.br/capasparaiphone2/public/app/'.$novoarq.'.tmp');
 
         switch ($imagemtipo) {
             case 1:
@@ -302,7 +302,7 @@ $sql_statement0 = "REPLACE INTO c4y_capasconstrucao_girar (idsession, posicao, a
 
 $result0 = mysql_query($sql_statement0,$dblink);
 
-$sql_statement = "INSERT INTO  `case4you`.`c4y_capasconstrucao` (
+$sql_statement = "INSERT INTO  `capasparaiphone`.`c4y_capasconstrucao` (
 `idcsession` ,
 `modelo` ,
 `layout` ,
