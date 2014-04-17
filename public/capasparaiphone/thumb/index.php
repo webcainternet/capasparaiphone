@@ -927,19 +927,19 @@ ondragover="allowDrop(event)"></div>
       </div>
 
 <?php if ($_GET["m"] == "0") { ?>
-<div id="mascarasp" style="position: absolute; top: 0px; left: 0px; padding: 0px; height: 122px; width: 85px; background-size: 85px; background-image: url(http://capasparaiphone.webca.com.br/capasparaiphone/0/img/mask-iphone4-b.png); background-repeat: no-repeat no-repeat;">&nbsp;</div>
+<div id="mascarasp" style="position: absolute; top: 0px; left: 0px; padding: 0px; height: 122px; width: 85px; background-size: 85px; background-image: url(http://capasparaiphone.com.br/capasparaiphone/0/img/mask-iphone4-b.png); background-repeat: no-repeat no-repeat;">&nbsp;</div>
 <? } ?>
 
 <?php if ($_GET["m"] == "1") { ?>
-<div id="mascarasp" style="position: absolute; top: 0px; left: 0px; padding: 0px; height: 134px; width: 85px; background-size: 85px; background-image: url(http://capasparaiphone.webca.com.br/capasparaiphone/0/img/mask-iphone5-b.png); background-repeat: no-repeat no-repeat;">&nbsp;</div>
+<div id="mascarasp" style="position: absolute; top: 0px; left: 0px; padding: 0px; height: 134px; width: 85px; background-size: 85px; background-image: url(http://capasparaiphone.com.br/capasparaiphone/0/img/mask-iphone5-b.png); background-repeat: no-repeat no-repeat;">&nbsp;</div>
 <? } ?>
 
 <?php if ($_GET["m"] == "2") { ?>
-<div id="mascarasp" style="position: absolute; top: 0px; left: 0px; padding: 0px; height: 131px; width: 85px; background-size: 85px; background-image: url(http://capasparaiphone.webca.com.br/capasparaiphone/0/img/mask-galaxy3-b.png); background-repeat: no-repeat no-repeat;">&nbsp;</div>
+<div id="mascarasp" style="position: absolute; top: 0px; left: 0px; padding: 0px; height: 131px; width: 85px; background-size: 85px; background-image: url(http://capasparaiphone.com.br/capasparaiphone/0/img/mask-galaxy3-b.png); background-repeat: no-repeat no-repeat;">&nbsp;</div>
 <? } ?>
 
 <?php if ($_GET["m"] == "3") { ?>
-<div id="mascarasp" style="position: absolute; top: 0px; left: 0px; padding: 0px; height: 124px; width: 85px; background-size: 85px; background-image: url(http://capasparaiphone.webca.com.br/capasparaiphone/0/img/mask-galaxy4-b.png); background-repeat: no-repeat no-repeat;">&nbsp;</div>
+<div id="mascarasp" style="position: absolute; top: 0px; left: 0px; padding: 0px; height: 124px; width: 85px; background-size: 85px; background-image: url(http://capasparaiphone.com.br/capasparaiphone/0/img/mask-galaxy4-b.png); background-repeat: no-repeat no-repeat;">&nbsp;</div>
 <? } ?>
 
 

@@ -75,7 +75,7 @@ else
         <script type="text/javascript">
         function selecionaalbum(salbum) {
                 getphoto(salbum.value);
-                //window.location="http://capasparaiphone.webca.com.br/capasparaiphoneapp/2/?idalbum="+salbum.value;
+                //window.location="http://capasparaiphone.com.br/capasparaiphoneapp/2/?idalbum="+salbum.value;
         }
         </script>
 

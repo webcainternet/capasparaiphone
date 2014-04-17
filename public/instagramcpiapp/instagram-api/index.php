@@ -25,7 +25,7 @@ $config = array(
         'client_id' => '187f060b348a4ba595ec022fde275450',
         'client_secret' => '415cbd15c8f14800a910a9e0adfe897e',
         'grant_type' => 'authorization_code',
-        'redirect_uri' => 'http://capasparaiphone.webca.com.br/instagramcpiapp/instagram-api/instagammy.php',
+        'redirect_uri' => 'http://capasparaiphone.com.br/instagramcpiapp/instagram-api/instagammy.php',
      );
 
 /**
@@ -50,6 +50,6 @@ $instagram->openAuthorizationUrl();
 </head>
 
 <body>
-	<p><a href="https://api.instagram.com/oauth/authorize/?client_id=187f060b348a4ba595ec022fde275450&redirect_uri=http://capasparaiphone.webca.com.br/instagramcpiapp/instagram-api/instagammy.php&response_type=code">Authorize now!</a></p>
+	<p><a href="https://api.instagram.com/oauth/authorize/?client_id=187f060b348a4ba595ec022fde275450&redirect_uri=http://capasparaiphone.com.br/instagramcpiapp/instagram-api/instagammy.php&response_type=code">Authorize now!</a></p>
 </body>
 </html>

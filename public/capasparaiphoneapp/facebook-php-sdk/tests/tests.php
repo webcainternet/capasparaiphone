@@ -1739,7 +1739,7 @@ class PHPSDKTestCase extends PHPUnit_Framework_TestCase {
 
   public function testHttpHostForwarded() {
     $real = 'foo.com';
-    $_SERVER['HTTP_HOST'] = 'capasparaiphone.webca.com.br';
+    $_SERVER['HTTP_HOST'] = 'capasparaiphone.com.br';
     $_SERVER['HTTP_X_FORWARDED_HOST'] = $real;
     $fb = new PersistentFBPublic(array(
       'appId'  => self::APP_ID,

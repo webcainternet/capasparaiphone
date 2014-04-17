@@ -89,20 +89,20 @@ switch ($ql) {
 
 <!-- invisible iframes -->
 <div style="display: none;">
-    <iframe id="invfr1"  name="invfr1"  src="http://capasparaiphone.webca.com.br/capasparaiphone/2/blank.html"></iframe>
-    <iframe id="invfr2"  name="invfr2"  src="http://capasparaiphone.webca.com.br/capasparaiphone/2/blank.html"></iframe>
-    <iframe id="invfr3"  name="invfr3"  src="http://capasparaiphone.webca.com.br/capasparaiphone/2/blank.html"></iframe>
-    <iframe id="invfr4"  name="invfr4"  src="http://capasparaiphone.webca.com.br/capasparaiphone/2/blank.html"></iframe>
-    <iframe id="invfr5"  name="invfr5"  src="http://capasparaiphone.webca.com.br/capasparaiphone/2/blank.html"></iframe>
-    <iframe id="invfr6"  name="invfr6"  src="http://capasparaiphone.webca.com.br/capasparaiphone/2/blank.html"></iframe>
-    <iframe id="invfr7"  name="invfr7"  src="http://capasparaiphone.webca.com.br/capasparaiphone/2/blank.html"></iframe>
-    <iframe id="invfr8"  name="invfr8"  src="http://capasparaiphone.webca.com.br/capasparaiphone/2/blank.html"></iframe>
-    <iframe id="invfr9"  name="invfr9"  src="http://capasparaiphone.webca.com.br/capasparaiphone/2/blank.html"></iframe>
-    <iframe id="invfr10" name="invfr10" src="http://capasparaiphone.webca.com.br/capasparaiphone/2/blank.html"></iframe>
-    <iframe id="invfr11" name="invfr11" src="http://capasparaiphone.webca.com.br/capasparaiphone/2/blank.html"></iframe>
-    <iframe id="invfr12" name="invfr12" src="http://capasparaiphone.webca.com.br/capasparaiphone/2/blank.html"></iframe>
-    <iframe id="invfr13" name="invfr13" src="http://capasparaiphone.webca.com.br/capasparaiphone/2/blank.html"></iframe>
-    <iframe id="invfr14" name="invfr14" src="http://capasparaiphone.webca.com.br/capasparaiphone/2/blank.html"></iframe>
-    <iframe id="invfr15" name="invfr15" src="http://capasparaiphone.webca.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr1"  name="invfr1"  src="http://capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr2"  name="invfr2"  src="http://capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr3"  name="invfr3"  src="http://capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr4"  name="invfr4"  src="http://capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr5"  name="invfr5"  src="http://capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr6"  name="invfr6"  src="http://capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr7"  name="invfr7"  src="http://capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr8"  name="invfr8"  src="http://capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr9"  name="invfr9"  src="http://capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr10" name="invfr10" src="http://capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr11" name="invfr11" src="http://capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr12" name="invfr12" src="http://capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr13" name="invfr13" src="http://capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr14" name="invfr14" src="http://capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr15" name="invfr15" src="http://capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
 </div>
 
