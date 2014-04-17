@@ -1,8 +1,8 @@
 <?php
 // Setup class
   $instagram = new Instagram(array(
-    'apiKey'      => 'bfe85b5e42344c98b58886cf8cfce096',
-    'apiSecret'   => 'afb94af2809148bcad9c84bea67ec72b',
+    'apiKey'      => 'a428fb4b4879456e942e1c742b33d856',
+    'apiSecret'   => 'f9b0e2fd6a564cb7958128d885136d67',
     'apiCallback' => 'http://capasparaiphone.webca.com.br/instagramcpiapp/instagram/success.php' // must point to success.php
   ));
 
