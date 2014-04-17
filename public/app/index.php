@@ -486,8 +486,8 @@ else {*/
 
 		
 
-		<div id="ircheckout1"  style="width: 340px;
-			float: left;
+		<div id="ircheckout1"  style="width: 350px;
+			float: right;
 			margin-left: 10px;
 			border: 1px solid #aaaaaa;
 			border-radius: 5px;

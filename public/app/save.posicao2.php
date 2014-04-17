@@ -50,7 +50,7 @@ ini_set("memory_limit","128M");
         fclose($savefile);
 
         //Descobre o tipo da imagem
-        $imagemtipo = exif_imagetype('/var/www/capasparaiphone.com.br/capasparaiphone2/public/app/'.$novoarq.'.tmp');
+        $imagemtipo = exif_imagetype('/var/www/capasparaiphone.com.br/capasparaiphone/public/app/'.$novoarq.'.tmp');
 
         switch ($imagemtipo) {
             case 1:
@@ -62,6 +62,7 @@ ini_set("memory_limit","128M");
                 imagedestroy($image);
                 $gimagem2 = $novoarq.'.png';
 
+/*
         //Contraste 40
                 $image = imagecreatefromgif($novoarq.'.tmp');
                 imagefilter($image, IMG_FILTER_CONTRAST, -40);
@@ -79,7 +80,7 @@ ini_set("memory_limit","128M");
                 imagefilter($image, IMG_FILTER_COLORIZE, 100, 50, 0);
                 imagepng($image, $novoarq.'.png-sp.png');
                 imagedestroy($image);
-/*
+
         //Vermelho
                 $image = imagecreatefromgif($novoarq.'.tmp');
                 imagefilter($image, IMG_FILTER_COLORIZE, 100, 0, 0);
@@ -119,7 +120,7 @@ ini_set("memory_limit","128M");
                 imagepng($image, $novoarq.'.png');
                 imagedestroy($image);
                 $gimagem2 = $novoarq.'.png';
-
+/*
         //Contraste 40
                 $image = imagecreatefromjpeg($novoarq.'.tmp');
                 imagefilter($image, IMG_FILTER_CONTRAST, -40);
@@ -137,7 +138,7 @@ ini_set("memory_limit","128M");
                 imagefilter($image, IMG_FILTER_COLORIZE, 100, 50, 0);
                 imagepng($image, $novoarq.'.png-sp.png');
                 imagedestroy($image);
-/*
+
         //Vermelho
                 $image = imagecreatefromjpeg($novoarq.'.tmp');
                 imagefilter($image, IMG_FILTER_COLORIZE, 100, 0, 0);
@@ -178,7 +179,7 @@ ini_set("memory_limit","128M");
                 imagepng($image, $novoarq.'.png');
                 imagedestroy($image);
                 $gimagem2 = $novoarq.'.png';
-
+/*
         //Contraste 40
                 $image = imagecreatefrompng($novoarq.'.tmp');
                 imagefilter($image, IMG_FILTER_CONTRAST, -40);
@@ -196,7 +197,7 @@ ini_set("memory_limit","128M");
                 imagefilter($image, IMG_FILTER_COLORIZE, 100, 50, 0);
                 imagepng($image, $novoarq.'.png-sp.png');
                 imagedestroy($image);
-/*
+
         //Vermelho
                 $image = imagecreatefrompng($novoarq.'.tmp');
                 imagefilter($image, IMG_FILTER_COLORIZE, 100, 0, 0);
@@ -237,7 +238,7 @@ ini_set("memory_limit","128M");
                 imagepng($image, $novoarq.'.png');
                 imagedestroy($image);
                 $gimagem2 = $novoarq.'.png';
-
+/*
         //Contraste 40
                 $image = imagecreatefrombmp($novoarq.'.tmp');
                 imagefilter($image, IMG_FILTER_CONTRAST, -40);
@@ -255,7 +256,7 @@ ini_set("memory_limit","128M");
                 imagefilter($image, IMG_FILTER_COLORIZE, 100, 50, 0);
                 imagepng($image, $novoarq.'.png-sp.png');
                 imagedestroy($image);
-/*
+
         //Vermelho
                 $image = imagecreatefrombmp($novoarq.'.tmp');
                 imagefilter($image, IMG_FILTER_COLORIZE, 100, 0, 0);
@@ -326,9 +327,10 @@ if (!$result) {
 else {
     ?>
         <img src="http://www.capasparaiphone.com.br/app/<?php echo "$novoarq"; ?>.png">
+        <?php /*
         <img src="http://www.capasparaiphone.com.br/app/<?php echo "$novoarq"; ?>.png-40.png">
         <img src="http://www.capasparaiphone.com.br/app/<?php echo "$novoarq"; ?>.png-pb.png">
-        <img src="http://www.capasparaiphone.com.br/app/<?php echo "$novoarq"; ?>.png-sp.png">
+        <img src="http://www.capasparaiphone.com.br/app/<?php echo "$novoarq"; ?>.png-sp.png"> */ ?>
     <?php
 }
 

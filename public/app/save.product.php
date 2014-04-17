@@ -117,7 +117,7 @@ include '../config.php';
 $dblink = mysql_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
 mysql_select_db(DB_DATABASE,$dblink);
 
-$result = mysql_query("select product_id from oc_product order by product_id desc limit 1");
+$result = mysql_query("select product_id from sea_product order by product_id desc limit 1");
 
 while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     $ultimoid = $row["product_id"];
@@ -131,7 +131,7 @@ $novoid = $ultimoid+1;
 
 if (isset($novoid)) {
 
-	$iquery1 = "INSERT INTO  `capasparaiphone`.`oc_product` (
+	$iquery1 = "INSERT INTO  `capasparaiphone`.`sea_product` (
 	`product_id` ,
 	`model` ,
 	`sku` ,
@@ -173,7 +173,7 @@ if (isset($novoid)) {
 	    die('Invalid query: ' . mysql_error());
 	}
 	else {
-		$iquery2 = "INSERT INTO  `capasparaiphone`.`oc_product_description` (
+		$iquery2 = "INSERT INTO  `capasparaiphone`.`sea_product_description` (
 			`product_id` ,
 			`language_id` ,
 			`name` ,
@@ -190,7 +190,7 @@ if (isset($novoid)) {
 		    die('Invalid query: ' . mysql_error());
 		}
 		else {
-			$iquery3 = "INSERT INTO  `capasparaiphone`.`oc_product_to_layout` (
+			$iquery3 = "INSERT INTO  `capasparaiphone`.`sea_product_to_layout` (
 				`product_id` ,
 				`store_id` ,
 				`layout_id`
@@ -205,7 +205,7 @@ if (isset($novoid)) {
 			    die('Invalid query: ' . mysql_error());
 			}
 			else {
-				$iquery4 = "INSERT INTO  `capasparaiphone`.`oc_product_to_store` (
+				$iquery4 = "INSERT INTO  `capasparaiphone`.`sea_product_to_store` (
 					`product_id` ,
 					`store_id`
 					)
