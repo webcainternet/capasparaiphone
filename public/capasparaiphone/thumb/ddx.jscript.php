@@ -11,7 +11,7 @@ function drag(ev)
 
 function saveposition(posicao, imagemurl)
 {
-    document.getElementById("invfr1").src="http://capasparaiphone.com.br/capasparaiphone/save.posicao.php?idcsession=<?php echo $idcsession; ?>&modelo=<?php echo $gmodelo; ?>&layout=<?php echo $glayout; ?>&posicao="+posicao+"&imagem="+imagemurl;
+    document.getElementById("invfr1").src="http://www.capasparaiphone.com.br/capasparaiphone/save.posicao.php?idcsession=<?php echo $idcsession; ?>&modelo=<?php echo $gmodelo; ?>&layout=<?php echo $glayout; ?>&posicao="+posicao+"&imagem="+imagemurl;
 }
 
 function mountimage()

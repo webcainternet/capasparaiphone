@@ -69,7 +69,7 @@ background-color: transparent;
     var meufiltro = 0;
 
     function finalizacompra() {
-        window.parent.parent.window.location = 'http://capasparaiphone.com.br/capasparaiphone/save.product.php?idcsession=<?php echo $idcsession; ?>&m=<?php echo $_GET["m"]; ?>&l=<?php echo $_GET["l"]; ?>&f='+meufiltro;
+        window.parent.parent.window.location = 'http://www.capasparaiphone.com.br/capasparaiphone/save.product.php?idcsession=<?php echo $idcsession; ?>&m=<?php echo $_GET["m"]; ?>&l=<?php echo $_GET["l"]; ?>&f='+meufiltro;
     }
 
 	function selecionarfiltro(meutemplate, minhaext) {
@@ -888,19 +888,19 @@ ondragover="allowDrop(event)"></div>
 ?>
 
 <?php if ($_GET["m"] == "0") { ?>
-<div style="position: absolute; top: 0px; left: 0px; padding: 0px; height: 490px; width: 340px; background-size: 340px; background-image: url(http://capasparaiphone.com.br/capasparaiphone/0/img/mask-iphone4-b.png); background-repeat: no-repeat no-repeat;">&nbsp;</div>
+<div style="position: absolute; top: 0px; left: 0px; padding: 0px; height: 490px; width: 340px; background-size: 340px; background-image: url(http://www.capasparaiphone.com.br/capasparaiphone/0/img/mask-iphone4-b.png); background-repeat: no-repeat no-repeat;">&nbsp;</div>
 <? } ?>
 
 <?php if ($_GET["m"] == "1") { ?>
-<div style="position: absolute; top: 0px; left: 0px; padding: 0px; height: 538px; width: 340px; background-size: 340px; background-image: url(http://capasparaiphone.com.br/capasparaiphone/0/img/mask-iphone5-b.png); background-repeat: no-repeat no-repeat;">&nbsp;</div>
+<div style="position: absolute; top: 0px; left: 0px; padding: 0px; height: 538px; width: 340px; background-size: 340px; background-image: url(http://www.capasparaiphone.com.br/capasparaiphone/0/img/mask-iphone5-b.png); background-repeat: no-repeat no-repeat;">&nbsp;</div>
 <? } ?>
 
 <?php if ($_GET["m"] == "2") { ?>
-<div style="position: absolute; top: 0px; left: 0px; padding: 0px; height: 527px; width: 340px; background-size: 340px; background-image: url(http://capasparaiphone.com.br/capasparaiphone/0/img/mask-galaxy3-b.png); background-repeat: no-repeat no-repeat;">&nbsp;</div>
+<div style="position: absolute; top: 0px; left: 0px; padding: 0px; height: 527px; width: 340px; background-size: 340px; background-image: url(http://www.capasparaiphone.com.br/capasparaiphone/0/img/mask-galaxy3-b.png); background-repeat: no-repeat no-repeat;">&nbsp;</div>
 <? } ?>
 
 <?php if ($_GET["m"] == "3") { ?>
-<div style="position: absolute; top: 0px; left: 0px; padding: 0px; height: 499px; width: 340px; background-size: 340px; background-image: url(http://capasparaiphone.com.br/capasparaiphone/0/img/mask-galaxy4-b.png); background-repeat: no-repeat no-repeat;">&nbsp;</div>
+<div style="position: absolute; top: 0px; left: 0px; padding: 0px; height: 499px; width: 340px; background-size: 340px; background-image: url(http://www.capasparaiphone.com.br/capasparaiphone/0/img/mask-galaxy4-b.png); background-repeat: no-repeat no-repeat;">&nbsp;</div>
 <? } ?>
 
 

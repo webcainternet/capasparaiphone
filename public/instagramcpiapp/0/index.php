@@ -62,7 +62,7 @@ font-family: "Minha Fonte2", Arial, Verdana;
 
 
     function showfacebook() {
-      window.parent.document.getElementById("frcompupload").src = "http://capasparaiphone.com.br/capasparaiphoneapp/1/?m="+document.getElementById("modelodocelular").value+"&l="+document.getElementById("layoutdacapinha").value;
+      window.parent.document.getElementById("frcompupload").src = "http://www.capasparaiphone.com.br/capasparaiphoneapp/1/?m="+document.getElementById("modelodocelular").value+"&l="+document.getElementById("layoutdacapinha").value;
 
       document.getElementById("imagensselecione").style.display = 'none';
       document.getElementById("p3desc").style.display = 'none';
@@ -71,7 +71,7 @@ font-family: "Minha Fonte2", Arial, Verdana;
 
 
     function showcomputador() {
-      window.parent.document.getElementById("frcompupload").src = "http://capasparaiphone.com.br/capasparaiphone/1/?m="+document.getElementById("modelodocelular").value+"&l="+document.getElementById("layoutdacapinha").value;
+      window.parent.document.getElementById("frcompupload").src = "http://www.capasparaiphone.com.br/capasparaiphone/1/?m="+document.getElementById("modelodocelular").value+"&l="+document.getElementById("layoutdacapinha").value;
 
       document.getElementById("imagensselecione").style.display = 'none';
       document.getElementById("p3desc").style.display = 'none';
