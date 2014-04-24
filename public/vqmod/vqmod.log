@@ -115,3 +115,49 @@ SEARCH NOT FOUND (ABORTING MOD): <div id="content">
 ----------------------------------------------------------------------
 
 
+---------- Date: 2014-04-24 21:18:18 ~ IP : 172.16.24.56 ----------
+REQUEST URI : /
+MOD DETAILS:
+   modFile   : /Users/fernando/gitproj/capasparaiphone/public/vqmod/xml/Felipo-Pagseguro-Lightbox.xml
+   id        : 
+		Code Market - Pagseguro Lightbox
+	
+   version   : 
+		1
+	
+   vqmver    : 
+		2.4.1
+	
+   author    : 
+		Felipo Antonoff Araújo - codemarket.com.br
+	
+Could not resolve path for [checkout.tpl] (SKIPPED)
+Could not resolve path for [pagseguro.tpl] (SKIPPED)
+Could not resolve path for [pagseguro.php] (SKIPPED)
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-04-24 21:18:48 ~ IP : 172.16.24.56 ----------
+REQUEST URI : /
+MOD DETAILS:
+   modFile   : /Users/fernando/gitproj/capasparaiphone/public/vqmod/xml/Felipo-Pagseguro-Lightbox.xml
+   id        : 
+		Code Market - Pagseguro Lightbox
+	
+   version   : 
+		1
+	
+   vqmver    : 
+		2.4.1
+	
+   author    : 
+		Felipo Antonoff Araújo - codemarket.com.br
+	
+Could not resolve path for [checkout.tpl] (SKIPPED)
+Could not resolve path for [pagseguro.tpl] (SKIPPED)
+Could not resolve path for [pagseguro.php] (SKIPPED)
+
+----------------------------------------------------------------------
+
+
