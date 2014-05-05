@@ -11267,3 +11267,7 @@
 2014-04-16 8:14:20 - PHP Notice:  Undefined index: HTTP_HOST in /srv/httpd/capasparaiphone.com.br/capas/system/library/currency.php on line 89
 2014-04-16 15:59:55 - PHP Notice:  Undefined index: HTTP_HOST in /srv/httpd/capasparaiphone.com.br/capas/index.php on line 349
 2014-04-16 15:59:55 - PHP Notice:  Undefined index: HTTP_HOST in /srv/httpd/capasparaiphone.com.br/capas/system/library/currency.php on line 89
+2014-04-28 15:39:28 - PHP Notice:  Undefined index: HTTP_HOST in /Users/fernando/gitproj/capasparaiphone/public/index.php on line 349
+2014-04-28 15:39:28 - PHP Warning:  Cannot modify header information - headers already sent by (output started at /Users/fernando/gitproj/capasparaiphone/public/index.php:203) in /Users/fernando/gitproj/capasparaiphone/public/index.php on line 349
+2014-04-28 15:39:28 - PHP Notice:  Undefined index: HTTP_HOST in /Users/fernando/gitproj/capasparaiphone/public/system/library/currency.php on line 89
+2014-04-28 15:39:28 - PHP Warning:  Cannot modify header information - headers already sent by (output started at /Users/fernando/gitproj/capasparaiphone/public/index.php:203) in /Users/fernando/gitproj/capasparaiphone/public/system/library/currency.php on line 89
