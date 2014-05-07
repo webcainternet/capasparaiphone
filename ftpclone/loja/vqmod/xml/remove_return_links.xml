@@ -1,0 +1,38 @@
+<modification>
+	<id>Remove Return Links</id>
+	<version>1.0.0</version>
+	<vqmver>2.1.7</vqmver>
+	<author>triplot</author>
+	<file name="catalog/view/theme/*/template/module/account.tpl">
+	<operation>
+      <search position="replace"><![CDATA[
+        <li><a href="<?php echo $return; ?>"><?php echo $text_return; ?></a></li>
+      ]]></search>
+      <add><![CDATA[
+        <!-- <li><a href="<?php echo $return; ?>"><?php echo $text_return; ?></a></li> -->
+      ]]></add>
+    </operation>
+  </file>
+  <file name="catalog/view/theme/*/template/common/footer.tpl">
+	<operation>
+      <search position="replace"><![CDATA[
+		<li><a href="<?php echo $return; ?>">&#8250; <?php echo $text_return; ?></a></li>
+      ]]></search>
+      <add><![CDATA[
+        <!-- <li><a href="<?php echo $return; ?>">&#8250; <?php echo $text_return; ?></a></li> -->
+      ]]></add>
+    </operation>
+	
+	
+
+	<operation>
+      <search position="replace"><![CDATA[
+		<p><?php echo $powered; ?></p>
+      ]]></search>
+      <add><![CDATA[
+        <!-- <p><?php echo $powered; ?></p> --> <p>Capas para iPhone 2012-2013</p>
+      ]]></add>
+    </operation>
+	
+  </file>
+</modification>

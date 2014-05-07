@@ -1,0 +1,52 @@
+<modification>
+<id>Add Watermark</id>
+<version>1.0</version>
+<vqmver>1.1.0</vqmver>
+<author>tejinder.animator@gmail.com</author>
+<file name="catalog/model/tool/image.php">
+<operation>
+<search position="after"><![CDATA[
+$image = new Image(DIR_IMAGE . $old_image);
+]]></search>
+<add><![CDATA[
+if ($width > 90 || $height > 90) {   
+   $image->watermark(DIR_IMAGE . 'data/watermark/watermark.png', 'center');
+}
+]]></add>
+</operation>
+</file>
+
+   
+<file name="system/library/image.php">
+
+<operation>
+<search position="replace"><![CDATA[
+$watermark = $this->create($file);
+]]></search>
+<add><![CDATA[
+$watermark = imagecreatefrompng($file);
+]]></add>
+</operation>
+
+<operation>
+<search position="before"><![CDATA[
+case 'bottomright':
+]]></search>
+<add><![CDATA[
+case 'center':
+            $watermark_pos_x = ($this->info['width']- $watermark_width)/2;
+            $watermark_pos_y = ($this->info['height']- $watermark_height)/2;
+            break;
+]]></add>
+</operation>
+
+<operation>
+<search position="replace"><![CDATA[
+imagecopy($this->image, $watermark, $watermark_pos_x, $watermark_pos_y, 0, 0, 120, 40);
+]]></search>
+<add><![CDATA[
+imagecopy($this->image, $watermark, $watermark_pos_x, $watermark_pos_y, 0, 0, $watermark_width, $watermark_height);
+]]></add>
+</operation>
+</file>
+</modification>
