@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+	<id>
+		<![CDATA[Code Market - Pagseguro Lightbox]]>
+	</id>
+	<version>
+		<![CDATA[1]]>
+	</version>
+	<vqmver>
+		<![CDATA[2.4.1]]>
+	</vqmver>
+	<author>
+		<![CDATA[Felipo Antonoff Araújo - codemarket.com.br]]>
+	</author>
+	<file path="catalog/view/theme/*/template/checkout/" name="checkout.tpl">
+		<operation info="">
+			<search position="before"> 
+				<![CDATA[    <script type="text/javascript"><!--
+]]>
+			</search>
+			<add>
+				<![CDATA[
+				<script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>
+				]]>
+			</add>
+		</operation>
+
+
+	</file>
+
+	<file path="catalog/view/theme/*/template/payment/" name="pagseguro.tpl">
+		<operation info="">
+			<search position="replace"> 
+				<![CDATA[    				location = '<?php echo $url; ?>';
+
+]]>
+			</search>
+			<add>
+				<![CDATA[
+			//	isOpenLightbox PagSeguroLightbox('<?php echo substr($url,59); ?>'); 
+PagSeguroLightbox({ 
+ code: '<?php echo substr($url,59); ?>'
+ }, { 
+ success : function(transactionCode) { 
+ 	 location.href='<?php echo $this->url->link('checkout/success'); ?>';
+ }, 
+ abort : function() { 
+ alert("Pagamento incompleto!, efetue o Pedido Novamente e conclua o Pagamento."); 
+ } 
+ }); 
+if (!PagSeguroLightbox){ 
+ location.href='<?php echo $url; ?>';
+} 
+				]]>
+			</add>
+		</operation>
+
+		
+	</file>
+
+	<file path="catalog/language/portuguese-br/payment/" name="pagseguro.php">
+		<operation info="">
+			<search position="replace"> 
+				<![CDATA[  Ao clicar no botão abaixo, você será redirecionado para o site do PagSeguro para efeturar o pagamento. Ao concluir o pagamento você retornará automaticamente para a loja.
+]]>
+			</search>
+			<add>
+				<![CDATA[
+				Ao clicar no botão abaixo, ira abrir o Pagamento dentro da loja e com a segurança do Pagseguro.
+				]]>
+			</add>
+		</operation>
+
+		<operation info="">
+			<search position="replace"> 
+				<![CDATA[  Confirmar e ir para o PagSeguro
+]]>
+			</search>
+			<add>
+				<![CDATA[
+				Confirmar e abrir o Pagamento
+				]]>
+			</add>
+		</operation>
+
+
+	</file>
+</modification>
