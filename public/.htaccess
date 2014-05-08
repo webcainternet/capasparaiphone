@@ -42,7 +42,7 @@ RewriteEngine On
 
 
 
-RewriteBase /loja/
+RewriteBase /
 
 RewriteRule ^sitemap.xml$ index.php?route=feed/google_sitemap [L]
 
