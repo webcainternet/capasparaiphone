@@ -251,7 +251,7 @@ else {*/
   			<div class="passall pass1">
 
   				<div>
-  					Selecione seu modelo abaixo:<br />&nbsp;<br><center><select onChange="javascript:doModelo(this.value);" style="display: inline-block;
+  					Selecione seu modelo abaixo:<br />&nbsp;<br><center><select onChange="javascript:doModelo(this);" style="display: inline-block;
 											height: 40px;
 											width: 300px;
 											line-height: 28px;
