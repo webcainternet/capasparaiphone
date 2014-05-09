@@ -1,5 +1,28 @@
 function doModelo(selObj) {
-   $('input:radio[name="modelo"]').filter('[value="'+selObj+'"]').attr('checked', true);
+switch (selObj) {
+case 0:
+    document.getElementById('miphone4').checked=true;
+    break;
+case 1:
+    document.getElementById('miphone5').checked=true;
+    break;
+case 2:
+    document.getElementById('mgalaxy3').checked=true;
+    break;
+case 3:
+    document.getElementById('mgalaxy4').checked=true;
+    break;
+case 4:
+    document.getElementById('mgalaxy2').checked=true;
+    break;
+case 5:
+    document.getElementById('mgalaxyn2').checked=true;
+    break;
+case default:
+    document.getElementById('miphone5').checked=true;
+    break;
+}
+
    selecionarmodelo(selObj.value);
 }
 
