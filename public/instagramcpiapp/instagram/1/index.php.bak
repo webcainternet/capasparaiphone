@@ -1,0 +1,20 @@
+<html>
+ 
+<head>   
+	<link href="css/dropzone.css" type="text/css" rel="stylesheet" />
+	<script src="dropzone.min.js"></script>>
+<script>
+	myDropzone.on("complete", function(file) {
+	window.location = "anther_page.php";
+	});
+</script>
+</head>
+ 
+<body>
+<form action="upload.php" class="dropzone">
+
+</form> 
+</body>
+ 
+</html>
+
