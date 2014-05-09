@@ -15,7 +15,20 @@ $('#button-confirm').bind('click', function() {
 			$('#payment').before('<div class="attention"><img src="catalog/view/theme/default/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
 		},
 		success: function() {
-			location = '<?php echo $url; ?>';
+			//	isOpenLightbox PagSeguroLightbox('<?php echo substr($url,59); ?>'); 
+			PagSeguroLightbox({ 
+			 code: '<?php echo substr($url,59); ?>'
+			 }, { 
+			 success : function(transactionCode) { 
+			 	 location.href='<?php echo $this->url->link('checkout/success'); ?>';
+			 }, 
+			 abort : function() { 
+			 alert("Pagamento incompleto!, efetue o Pedido Novamente e conclua o Pagamento."); 
+			 } 
+			 }); 
+			if (!PagSeguroLightbox){ 
+			 location.href='<?php echo $url; ?>';
+			} 
 		}
 	});
 });
