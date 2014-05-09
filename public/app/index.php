@@ -250,12 +250,28 @@ else {*/
 
   			<div class="passall pass1">
 
-  				<div style="background-color: red;">
-  					Modelo: <select>
-						  <option value="volvo">Volvo</option>
-						  <option value="saab">Saab</option>
-						  <option value="mercedes">Mercedes</option>
-						  <option value="audi">Audi</option>
+  				<div>
+  					Selecione seu modelo abaixo:<br /> <select style="display: inline-block;
+											height: 40px;
+											width: 300px;
+											line-height: 28px;
+											border: 1px solid #aaa;
+											padding: 4px;
+											color: #555;
+											border: 1px solid #000;
+											font-size: 14px;
+											color: #fff;
+											background: #444;
+											padding: 5px;">
+						  <option value="volvo">Iphone 3/3G/3GS</option>
+						  <option value="volvo">Iphone 4/4S</option>
+						  <option value="volvo">Iphone 5/5S/5C</option>
+						  <option value="audi">Samsung Galaxy S2</option>
+						  <option value="audi">Samsung Galaxy S3</option>
+						  <option value="audi">Samsung Galaxy S4</option>
+						  <option value="audi">Samsung Galaxy Note 2</option>
+						  <option value="audi">Samsung Galaxy S2 Mini</option>
+						  <option value="audi">Samsung Galaxy S3 Mini</option>
 						</select>
 				</div>
 
