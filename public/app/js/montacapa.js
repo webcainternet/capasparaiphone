@@ -1,4 +1,24 @@
+function setCheckedValue(radioObj, newValue) {
+   if(!radioObj)
+      return;
+   var radioLength = radioObj.length;
+   if(radioLength == undefined) {
+      radioObj.checked = (radioObj.value == newValue.toString());
+      return;
+   }
+   for(var i = 0; i < radioLength; i++) {
+      radioObj[i].checked = false;
+      if(radioObj[i].value == newValue.toString()) {
+         radioObj[i].checked = true;
+      }
+   }
+}
+
 function doModelo(selObj) {
+
+   setCheckedValue(document.getElementById('miphone5'), '1');
+
+/*
    switch (selObj) {
    case 0:
        document.getElementById('miphone4').checked=true;
@@ -21,9 +41,9 @@ function doModelo(selObj) {
    default:
        document.getElementById('miphone5').checked=true;
        break;
-   }
+   } */
 
-   selecionarmodelo(selObj.value);
+   //selecionarmodelo(selObj.value);
 }
 
 function GirarImg(idsession, posicao, angulo) {
