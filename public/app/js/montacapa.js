@@ -16,7 +16,7 @@ function setCheckedValue(radioObj, newValue) {
 
 function doModelo(selObj) {
 
-   setCheckedValue(document.getElementById('miphone5'), '1');
+   alert(selObj);
 
 /*
    switch (selObj) {
