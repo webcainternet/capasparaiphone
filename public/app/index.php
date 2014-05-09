@@ -248,18 +248,18 @@ else {*/
   				<div class="fontc4y2 c4ysteptitle">SELECIONE O MODELO DE SEU CELULAR!</div>
   			</h3>
 
-  			<div style="background-color: red;">
-  				Modelo: <select>
+  			<div class="passall pass1">
+
+  				<div style="background-color: red;">
+  					Modelo: <select>
 						  <option value="volvo">Volvo</option>
 						  <option value="saab">Saab</option>
 						  <option value="mercedes">Mercedes</option>
 						  <option value="audi">Audi</option>
 						</select>
-			</div>
+				</div>
 
-  			<div class="passall pass1" style="display: none;">
-
-  				<div style="float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
+  				<div style="display: none; float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
 						<div style="float: left; text-align: left">
 							<input onChange="selecionarmodelo(this)" type="radio" name="modelo" id="miphone4" value="0">
 						</div>
@@ -271,7 +271,7 @@ else {*/
 						</div>
 				</div>
 
-				<div style="float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
+				<div style="display: none; float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
 				        <div style="float: left; text-align: left">
 				                <input onChange="selecionarmodelo(this)" type="radio" name="modelo" id="miphone5" value="1">
 				        </div>
@@ -283,7 +283,7 @@ else {*/
 				        </div>
 				</div>
 
-				<div style="float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
+				<div style="display: none; float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
 				        <div style="float: left; text-align: left">
 				                <input onChange="selecionarmodelo(this)" type="radio" name="modelo" id="mgalaxy3" value="2">
 				        </div>
@@ -295,7 +295,7 @@ else {*/
 				        </div>
 				</div>
 
-				<div style="float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
+				<div style="display: none; float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
 				        <div style="float: left; text-align: left">
 				                <input onChange="selecionarmodelo(this)" type="radio" name="modelo" id="mgalaxy4" value="3">
 				        </div>
@@ -307,7 +307,7 @@ else {*/
 				        </div>
 				</div>
 
-				<div style="float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
+				<div style="display: none; float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
 				        <div style="float: left; text-align: left">
 				                <input onChange="selecionarmodelo(this)" type="radio" name="modelo" id="mgalaxy2" value="4">
 				        </div>
@@ -319,7 +319,7 @@ else {*/
 				        </div>
 				</div>
 
-				<div style="float: left; text-align: left; width: 100px; margin-bottom: 20px; margin-left: 15px;">
+				<div style="display: none; float: left; text-align: left; width: 100px; margin-bottom: 20px; margin-left: 15px;">
 				        <div style="float: left; text-align: left">
 				                <input onChange="selecionarmodelo(this)" type="radio" name="modelo" id="mgalaxyn2" value="5">
 				        </div>
