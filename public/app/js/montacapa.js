@@ -1,3 +1,7 @@
+function doModelo(selObj) {
+   alert('Error model: '+selObj.value);
+}
+
 function GirarImg(idsession, posicao, angulo) {
    $(document).ready(function(){
       var response = '';

@@ -263,15 +263,15 @@ else {*/
 											color: #fff;
 											background: #444;
 											padding: 5px;">
-						  <option value="volvo">Iphone 3/3G/3GS</option>
-						  <option value="volvo">Iphone 4/4S</option>
-						  <option value="volvo">Iphone 5/5S/5C</option>
-						  <option value="audi">Samsung Galaxy S2</option>
-						  <option value="audi">Samsung Galaxy S3</option>
-						  <option value="audi">Samsung Galaxy S4</option>
-						  <option value="audi">Samsung Galaxy Note 2</option>
-						  <option value="audi">Samsung Galaxy S2 Mini</option>
-						  <option value="audi">Samsung Galaxy S3 Mini</option>
+						  <option value="8" onClick="javascript:doModelo(8);">Iphone 3/3G/3GS</option>
+						  <option value="0" onClick="javascript:doModelo(0);">Iphone 4/4S</option>
+						  <option value="1" onClick="javascript:doModelo(1);">Iphone 5/5S/5C</option>
+						  <option value="4" onClick="javascript:doModelo(4);">Samsung Galaxy S2</option>
+						  <option value="2" onClick="javascript:doModelo(2);">Samsung Galaxy S3</option>
+						  <option value="3" onClick="javascript:doModelo(3);">Samsung Galaxy S4</option>
+						  <option value="5" onClick="javascript:doModelo(5);">Samsung Galaxy Note 2</option>
+						  <option value="6" onClick="javascript:doModelo(6);">Samsung Galaxy S2 Mini</option>
+						  <option value="7" onClick="javascript:doModelo(7);">Samsung Galaxy S3 Mini</option>
 						</select></center>
 				</div>
 
