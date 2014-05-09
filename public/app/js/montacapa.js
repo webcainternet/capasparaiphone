@@ -1,9 +1,4 @@
 function doModelo(selObj) {
-
-//   alert(selObj.value);
-
-   document.getElementById('miphone5').checked=true;
-
    var smodelo = document.getElementById("modelodocelular").value=selObj.value;
 
    //Para onde vai
@@ -20,33 +15,6 @@ function doModelo(selObj) {
    }
 
    VoltarEdicao();
-
-/*
-   switch (selObj) {
-   case 0:
-       document.getElementById('miphone4').checked=true;
-       break;
-   case 1:
-       document.getElementById('miphone5').checked=true;
-       break;
-   case 2:
-       document.getElementById('mgalaxy3').checked=true;
-       break;
-   case 3:
-       document.getElementById('mgalaxy4').checked=true;
-       break;
-   case 4:
-       document.getElementById('mgalaxy2').checked=true;
-       break;
-   case 5:
-       document.getElementById('mgalaxyn2').checked=true;
-       break;
-   default:
-       document.getElementById('miphone5').checked=true;
-       break;
-   } */
-
-   //selecionarmodelo(selObj.value);
 }
 
 function GirarImg(idsession, posicao, angulo) {
