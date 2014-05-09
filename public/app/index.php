@@ -251,7 +251,7 @@ else {*/
   			<div class="passall pass1">
 
   				<div>
-  					Selecione seu modelo abaixo:<br />&nbsp;<br> <select style="display: inline-block;
+  					Selecione seu modelo abaixo:<br />&nbsp;<br><center><select style="display: inline-block;
 											height: 40px;
 											width: 300px;
 											line-height: 28px;
@@ -272,7 +272,7 @@ else {*/
 						  <option value="audi">Samsung Galaxy Note 2</option>
 						  <option value="audi">Samsung Galaxy S2 Mini</option>
 						  <option value="audi">Samsung Galaxy S3 Mini</option>
-						</select>
+						</select></center>
 				</div>
 
   				<div style="display: none; float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
@@ -494,7 +494,7 @@ else {*/
 			margin-top: 2px;
 			padding-left: 10px;
 			padding-right: 10px;
-			display: block;
+			display: none;
 			text-align: right;
 			font-size: 11px;">
 			
