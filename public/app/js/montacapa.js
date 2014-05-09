@@ -1,6 +1,6 @@
 function doModelo(selObj) {
 
-   alert(selObj.value);
+//   alert(selObj.value);
 
    document.getElementById('miphone5').checked=true;
 
