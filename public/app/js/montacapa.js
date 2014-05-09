@@ -4,7 +4,22 @@ function doModelo(selObj) {
 
    document.getElementById('miphone5').checked=true;
 
-   selecionarmodelo(1);
+   var smodelo = document.getElementById("modelodocelular").value=selObj.value;
+
+   //Para onde vai
+   if (document.getElementById("layoutdacapinha").value == "") {
+      MontaCapa(smodelo,0);
+      goto2();
+      color2();
+   }
+   else {
+      goto3();
+      color2();
+      var slayout = document.getElementById("layoutdacapinha").value;
+      MontaCapa(smodelo,slayout);
+   }
+
+   VoltarEdicao();
 
 /*
    switch (selObj) {
