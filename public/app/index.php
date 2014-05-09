@@ -275,7 +275,7 @@ else {*/
 						</select></center>
 				</div>
 
-  				<div style="display: block; float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
+  				<div style="display: none; float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
 						<div style="float: left; text-align: left">
 							<input onChange="selecionarmodelo(this)" type="radio" name="modelo" id="miphone4" value="0">
 						</div>
@@ -287,7 +287,7 @@ else {*/
 						</div>
 				</div>
 
-				<div style="display: block; float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
+				<div style="display: none; float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
 				        <div style="float: left; text-align: left">
 				                <input onChange="selecionarmodelo(this)" type="radio" name="modelo" id="miphone5" value="1">
 				        </div>
@@ -299,7 +299,7 @@ else {*/
 				        </div>
 				</div>
 
-				<div style="display: block; float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
+				<div style="display: none; float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
 				        <div style="float: left; text-align: left">
 				                <input onChange="selecionarmodelo(this)" type="radio" name="modelo" id="mgalaxy3" value="2">
 				        </div>
