@@ -182,7 +182,7 @@
 		<operation>
 			<search position="replace"><![CDATA[$message  = $language->get('text_order') . ' ' . $order_id . "\n";]]></search>
 			<add><![CDATA[
-				$message  = "<img src='http://www.capasparaiphone.com.br/lojatemp/image/data/logo/logo-capasparaiphone.png' width='280' /><br /><br />";
+				$message  = "<img src='https://www.capasparaiphone.com.br/lojatemp/image/data/logo/logo-capasparaiphone.png' width='280' /><br /><br />";
 				$message  .= $language->get('text_order') . ' ' . $order_id . "<br />";
 			]]></add>
 		</operation>
@@ -2586,7 +2586,7 @@
 			<td><?php echo $order['store_name']; ?><br />
 		  ]]></search>
 		  <add><![CDATA[
-			<td><img src="http://www.capasparaiphone.com.br/lojatemp/image/data/logo/logo-capasparaiphone.png" width="270" /><br /><br /><!--<?php echo $order['store_name']; ?><br />
+			<td><img src="https://www.capasparaiphone.com.br/lojatemp/image/data/logo/logo-capasparaiphone.png" width="270" /><br /><br /><!--<?php echo $order['store_name']; ?><br />
 			<?php echo $order['store_address']; ?><br />
 			<?php echo $text_telephone; ?> <?php echo $order['store_telephone']; ?><br />
 			<?php if ($order['store_fax']) { ?>

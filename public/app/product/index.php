@@ -317,21 +317,21 @@ ondragover="allowDrop(event)"></div>
 
 <!-- invisible iframes -->
 <div style="display: none;">
-    <iframe id="invfr1"  name="invfr1"  src="http://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
-    <iframe id="invfr2"  name="invfr2"  src="http://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
-    <iframe id="invfr3"  name="invfr3"  src="http://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
-    <iframe id="invfr4"  name="invfr4"  src="http://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
-    <iframe id="invfr5"  name="invfr5"  src="http://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
-    <iframe id="invfr6"  name="invfr6"  src="http://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
-    <iframe id="invfr7"  name="invfr7"  src="http://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
-    <iframe id="invfr8"  name="invfr8"  src="http://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
-    <iframe id="invfr9"  name="invfr9"  src="http://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
-    <iframe id="invfr10" name="invfr10" src="http://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
-    <iframe id="invfr11" name="invfr11" src="http://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
-    <iframe id="invfr12" name="invfr12" src="http://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
-    <iframe id="invfr13" name="invfr13" src="http://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
-    <iframe id="invfr14" name="invfr14" src="http://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
-    <iframe id="invfr15" name="invfr15" src="http://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr1"  name="invfr1"  src="https://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr2"  name="invfr2"  src="https://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr3"  name="invfr3"  src="https://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr4"  name="invfr4"  src="https://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr5"  name="invfr5"  src="https://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr6"  name="invfr6"  src="https://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr7"  name="invfr7"  src="https://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr8"  name="invfr8"  src="https://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr9"  name="invfr9"  src="https://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr10" name="invfr10" src="https://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr11" name="invfr11" src="https://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr12" name="invfr12" src="https://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr13" name="invfr13" src="https://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr14" name="invfr14" src="https://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
+    <iframe id="invfr15" name="invfr15" src="https://www.capasparaiphone.com.br/capasparaiphone/2/blank.html"></iframe>
 </div>
 
 
@@ -864,27 +864,27 @@ ondragover="allowDrop(event)"></div>
 
 <!-- Mascaras -->
 <?php if ($_GET["m"] == "0") { ?>
-<div style="position: absolute; top: 0px; left: 0px; margin-left: 10px; padding: 0px; height: 494px; width: 340px; background-size: 340px; background-image: url(http://www.capasparaiphone.com.br/app/img/mask-iphone4-top.png); background-repeat: no-repeat no-repeat;">&nbsp;</div>
+<div style="position: absolute; top: 0px; left: 0px; margin-left: 10px; padding: 0px; height: 494px; width: 340px; background-size: 340px; background-image: url(https://www.capasparaiphone.com.br/app/img/mask-iphone4-top.png); background-repeat: no-repeat no-repeat;">&nbsp;</div>
 <? } ?>
 
 <?php if ($_GET["m"] == "1") { ?>
-<div style="position: absolute; top: 0px; left: 0px; margin-left: 10px; padding: 0px; height: 542px; width: 340px; background-size: 340px; background-image: url(http://www.capasparaiphone.com.br/app/img/mask-iphone5-top.png); background-repeat: no-repeat no-repeat;">&nbsp;</div>
+<div style="position: absolute; top: 0px; left: 0px; margin-left: 10px; padding: 0px; height: 542px; width: 340px; background-size: 340px; background-image: url(https://www.capasparaiphone.com.br/app/img/mask-iphone5-top.png); background-repeat: no-repeat no-repeat;">&nbsp;</div>
 <? } ?>
 
 <?php if ($_GET["m"] == "2") { ?>
-<div style="position: absolute; top: 0px; left: 0px; margin-left: 10px; padding: 0px; height: 531px; width: 340px; background-size: 340px; background-image: url(http://www.capasparaiphone.com.br/app/img/mask-galaxy3-top.png); background-repeat: no-repeat no-repeat;">&nbsp;</div>
+<div style="position: absolute; top: 0px; left: 0px; margin-left: 10px; padding: 0px; height: 531px; width: 340px; background-size: 340px; background-image: url(https://www.capasparaiphone.com.br/app/img/mask-galaxy3-top.png); background-repeat: no-repeat no-repeat;">&nbsp;</div>
 <? } ?>
 
 <?php if ($_GET["m"] == "3") { ?>
-<div style="position: absolute; top: 0px; left: 0px; margin-left: 10px; padding: 0px; height: 503px; width: 340px; background-size: 340px; background-image: url(http://www.capasparaiphone.com.br/app/img/mask-galaxy4-top.png); background-repeat: no-repeat no-repeat;">&nbsp;</div>
+<div style="position: absolute; top: 0px; left: 0px; margin-left: 10px; padding: 0px; height: 503px; width: 340px; background-size: 340px; background-image: url(https://www.capasparaiphone.com.br/app/img/mask-galaxy4-top.png); background-repeat: no-repeat no-repeat;">&nbsp;</div>
 <? } ?>
 
 <?php if ($_GET["m"] == "4") { ?>
-<div style="position: absolute; top: 0px; left: 0px; margin-left: 10px; padding: 0px; height: 563px; width: 343px; background-size: 340px; background-image: url(http://www.capasparaiphone.com.br/app/img/mask-galaxys2-top.png);">&nbsp;</div>
+<div style="position: absolute; top: 0px; left: 0px; margin-left: 10px; padding: 0px; height: 563px; width: 343px; background-size: 340px; background-image: url(https://www.capasparaiphone.com.br/app/img/mask-galaxys2-top.png);">&nbsp;</div>
 <? } ?>
 
 <?php if ($_GET["m"] == "5") { ?>
-<div style="position: absolute; top: 0px; left: 0px; margin-left: 10px; padding: 0px; height: 564px; width: 343px; background-size: 340px; background-image: url(http://www.capasparaiphone.com.br/app/img/mask-galaxyn2-top.png);">&nbsp;</div>
+<div style="position: absolute; top: 0px; left: 0px; margin-left: 10px; padding: 0px; height: 564px; width: 343px; background-size: 340px; background-image: url(https://www.capasparaiphone.com.br/app/img/mask-galaxyn2-top.png);">&nbsp;</div>
 <? } ?>
 
 

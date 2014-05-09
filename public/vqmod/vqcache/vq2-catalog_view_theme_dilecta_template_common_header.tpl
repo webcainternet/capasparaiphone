@@ -520,7 +520,7 @@ if($this->config->get('general_status') == '1') {
 
 </table>
 <input type="hidden" name="_form_data" value="16184.5.2.2.0.39fa9">
-<input type="hidden" name="_form_charset" value="ISO-8859-1"><input type="hidden" name="_form_urlOut" value="http://www.capasparaiphone.com.br/loja/confirmacao-de-cadastro-de-newsletter"><input type="hidden" name="_form_urlError" value="http://www.capasparaiphone.com.br/loja/erro-no-cadastro-de-e-mail"><input type="hidden" name="_form_origin" value="9">
+<input type="hidden" name="_form_charset" value="ISO-8859-1"><input type="hidden" name="_form_urlOut" value="https://www.capasparaiphone.com.br/loja/confirmacao-de-cadastro-de-newsletter"><input type="hidden" name="_form_urlError" value="https://www.capasparaiphone.com.br/loja/erro-no-cadastro-de-e-mail"><input type="hidden" name="_form_origin" value="9">
 
 </form>
 <!-- fim do formulário -->

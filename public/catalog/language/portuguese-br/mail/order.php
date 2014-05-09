@@ -26,7 +26,7 @@ $_['text_new_total']            = 'Total';
 $_['text_new_download']         = 'Assim que seu pagamento for confirmado você poderá clicar no link abaixo para acessar os seus produtos para download:';
 $_['text_new_comment']          = 'Os comentários de sua compra são:';
 $_['text_new_footer']           = 'Caso tenha alguma dúvida, responda este e-mail.';
-$_['text_new_powered']          = 'Enviado por <a href="http://www.capasparaiphone.com.br">Capas para iPhone</a>.';
+$_['text_new_powered']          = 'Enviado por <a href="https://www.capasparaiphone.com.br">Capas para iPhone</a>.';
 $_['text_update_subject']       = '%s - Atualização de pedido %s';
 $_['text_update_order']         = 'Nº de pedido:';
 $_['text_update_date_added']    = 'Data da compra:';

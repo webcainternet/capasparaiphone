@@ -82,7 +82,7 @@ else {*/
 		$(document).ready(function(){
 	   	var response = '';
 	   	$.ajax({ type: "GET",
-	            url: "http://www.capasparaiphone.com.br/capasparaiphoneapp/1/index2.php",
+	            url: "https://www.capasparaiphone.com.br/capasparaiphoneapp/1/index2.php",
 	            async: false,
 	            success : function(text)
 	            {
@@ -102,7 +102,7 @@ else {*/
 		$(document).ready(function(){
 	   	var response = '';
 	   	$.ajax({ type: "GET",
-	            url: "http://www.capasparaiphone.com.br/capasparaiphoneapp/2/index.php?idalbum="+albumid,
+	            url: "https://www.capasparaiphone.com.br/capasparaiphoneapp/2/index.php?idalbum="+albumid,
 	            async: false,
 	            success : function(text)
 	            {
@@ -129,7 +129,7 @@ else {*/
 
 	   	var response = '';
 	   	$.ajax({ type: "GET",
-	            url: "http://www.capasparaiphone.com.br/instagramcpiapp/instagram/home2.php",
+	            url: "https://www.capasparaiphone.com.br/instagramcpiapp/instagram/home2.php",
 	            async: false,
 	            success : function(text)
 	            {

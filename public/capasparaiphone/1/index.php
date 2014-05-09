@@ -80,7 +80,7 @@ if ($_GET["l"] == "2") { echo "SELECIONE AO MENOS 15 IMAGENS!"; }
       </div>
 
 	<div style="text-align: left; float: right;">
-		<input style="margin-top: 20px;" type="submit" onclick="window.location='http://www.capasparaiphone.com.br/capasparaiphone/2/?m=<?php echo $_GET["m"]; ?>&l=<?php echo $_GET["l"]; ?>';" value="Terminei, próximo passo!">
+		<input style="margin-top: 20px;" type="submit" onclick="window.location='https://www.capasparaiphone.com.br/capasparaiphone/2/?m=<?php echo $_GET["m"]; ?>&l=<?php echo $_GET["l"]; ?>';" value="Terminei, próximo passo!">
 	</div>
 
     </div>

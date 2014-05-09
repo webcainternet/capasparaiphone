@@ -1,8 +1,8 @@
 <?php
 // HTTP
-define('HTTP_SERVER', 'http://www.capasparaiphone.com.br/admin/');
-define('HTTP_CATALOG', 'http://www.capasparaiphone.com.br/');
-define('HTTP_IMAGE', 'http://www.capasparaiphone.com.br/image/');
+define('HTTP_SERVER', 'https://www.capasparaiphone.com.br/admin/');
+define('HTTP_CATALOG', 'https://www.capasparaiphone.com.br/');
+define('HTTP_IMAGE', 'https://www.capasparaiphone.com.br/image/');
 
 // HTTPS
 define('HTTPS_SERVER', 'https://www.capasparaiphone.com.br/admin/');

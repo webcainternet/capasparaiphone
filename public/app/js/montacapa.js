@@ -2,7 +2,7 @@ function GirarImg(idsession, posicao, angulo) {
    $(document).ready(function(){
       var response = '';
       $.ajax({ type: "GET",
-               url: "http://www.capasparaiphone.com.br/app/save.girar.php?idsession="+idsession+"&posicao="+posicao+"&angulo="+angulo,
+               url: "https://www.capasparaiphone.com.br/app/save.girar.php?idsession="+idsession+"&posicao="+posicao+"&angulo="+angulo,
                async: false,
                success : function(text)
                {
@@ -20,7 +20,7 @@ function MontaCapa(modelo, layout) {
    $(document).ready(function(){
       var response = '';
       $.ajax({ type: "GET",
-               url: "http://www.capasparaiphone.com.br/app/capinha/?m="+modelo+"&l="+layout,
+               url: "https://www.capasparaiphone.com.br/app/capinha/?m="+modelo+"&l="+layout,
                async: false,
                success : function(text)
                {
@@ -742,7 +742,7 @@ function virarmenos(dvposicao) {
 
 function updateposition(idsession, posicao, nheight, nwidth, nleft, ntop)
 {
-    document.getElementById("invfr"+posicao).src="http://www.capasparaiphone.com.br/app/update.posicao.php?idcsession="+idsession+"&posicao="+posicao+"&imagem="+imagemurl+"&nheight="+nheight+"&nwidth="+nwidth+"&nleft="+nleft+"&ntop="+ntop;
+    document.getElementById("invfr"+posicao).src="https://www.capasparaiphone.com.br/app/update.posicao.php?idcsession="+idsession+"&posicao="+posicao+"&imagem="+imagemurl+"&nheight="+nheight+"&nwidth="+nwidth+"&nleft="+nleft+"&ntop="+ntop;
 }
 
 

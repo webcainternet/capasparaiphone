@@ -102,7 +102,7 @@ else
   <table class="store">
     <tr>
       
-			<td><img src='http://www.capasparaiphone.com.br/loja/image/data/logo/logo-capasparaiphone.png' width='270' /><br /><br /><!--<?php echo $order['store_name']; ?><br />
+			<td><img src='https://www.capasparaiphone.com.br/loja/image/data/logo/logo-capasparaiphone.png' width='270' /><br /><br /><!--<?php echo $order['store_name']; ?><br />
 			<?php echo $order['store_address']; ?><br />
 			<?php echo $text_telephone; ?> <?php echo $order['store_telephone']; ?><br />
 			<?php if ($order['store_fax']) { ?>

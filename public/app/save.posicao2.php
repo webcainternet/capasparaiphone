@@ -315,7 +315,7 @@ $sql_statement = "INSERT INTO  `capasparaiphone`.`cpi_capasconstrucao` (
 `ntop`
 )
 VALUES (
-'$gidcsession',  '$gmodelo',  '$glayout',  '$gposicao',  'http://www.capasparaiphone.com.br/app/$gimagem2',  '$qnheight',  '$qnwidth',  '$qnleft',  '$qntop'
+'$gidcsession',  '$gmodelo',  '$glayout',  '$gposicao',  'https://www.capasparaiphone.com.br/app/$gimagem2',  '$qnheight',  '$qnwidth',  '$qnleft',  '$qntop'
 )
 ";
 
@@ -326,11 +326,11 @@ if (!$result) {
 }
 else {
     ?>
-        <img src="http://www.capasparaiphone.com.br/app/<?php echo "$novoarq"; ?>.png">
+        <img src="https://www.capasparaiphone.com.br/app/<?php echo "$novoarq"; ?>.png">
         <?php /*
-        <img src="http://www.capasparaiphone.com.br/app/<?php echo "$novoarq"; ?>.png-40.png">
-        <img src="http://www.capasparaiphone.com.br/app/<?php echo "$novoarq"; ?>.png-pb.png">
-        <img src="http://www.capasparaiphone.com.br/app/<?php echo "$novoarq"; ?>.png-sp.png"> */ ?>
+        <img src="https://www.capasparaiphone.com.br/app/<?php echo "$novoarq"; ?>.png-40.png">
+        <img src="https://www.capasparaiphone.com.br/app/<?php echo "$novoarq"; ?>.png-pb.png">
+        <img src="https://www.capasparaiphone.com.br/app/<?php echo "$novoarq"; ?>.png-sp.png"> */ ?>
     <?php
 }
 

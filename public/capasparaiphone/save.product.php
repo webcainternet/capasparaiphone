@@ -110,7 +110,7 @@ if (isset($novoid)) {
 				    die('Invalid query: ' . mysql_error());
 				}
 				else {
-					header('Location: http://www.capasparaiphone.com.br/index.php?route=product/product&product_id='.$novoid);
+					header('Location: https://www.capasparaiphone.com.br/index.php?route=product/product&product_id='.$novoid);
 				}
 			}
 		}
