@@ -517,6 +517,8 @@ if($this->config->get('general_status') == '1') {
 																																
 									if($custom_menu['text'] != '' && $custom_menu['url'] != '') {
 									
+										$custom_menu['url'] = str_replace('capas-personalizadas-para-iphone-e-samsung-galaxy','crie-sua-capinha',$custom_menu['url']);
+
 										echo '<li><a href="'.$custom_menu['url'].'">'.$custom_menu['text'].'</a></li>';
 									
 									}
