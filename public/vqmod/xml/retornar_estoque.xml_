@@ -1,0 +1,36 @@
+<modification>
+
+   <id>Retorno do Estoque do produto se o pedido for cancelado.</id>
+   <version>1.0.0</version>
+   <vqmver>2.1.5</vqmver>
+   <author>Caneto</author>
+
+   <file name="admin/model/sale/order.php">
+      <operation>
+         <search position="before"><![CDATA[// Send out any gift voucher mails]]></search>
+         <add><![CDATA[
+             // Inicio - Mudanca
+            // Retorna ao estoque se cancelado (verificar a tabela ORDER_STATUS se o item CANCELED e numero 7 e mudar na linha abaixo este numero se necessario)
+            if ((int)$data['order_status_id'] == 7) {
+            $order_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order` WHERE order_status_id > '0' AND order_id = '" . (int)$order_id . "'");
+
+            if ($order_query->num_rows) {
+               $product_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_product WHERE order_id = '" . (int)$order_id . "'");
+
+               foreach($product_query->rows as $product) {
+                  $this->db->query("UPDATE `" . DB_PREFIX . "product` SET quantity = (quantity + " . (int)$product['quantity'] . ") WHERE product_id = '" . (int)$product['product_id'] . "'");
+
+                  $option_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_option WHERE order_id = '" . (int)$order_id . "' AND order_product_id = '" . (int)$product['order_product_id'] . "'");
+
+                  foreach ($option_query->rows as $option) {
+                     $this->db->query("UPDATE " . DB_PREFIX . "product_option_value SET quantity = (quantity + " . (int)$product['quantity'] . ") WHERE product_option_value_id = '" . (int)$option['product_option_value_id'] . "' AND subtract = '1'");
+                  }
+               }
+            }
+            }
+            // Fim - Mudancas
+         ]]></add>
+      </operation>
+   </file>
+
+</modification>

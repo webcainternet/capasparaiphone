@@ -1,0 +1,18 @@
+<modification>
+	<id>Remove Other Links Footer</id>
+	<version>1.0.0</version>
+	<vqmver>2.1.7</vqmver>
+	<author>triplot</author>
+  <file name="catalog/view/theme/*/template/common/footer.tpl">
+	<operation>
+      <search position="replace" offset="2"><![CDATA[
+		<li><a href="<?php echo $manufacturer; ?>">&#8250; <?php echo $text_manufacturer; ?></a></li>
+      ]]></search>
+      <add><![CDATA[
+		<!-- <li><a href="<?php echo $manufacturer; ?>">&#8250; <?php echo $text_manufacturer; ?></a></li>
+		<li><a href="<?php echo $voucher; ?>">&#8250; <?php echo $text_voucher; ?></a></li>
+		<li><a href="<?php echo $affiliate; ?>">&#8250; <?php echo $text_affiliate; ?></a></li> -->
+      ]]></add>
+    </operation>
+  </file>
+</modification>
