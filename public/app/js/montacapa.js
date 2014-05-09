@@ -18,6 +18,8 @@ function doModelo(selObj) {
 
    alert(selObj.value);
 
+   document.getElementById('miphone5').checked=true;
+
 /*
    switch (selObj) {
    case 0:
