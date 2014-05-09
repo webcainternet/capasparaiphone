@@ -1,5 +1,28 @@
 function doModelo(selObj) {
-   var smodelo = document.getElementById("modelodocelular").value=selObj.value;
+
+   switch (selObj) {
+   case 0:
+       var smodelo = document.getElementById("modelodocelular").value=selObj.value;
+       break;
+   case 1:
+       var smodelo = document.getElementById("modelodocelular").value=selObj.value;
+       break;
+   case 2:
+       var smodelo = document.getElementById("modelodocelular").value=selObj.value;
+       break;
+   case 3:
+       var smodelo = document.getElementById("modelodocelular").value=selObj.value;
+       break;
+   case 4:
+       var smodelo = document.getElementById("modelodocelular").value=selObj.value;
+       break;
+   case 5:
+       var smodelo = document.getElementById("modelodocelular").value=selObj.value;
+       break;
+   default:
+       var smodelo = document.getElementById("modelodocelular").value=1;
+       break;
+   } 
 
    //Para onde vai
    if (document.getElementById("layoutdacapinha").value == "") {
