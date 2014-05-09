@@ -1,4 +1,5 @@
 function doModelo(selObj) {
+   $('input:radio[name="modelo"]').filter('[value="'+selObj+'"]').attr('checked', true);
    selecionarmodelo(selObj.value);
 }
 
