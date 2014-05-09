@@ -248,7 +248,16 @@ else {*/
   				<div class="fontc4y2 c4ysteptitle">SELECIONE O MODELO DE SEU CELULAR!</div>
   			</h3>
 
-  			<div class="passall pass1">
+  			<div style="background-color: red;">
+  				Modelo: <select>
+						  <option value="volvo">Volvo</option>
+						  <option value="saab">Saab</option>
+						  <option value="mercedes">Mercedes</option>
+						  <option value="audi">Audi</option>
+						</select>
+			</div>
+
+  			<div class="passall pass1" style="display: none;">
 
   				<div style="float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
 						<div style="float: left; text-align: left">
