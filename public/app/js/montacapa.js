@@ -1,5 +1,5 @@
 function doModelo(selObj) {
-   selecionarmodelo(selObj.value)
+   selecionarmodelo(selObj.value);
 }
 
 function GirarImg(idsession, posicao, angulo) {
