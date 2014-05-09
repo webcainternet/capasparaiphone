@@ -29,16 +29,16 @@ else {
 <head>
 <meta charset="utf-8" />
 
-<script type="text/javascript" src="/catalog/view/theme/theme254/fancybox/lib/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="/catalog/view/theme/dilecta/fancybox/lib/jquery-1.10.1.min.js"></script>
 
 <style type="text/css">
 @font-face {
   font-family: "c4y1";
-  src: url(/catalog/view/theme/theme254/stylesheet/alrightsans-regularitalic-v3.ttf);
+  src: url(/catalog/view/theme/dilecta/stylesheet/alrightsans-regularitalic-v3.ttf);
 }
 @font-face {
   font-family: "c4y2";
-  src: url(/catalog/view/theme/theme254/stylesheet/alrightsans-bolditalic-v3.ttf);
+  src: url(/catalog/view/theme/dilecta/stylesheet/alrightsans-bolditalic-v3.ttf);
 }
 .fontc4y1 { 
   font-family: "c4y1", Arial, Verdana;

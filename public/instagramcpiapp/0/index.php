@@ -7,11 +7,11 @@
 <style type="text/css">
 @font-face {
   font-family: "Minha Fonte";
-  src: url(/catalog/view/theme/theme254/stylesheet/alrightsans-regularitalic-v3.ttf);
+  src: url(/catalog/view/theme/dilecta/stylesheet/alrightsans-regularitalic-v3.ttf);
 }
 @font-face {
   font-family: "Minha Fonte2";
-  src: url(/catalog/view/theme/theme254/stylesheet/alrightsans-bolditalic-v3.ttf);
+  src: url(/catalog/view/theme/dilecta/stylesheet/alrightsans-bolditalic-v3.ttf);
 }
 .fonte_personalizada { 
   font-family: "Minha Fonte", Arial, Verdana;
