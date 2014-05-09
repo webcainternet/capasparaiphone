@@ -517,8 +517,6 @@ if($this->config->get('general_status') == '1') {
 																																
 									if($custom_menu['text'] != '' && $custom_menu['url'] != '') {
 									
-										$custom_menu['url'] = str_replace('capas-personalizadas-para-iphone-e-samsung-galaxy','crie-sua-capinha',$custom_menu['url']);
-
 										echo '<li><a href="'.$custom_menu['url'].'">'.$custom_menu['text'].'</a></li>';
 									
 									}
@@ -528,7 +526,11 @@ if($this->config->get('general_status') == '1') {
 							}
 						
 						 } ?>							
-						<?php foreach ($categories as $category) { ?>
+						<?php foreach ($categories as $category) { 
+
+							$category['href'] = str_replace('capas-personalizadas-para-iphone-e-samsung-galaxy','crie-sua-capinha',$category['href']); ?>
+						
+
 						<li><a href="<?php echo $category['href']; ?>"<?php if ($category['children']) { echo ' class="effect-hover"'; }?>><?php echo $category['name'];?></a>
 							
 							<?php if ($category['children']) { ?>
