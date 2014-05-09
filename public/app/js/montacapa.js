@@ -16,7 +16,7 @@ function setCheckedValue(radioObj, newValue) {
 
 function doModelo(selObj) {
 
-   alert(selObj);
+   alert(selObj.value);
 
 /*
    switch (selObj) {
