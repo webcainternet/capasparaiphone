@@ -30,8 +30,8 @@ function goto5() {
 }
 
 function color1() {
-	$( "#stepitemcirc1" ).css( "background-color", "#53ccdd" );
-	$( "#stepitemtitle1" ).css( "color", "#53ccdd" ); 
+	$( "#stepitemcirc1" ).css( "background-color", "#aee5ff" );
+	$( "#stepitemtitle1" ).css( "color", "#aee5ff" ); 
 	$( "#stepitemcirc2" ).css( "background-color", "#DDDDDD" );
 	$( "#stepitemtitle2" ).css( "color", "#DDDDDD" ); 
 	$( "#stepitemcirc3" ).css( "background-color", "#DDDDDD" );

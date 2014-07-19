@@ -201,7 +201,7 @@ else {*/
 			margin-top: 2px;">
 			
 			<h3 class="passall">
-    			<div id="stepitemcirc1" class="c4ystepnumber" style="color: #FFFFFF; background-color: #53ccdd;">1</div>
+    			<div id="stepitemcirc1" class="c4ystepnumber" style="color: #FFFFFF; background-color: #aee5ff;">1</div>
   				<div id="stepitemtitle1" class="fontc4y2 c4ysteptitle  pass1i">MODELO DE SEU CELULAR</div>
   			</h3>
 
@@ -480,8 +480,8 @@ else {*/
 			text-align: right;
 			font-size: 11px;">
 			<a href="#" onclick="VoltarEdicao()" style="color: #303030;">Voltar para a edição da capinha</a>
-			<img src="img/price.png" style="margin-top: 5px;">
-			<a href="#"><img border="0" src="img/comprar.png" onclick="comprar()" style="margin-top: 10px;"></a>
+			
+			<a href="#"><img border="0" src="img/comprar2.png" onclick="comprar()" style="margin-top: 10px;"></a>
 		</div>
 
 		<div id="ircheckout2"  style="width: 360px;
@@ -525,13 +525,13 @@ text-transform: uppercase;
 font-weight: normal;
 display: inline-block;
 text-decoration: none;
-cursor: pointer;"><span>Reiniciar edição</span></a>
+cursor: pointer;"><span>Reiniciar</span></a>
 				</div></a>
 			</div>
 
 			<div style="margin: 0px; padding: 0px; float: right;">
 				<a href="#" onclick="finalizar()">
-					<img border="0" src="img/proximo.png" style="margin-top: 5px;">
+					<img border="0" src="img/proximo2.png" style="margin-top: 5px;">
 				</a>
 			</div>
 		</div>
