@@ -1,25 +1,20 @@
 <?php
-session_start();
+	session_start();
 
-if (isset($_SESSION["userid"])) {
-  $idcsession = $_SESSION["userid"];
-}
-else {
-  header('Location: /app/');
-}
+	if (isset($_SESSION["userid"])) {
+	  $idcsession = $_SESSION["userid"];
+	}
+	else {
+	  header('Location: /app/');
+	}
 
-    $gmodelo = $_GET["m"];
-    $glayout = $_GET["l"];
+	$gmodelo = $_GET["m"];
+	$glayout = $_GET["l"];
 
+	$qm=$_GET["m"];
+	$ql=$_GET["l"];
 
-
-$qm=$_GET["m"];
-$ql=$_GET["l"];
-
-    include("../config-modelos.php");
-
-
-
+	include("../config-modelos.php");
 ?>
 
 <!-- ddx.jscript -->

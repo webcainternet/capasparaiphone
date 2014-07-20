@@ -30,7 +30,29 @@
 
 
   <div class="product-info<?php if($this->config->get('custom_block_status') == '1' && $this->config->get('custom_block_text') != '') { echo ' custom-block'; } ?>">
-  
+
+    <?php //fmendes
+      $pos = strpos($heading_title, "apinha personalizada");
+      if ($pos == 1) { 
+            $dblink = mysql_connect("capasparaiphone.cewvuskapqij.us-east-1.rds.amazonaws.com", "capasparaiphone", "djuHsy26dt");
+              mysql_select_db("capasparaiphone",$dblink);
+
+              $result = mysql_query("select mpn from sea_product WHERE product_id = ".$_GET['product_id']);
+
+              while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+                  $urlcapinha = $row["mpn"];
+              }
+
+              mysql_free_result($result);
+            ?>
+            <div class="left" style="text-align: right;">
+              <iframe src="/app/product/index.php?<?php echo $urlcapinha; ?>" style="border: 0px; width: 330px; height: 570px;" scrolling="no"></iframe>
+            </div>        
+    <?php } ?>
+
+    
+
+
     <?php if ($thumb || $images) { ?>
 	    <?php if (!($this->config->get('product_image_zoom') == '1' && $this->config->get('general_status') == '1')) { ?>
 	    
@@ -89,7 +111,7 @@ $(document).ready(function() {
 	    
 	    <?php } ?>
     <?php } ?>
-    
+
     <div class="right">
       <div class="description">
         <?php if ($manufacturer) { ?>

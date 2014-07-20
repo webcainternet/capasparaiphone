@@ -312,7 +312,7 @@
 				<?php } ?>
 				
 				
-        <!-- <p><?php echo $powered; ?></p> --> <p>Capas para iPhone 2012-2013</p>
+        <!-- <p><?php echo $powered; ?></p> --> <p>Capas para iPhone 2012-2014</p>
       
 							
 			</div>
