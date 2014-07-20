@@ -1,5 +1,5 @@
 .bordapontilhada {
-    border: dashed 3px white; margin-left: 10px; width: 339px;
+    border: dashed 3px white; margin-left: 10px;
 }
 .bordapontilhada:hover {
     border: dashed 3px #4faad6;
@@ -88,13 +88,11 @@ background-color: transparent;
 
 .mascarasuperior {
       position: absolute;
-      top: 23px;
-      left: 779px;
-      width: 345px;
-      height: 564px;
+      top: 16px;
+      left: 782px;
       z-index: 10;
       background-repeat: repeat;
-      background-image: url('/app/img/mask-iphone4-top.png');
+      background-image: url('/app/img/mask-0.png');
 }
 
 .passall {

@@ -1,6 +1,8 @@
 <?php
 ini_set("display_errors", 0);
 
+include("config-modelos.php");
+
 session_start();
 /*
 if (isset($_SESSION["userid"])) {
@@ -178,7 +180,7 @@ else {*/
 			margin-left: 10px;
 			border: 1px solid #FFFFFF;
 			border-radius: 5px;
-			padding-top: 10px;
+
 			padding-bottom: 10px;
 			margin-top: 2px;">
 
@@ -230,7 +232,6 @@ else {*/
 			margin-left: 10px;
 			border: 1px solid #FFFFFF;
 			border-radius: 5px;
-			padding-top: 10px;
 			padding-bottom: 10px;
 			margin-top: 2px;
 			padding-left: 10px;
@@ -263,16 +264,28 @@ else {*/
 											color: #fff;
 											background: #444;
 											padding: 5px;">
-						  <option value="8">Iphone 3/3G/3GS</option>
+						  <option value="0">-- Selecione --</option>
+						  <option value="4">Iphone 3/3G/3GS</option>
 						  <option value="0">Iphone 4/4S</option>
-						  <option value="1">Iphone 5/5S/5C</option>
-						  <option value="4">Samsung Galaxy S2</option>
+						  <option value="1">Iphone 5/5S</option>
+						  <option value="7">Iphone 5C</option>
 						  <option value="2">Samsung Galaxy S3</option>
 						  <option value="3">Samsung Galaxy S4</option>
-						  <option value="5">Samsung Galaxy Note 2</option>
-						  <option value="6">Samsung Galaxy S2 Mini</option>
-						  <option value="7">Samsung Galaxy S3 Mini</option>
+						  <option value="5">Samsung Galaxy S3 Mini</option>
+						  <option value="6">Samsung Galaxy S4 Mini</option>
 						</select></center>
+				</div>
+
+				<div style="display: none; float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
+						<div style="float: left; text-align: left">
+							<input onChange="selecionarmodelo(this)" type="radio" name="modelo" id="miphone3" value="4">
+						</div>
+			          	<div style="float: left; text-align: left;padding-left: 5px; height: 90px;">
+							<img style="width: 39px;" src="./img/iphone4.png" alt="">
+			          	</div>
+			          	<div class="fontc4y1" style="float: left; text-align: left; padding-left: 20px;margin-top: 5px;">
+								Iphone3/3G/3GS
+						</div>
 				</div>
 
   				<div style="display: none; float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
@@ -296,6 +309,18 @@ else {*/
 				        </div>
 				        <div class="fontc4y1" style="float: left; text-align: left; padding-left: 20px;margin-top: 5px;">
 				                Iphone5/5S
+				        </div>
+				</div>
+
+				<div style="display: none; float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
+				        <div style="float: left; text-align: left">
+				                <input onChange="selecionarmodelo(this)" type="radio" name="modelo" id="miphone5c" value="7">
+				        </div>
+				        <div style="float: left; text-align: left;padding-left: 5px; height: 90px;">
+				                <img style="width: 49px;" src="./img/iphone5.png" alt="">
+				        </div>
+				        <div class="fontc4y1" style="float: left; text-align: left; padding-left: 20px;margin-top: 5px;">
+				                Iphone5C
 				        </div>
 				</div>
 
@@ -325,25 +350,25 @@ else {*/
 
 				<div style="display: none; float: left; text-align: left; width: 95px; margin-bottom: 20px; margin-left: 15px;">
 				        <div style="float: left; text-align: left">
-				                <input onChange="selecionarmodelo(this)" type="radio" name="modelo" id="mgalaxy2" value="4">
+				                <input onChange="selecionarmodelo(this)" type="radio" name="modelo" id="mgalaxy3m" value="5">
 				        </div>
 				        <div style="float: left; text-align: left;padding-left: 5px; height: 90px;">
 				                <img style="width: 45px;" src="./img/galaxys2.png" alt="">
 				        </div>
 				        <div class="fontc4y1" style="float: left; text-align: left; padding-left: 20px;margin-top: 5px;">
-				                Galaxy S2
+				                Galaxy S3 Mini
 				        </div>
 				</div>
 
 				<div style="display: none; float: left; text-align: left; width: 100px; margin-bottom: 20px; margin-left: 15px;">
 				        <div style="float: left; text-align: left">
-				                <input onChange="selecionarmodelo(this)" type="radio" name="modelo" id="mgalaxyn2" value="5">
+				                <input onChange="selecionarmodelo(this)" type="radio" name="modelo" id="mgalaxyn4m" value="6">
 				        </div>
 				        <div style="float: left; text-align: left;padding-left: 5px; height: 90px;">
 				                <img style="width: 45px;" src="./img/galaxynote2.png" alt="">
 				        </div>
 				        <div class="fontc4y1" style="float: left; text-align: left; padding-left: 20px;margin-top: 5px;">
-				                Galaxy Note 2
+				                Galaxy S4 Mini
 				        </div>
 				</div>
 			</div>
@@ -377,6 +402,9 @@ else {*/
 			        
 			        <input onChange="selecionalayout(this)" type="radio" name="layout" value="2" style="display: inline; float: none;position: relative; top: -50px;">
 			          <img style="margin-left: 2px; margin-right: 15px;" src="./img/modelo-3.png" alt="">
+
+			          <input onChange="selecionalayout(this)" type="radio" name="layout" value="3" style="display: inline; float: none;position: relative; top: -50px;">
+			          <img style="margin-left: 2px; margin-right: 15px;" src="./img/modelo-4.png" alt="">
 			      </p>
 			    </div>
 
@@ -433,7 +461,7 @@ else {*/
 
 
 					<!-- Local imagens -->
-					<div style="height: 200px; float: left; width: 320px; overflow-x: hidden; margin-top: 10px;">
+					<div style="height: 200px; float: left; width: 375px; overflow-x: hidden; margin-top: 10px;">
 						<div id='preview'>
 						</div>
 					</div>
@@ -552,6 +580,9 @@ cursor: pointer;"><span>Reiniciar</span></a>
 <input type="hidden" name="rotdivl2b" id="rotdivl2b" value="0">
 
 
+<style type="text/css">
+	.mascarasuperior { width: <?php echo $larguramaior+10; ?>px; height: <?php echo $alturamaior+10; ?>px; }
+</style>
 
 <div class="mascarasuperior" id="mascarasuperior" onmouseover="escondemascarasup()">
 	&nbsp;

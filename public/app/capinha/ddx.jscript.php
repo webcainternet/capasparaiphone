@@ -183,20 +183,216 @@ function dropl2(ev, posicao)
         iprop=pheight/pwidth;
         if (idiff<iprop) {
                 document.getElementById(data).height=pheight;
-		nheight = pheight;
+        nheight = pheight;
                 nwidth=pheight/iheight*iwidth;
                 document.getElementById(data).width=nwidth;
 
-		ntop = 0;
+        ntop = 0;
                 nleft=(pwidth-nwidth)/2;
                 document.getElementById(data).style.marginLeft=nleft+'px';
         } else {
                 document.getElementById(data).width=pwidth;
-		nwidth = pwidth;
+        nwidth = pwidth;
                 nheight=pwidth/iwidth*iheight;
                 document.getElementById(data).height=nheight;
 
-		nleft = 0;
+        nleft = 0;
+                ntop=(pheight-nheight)/2;
+                document.getElementById(data).style.marginTop=ntop+'px';
+        }
+        document.getElementById(data).style.maxHeight='5000%';
+        document.getElementById(data).style.maxWidth='5000%';
+
+        document.getElementById("div"+data).style.display='none';
+        ev.target.appendChild(document.getElementById(data));
+
+        imagemurl = document.getElementById(data).src;
+    //saveposition(posicao, imagemurl);
+        idtsession = document.getElementById("idsession").value;
+        saveposition(idtsession, posicao, imagemurl, nheight, nwidth, nleft, ntop);
+    }
+}
+
+function dropl6(ev, posicao)
+{
+        ev.preventDefault();
+        var data=ev.dataTransfer.getData("Text");
+
+    var existeitem = 0;
+
+    var dvpsc = '';
+    if (posicao == 1) { dvpsc = 'divl6a'; }
+    if (posicao == 2) { dvpsc = 'divl6b'; }    
+    if (posicao == 3) { dvpsc = 'divl6c'; }    
+    if (posicao == 4) { dvpsc = 'divl6d'; }    
+    if (posicao == 5) { dvpsc = 'divl6e'; }    
+    if (posicao == 6) { dvpsc = 'divl6f'; }    
+
+    var eldvposicao = document.getElementById(dvpsc); 
+
+    var eldvsubChildren = eldvposicao.childNodes;
+    for(var i = 0; i < eldvsubChildren.length; i++) 
+    { 
+        if (eldvsubChildren.item(i).id != null && 
+            eldvsubChildren.item(i).id != "" &&
+            eldvsubChildren.item(i).id != "dvcontroles" &&
+            eldvsubChildren.item(i).id != "dvcontroles1" &&
+            eldvsubChildren.item(i).id != "dvcontroles2" &&
+            eldvsubChildren.item(i).id != "dvfechar1" &&
+            eldvsubChildren.item(i).id != "dvfechar2" &&
+            eldvsubChildren.item(i).id != "dvfechar3" &&
+            eldvsubChildren.item(i).id != "dvfechar4" &&
+            eldvsubChildren.item(i).id != "dvfechar5" &&
+            eldvsubChildren.item(i).id != "dvfechar6" &&
+            eldvsubChildren.item(i).id != "dvfechar7" &&
+            eldvsubChildren.item(i).id != "dvfechar8" &&
+            eldvsubChildren.item(i).id != "dvfechar9" &&
+            eldvsubChildren.item(i).id != "dvfechar10" &&
+            eldvsubChildren.item(i).id != "dvfechar11" &&
+            eldvsubChildren.item(i).id != "dvfechar12" &&
+            eldvsubChildren.item(i).id != "dvfechar13" &&
+            eldvsubChildren.item(i).id != "dvfechar14" &&
+            eldvsubChildren.item(i).id != "dvfechar15" ) {
+
+            //alert(eldvsubChildren.item(i).id);
+            existeitem = 1;
+        }
+    }
+
+    if (existeitem == 1) {
+        alert("Você deve remover a imagem existente antes de inserir outra no local, clique no [x] para excluir!");
+    }
+    else {
+
+        //ev.target.appendChild(document.getElementById(data));
+        //document.getElementById(data).style.opacity='0.75';
+        //document.getElementById(data).style.filter='alpha(opacity=75)';
+
+        iwidth=document.getElementById(data).width;
+        iheight=document.getElementById(data).height;
+
+        // --- Variaveis ---
+        pheight=<?php echo $mh2; ?>;
+        pwidth=<?php echo $mw2; ?>;
+        // -----------------
+
+        idiff=iheight/iwidth;
+        iprop=pheight/pwidth;
+        if (idiff<iprop) {
+                document.getElementById(data).height=pheight;
+        nheight = pheight;
+                nwidth=pheight/iheight*iwidth;
+                document.getElementById(data).width=nwidth;
+
+        ntop = 0;
+                nleft=(pwidth-nwidth)/2;
+                document.getElementById(data).style.marginLeft=nleft+'px';
+        } else {
+                document.getElementById(data).width=pwidth;
+        nwidth = pwidth;
+                nheight=pwidth/iwidth*iheight;
+                document.getElementById(data).height=nheight;
+
+        nleft = 0;
+                ntop=(pheight-nheight)/2;
+                document.getElementById(data).style.marginTop=ntop+'px';
+        }
+        document.getElementById(data).style.maxHeight='5000%';
+        document.getElementById(data).style.maxWidth='5000%';
+
+        document.getElementById("div"+data).style.display='none';
+        ev.target.appendChild(document.getElementById(data));
+
+        imagemurl = document.getElementById(data).src;
+    //saveposition(posicao, imagemurl);
+        idtsession = document.getElementById("idsession").value;
+        saveposition(idtsession, posicao, imagemurl, nheight, nwidth, nleft, ntop);
+    }
+}
+
+function dropl8(ev, posicao)
+{
+        ev.preventDefault();
+        var data=ev.dataTransfer.getData("Text");
+
+    var existeitem = 0;
+
+    var dvpsc = '';
+    if (posicao == 1) { dvpsc = 'divl8a'; }
+    if (posicao == 2) { dvpsc = 'divl8b'; }    
+    if (posicao == 3) { dvpsc = 'divl8c'; }    
+    if (posicao == 4) { dvpsc = 'divl8d'; }    
+    if (posicao == 5) { dvpsc = 'divl8e'; }    
+    if (posicao == 6) { dvpsc = 'divl8f'; }    
+    if (posicao == 7) { dvpsc = 'divl8g'; }    
+    if (posicao == 8) { dvpsc = 'divl8h'; }    
+
+    var eldvposicao = document.getElementById(dvpsc); 
+
+    var eldvsubChildren = eldvposicao.childNodes;
+    for(var i = 0; i < eldvsubChildren.length; i++) 
+    { 
+        if (eldvsubChildren.item(i).id != null && 
+            eldvsubChildren.item(i).id != "" &&
+            eldvsubChildren.item(i).id != "dvcontroles" &&
+            eldvsubChildren.item(i).id != "dvcontroles1" &&
+            eldvsubChildren.item(i).id != "dvcontroles2" &&
+            eldvsubChildren.item(i).id != "dvfechar1" &&
+            eldvsubChildren.item(i).id != "dvfechar2" &&
+            eldvsubChildren.item(i).id != "dvfechar3" &&
+            eldvsubChildren.item(i).id != "dvfechar4" &&
+            eldvsubChildren.item(i).id != "dvfechar5" &&
+            eldvsubChildren.item(i).id != "dvfechar6" &&
+            eldvsubChildren.item(i).id != "dvfechar7" &&
+            eldvsubChildren.item(i).id != "dvfechar8" &&
+            eldvsubChildren.item(i).id != "dvfechar9" &&
+            eldvsubChildren.item(i).id != "dvfechar10" &&
+            eldvsubChildren.item(i).id != "dvfechar11" &&
+            eldvsubChildren.item(i).id != "dvfechar12" &&
+            eldvsubChildren.item(i).id != "dvfechar13" &&
+            eldvsubChildren.item(i).id != "dvfechar14" &&
+            eldvsubChildren.item(i).id != "dvfechar15" ) {
+
+            //alert(eldvsubChildren.item(i).id);
+            existeitem = 1;
+        }
+    }
+
+    if (existeitem == 1) {
+        alert("Você deve remover a imagem existente antes de inserir outra no local, clique no [x] para excluir!");
+    }
+    else {
+
+        //ev.target.appendChild(document.getElementById(data));
+        //document.getElementById(data).style.opacity='0.75';
+        //document.getElementById(data).style.filter='alpha(opacity=75)';
+
+        iwidth=document.getElementById(data).width;
+        iheight=document.getElementById(data).height;
+
+        // --- Variaveis ---
+        pheight=<?php echo $mh2; ?>;
+        pwidth=<?php echo $mw2; ?>;
+        // -----------------
+
+        idiff=iheight/iwidth;
+        iprop=pheight/pwidth;
+        if (idiff<iprop) {
+                document.getElementById(data).height=pheight;
+        nheight = pheight;
+                nwidth=pheight/iheight*iwidth;
+                document.getElementById(data).width=nwidth;
+
+        ntop = 0;
+                nleft=(pwidth-nwidth)/2;
+                document.getElementById(data).style.marginLeft=nleft+'px';
+        } else {
+                document.getElementById(data).width=pwidth;
+        nwidth = pwidth;
+                nheight=pwidth/iwidth*iheight;
+                document.getElementById(data).height=nheight;
+
+        nleft = 0;
                 ntop=(pheight-nheight)/2;
                 document.getElementById(data).style.marginTop=ntop+'px';
         }
@@ -319,47 +515,6 @@ function dropl15a(ev, posicao)
     }
 }
 
-function droplixeira(ev)
-{
-        ev.preventDefault();
-        var data=ev.dataTransfer.getData("Text");
-        //ev.target.appendChild(document.getElementById(data));
-        //document.getElementById(data).style.opacity='0.75';
-        //document.getElementById(data).style.filter='alpha(opacity=75)';
-
-	document.getElementById(data).style.display='none';
-
-        iwidth=document.getElementById(data).width;
-        iheight=document.getElementById(data).height;
-
-        // --- Variaveis ---
-        pheight=55;
-        pwidth=55;
-        // -----------------
-
-        idiff=iheight/iwidth;
-        iprop=pheight/pwidth;
-        if (idiff<iprop) {
-                document.getElementById(data).height=pheight;
-                nwidth=pheight/iheight*iwidth;
-                document.getElementById(data).width=nwidth;
-
-                nleft=(pwidth-nwidth)/2;
-                document.getElementById(data).style.marginLeft=nleft+'px';
-        } else {
-                document.getElementById(data).width=pwidth;
-                nheight=pwidth/iwidth*iheight;
-                document.getElementById(data).height=nheight;
-
-                ntop=(pheight-nheight)/2;
-                document.getElementById(data).style.marginTop=ntop+'px';
-        }
-        document.getElementById(data).style.maxHeight='5000%';
-        document.getElementById(data).style.maxWidth='5000%';
-
-        document.getElementById("div"+data).style.display='none';
-        ev.target.appendChild(document.getElementById(data));
-}
 
 function dropl15b(ev, posicao)
 {
@@ -465,6 +620,49 @@ function dropl15b(ev, posicao)
         idtsession = document.getElementById("idsession").value;
         saveposition(idtsession, posicao, imagemurl, nheight, nwidth, nleft, ntop);
     }
+}
+
+
+function droplixeira(ev)
+{
+        ev.preventDefault();
+        var data=ev.dataTransfer.getData("Text");
+        //ev.target.appendChild(document.getElementById(data));
+        //document.getElementById(data).style.opacity='0.75';
+        //document.getElementById(data).style.filter='alpha(opacity=75)';
+
+    document.getElementById(data).style.display='none';
+
+        iwidth=document.getElementById(data).width;
+        iheight=document.getElementById(data).height;
+
+        // --- Variaveis ---
+        pheight=55;
+        pwidth=55;
+        // -----------------
+
+        idiff=iheight/iwidth;
+        iprop=pheight/pwidth;
+        if (idiff<iprop) {
+                document.getElementById(data).height=pheight;
+                nwidth=pheight/iheight*iwidth;
+                document.getElementById(data).width=nwidth;
+
+                nleft=(pwidth-nwidth)/2;
+                document.getElementById(data).style.marginLeft=nleft+'px';
+        } else {
+                document.getElementById(data).width=pwidth;
+                nheight=pwidth/iwidth*iheight;
+                document.getElementById(data).height=nheight;
+
+                ntop=(pheight-nheight)/2;
+                document.getElementById(data).style.marginTop=ntop+'px';
+        }
+        document.getElementById(data).style.maxHeight='5000%';
+        document.getElementById(data).style.maxWidth='5000%';
+
+        document.getElementById("div"+data).style.display='none';
+        ev.target.appendChild(document.getElementById(data));
 }
 
 </script>

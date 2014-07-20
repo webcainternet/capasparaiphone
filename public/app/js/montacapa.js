@@ -1,28 +1,6 @@
 function doModelo(selObj) {
-
-   switch (selObj) {
-   case 0:
-       var smodelo = document.getElementById("modelodocelular").value=selObj.value;
-       break;
-   case 1:
-       var smodelo = document.getElementById("modelodocelular").value=selObj.value;
-       break;
-   case 2:
-       var smodelo = document.getElementById("modelodocelular").value=selObj.value;
-       break;
-   case 3:
-       var smodelo = document.getElementById("modelodocelular").value=selObj.value;
-       break;
-   case 4:
-       var smodelo = document.getElementById("modelodocelular").value=selObj.value;
-       break;
-   case 5:
-       var smodelo = document.getElementById("modelodocelular").value=selObj.value;
-       break;
-   default:
-       var smodelo = document.getElementById("modelodocelular").value=1;
-       break;
-   } 
+   smodelo = selObj.value;
+   document.getElementById("modelodocelular").value = smodelo;
 
    //Para onde vai
    if (document.getElementById("layoutdacapinha").value == "") {
@@ -78,12 +56,14 @@ function MontaCapa(modelo, layout) {
       $('#divcapinha').prepend(response);
    });
 
-   if (modelo == '0') { $('#mascarasuperior').css("background-image", "url(/app/img/mask-iphone4-top.png)"); }
-   if (modelo == '1') { $('#mascarasuperior').css("background-image", "url(/app/img/mask-iphone5-top.png)"); }
-   if (modelo == '2') { $('#mascarasuperior').css("background-image", "url(/app/img/mask-galaxy3-top.png)"); }
-   if (modelo == '3') { $('#mascarasuperior').css("background-image", "url(/app/img/mask-galaxy4-top.png)"); }
-   if (modelo == '4') { $('#mascarasuperior').css("background-image", "url(/app/img/mask-galaxys2-top.png)"); }
-   if (modelo == '5') { $('#mascarasuperior').css("background-image", "url(/app/img/mask-galaxyn2-top.png)"); }
+   if (modelo == '0') { $('#mascarasuperior').css("background-image", "url(/app/img/mask-0.png)"); }
+   if (modelo == '1') { $('#mascarasuperior').css("background-image", "url(/app/img/mask-1.png)"); }
+   if (modelo == '2') { $('#mascarasuperior').css("background-image", "url(/app/img/mask-2.png)"); }
+   if (modelo == '3') { $('#mascarasuperior').css("background-image", "url(/app/img/mask-3.png)"); }
+   if (modelo == '4') { $('#mascarasuperior').css("background-image", "url(/app/img/mask-4.png)"); }
+   if (modelo == '5') { $('#mascarasuperior').css("background-image", "url(/app/img/mask-5.png)"); }
+   if (modelo == '6') { $('#mascarasuperior').css("background-image", "url(/app/img/mask-6.png)"); }
+   if (modelo == '7') { $('#mascarasuperior').css("background-image", "url(/app/img/mask-7.png)"); }
 
 }
 

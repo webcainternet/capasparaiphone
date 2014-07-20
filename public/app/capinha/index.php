@@ -10,14 +10,22 @@ else {
 
     $gmodelo = $_GET["m"];
     $glayout = $_GET["l"];
+
+
+
+$qm=$_GET["m"];
+$ql=$_GET["l"];
+
+    include("../config-modelos.php");
+
+
+
 ?>
 
-<?php include 'var.tamanhos.php'; ?>
-
 <!-- ddx.jscript -->
-<?php include 'ddx.jscript.php'; ?>
+	<?php include 'ddx.jscript.php'; ?>
 <!-- ddx.jscript fim -->
 
 <!-- ddx.layoyt -->
-    <?php include 'ddx.layout.php'; ?>
+    <?php include 'ddx.layout_new.php'; ?>
 <!-- ddx.layout fim -->
