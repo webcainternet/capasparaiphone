@@ -11,7 +11,7 @@
 	    case 0:
 	    	//Iphone 4/4S
 	    	$textmodelo = "Iphone 4/4S";
-	    	$larguratotal = 320;
+	    	$larguratotal = 361;
 	    	$alturatotal = 560;
 	    	$mimage = "m-0.png";
 	    	break;
