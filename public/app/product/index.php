@@ -504,7 +504,7 @@
 <?php } ?>
 
 <!-- Mascaras -->
-<div style="position: absolute; top: 0px; left: 0px; margin-left: 0px; padding: 0px; height: 570px; width: 330px; background-image: url(https://www.capasparaiphone.com.br/app/img/mask-<?php echo $_GET["m"]; ?>.png); background-repeat: no-repeat no-repeat;">&nbsp;</div>
+<div style="position: absolute; top: 0px; left: 0px; margin-left: 0px; padding: 0px; height: <?php echo $alturamaior+10; ?>px; width: <?php echo $larguramaior; ?>px; background-image: url(https://www.capasparaiphone.com.br/app/img/mask-<?php echo $_GET["m"]; ?>.png); background-repeat: no-repeat no-repeat;">&nbsp;</div>
 
 
 
