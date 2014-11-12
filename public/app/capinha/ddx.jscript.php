@@ -12,16 +12,19 @@ function drag(ev)
 
 function saveposition3(posicao, imagemurl)
 {
+    imagemurl = imagemurl.replace("&", "%26");
     document.getElementById("invfr"+posicao).src="https://www.capasparaiphone.com.br/app/save.posicao.php?idcsession=<?php echo $idcsession; ?>&modelo=<?php echo $gmodelo; ?>&layout=<?php echo $glayout; ?>&posicao="+posicao+"&imagem="+imagemurl;
 }
 
 function saveposition2(posicao, imagemurl, nheight, nwidth, nleft, ntop)
 {
+    imagemurl = imagemurl.replace("&", "%26");
     document.getElementById("invfr"+posicao).src="https://www.capasparaiphone.com.br/app/save.posicao2.php?idcsession=<?php echo $idcsession; ?>&modelo=<?php echo $gmodelo; ?>&layout=<?php echo $glayout; ?>&posicao="+posicao+"&imagem="+imagemurl+"&nheight="+nheight+"&nwidth="+nwidth+"&nleft="+nleft+"&ntop="+ntop;
 }
 
 function saveposition(idsession, posicao, imagemurl, nheight, nwidth, nleft, ntop)
 {
+    imagemurl = imagemurl.replace("&", "%26");
     document.getElementById("invfr"+posicao).src="https://www.capasparaiphone.com.br/app/save.posicao2.php?idcsession="+idsession+"&modelo=<?php echo $gmodelo; ?>&layout=<?php echo $glayout; ?>&posicao="+posicao+"&imagem="+imagemurl+"&nheight="+nheight+"&nwidth="+nwidth+"&nleft="+nleft+"&ntop="+ntop;
 }
 
