@@ -19,57 +19,65 @@
     	case 1:
 	    	//Iphone 5/5S
     		$textmodelo = "Iphone 5/5S";
-	    	$larguratotal = 282;
-	    	$alturatotal = 560;
+	    	$larguratotal = 326;
+	    	$alturatotal = 550;
 	    	$mimage = "m-1.png";
 	    	break;
 
     	case 2:
 	    	//Galaxy S3
     		$textmodelo = "Galaxy S3";
-	    	$larguratotal = 302;
-	    	$alturatotal = 560;
+	    	$larguratotal = 330;
+	    	$alturatotal = 550;
 	    	$mimage = "m-2.png";
 	    	break;
 
     	case 3:
 	    	//Galaxy S4
     		$textmodelo = "Galaxy S4";
-	    	$larguratotal = 290;
-	    	$alturatotal = 560;
+	    	$larguratotal = 330;
+	    	$alturatotal = 550;
 	    	$mimage = "m-3.png";
 	    	break;
 
     	case 4:
-	    	//Iphone 3/3G/3GS
-    		$textmodelo = "Iphone 3/3G/3GS";
-	    	$larguratotal = 320;
-	    	$alturatotal = 560;
+	    	//Galaxy S5
+    		$textmodelo = "Galaxy S5";
+	    	$larguratotal = 337;
+	    	$alturatotal = 550;
 	    	$mimage = "m-4.png";
 	    	break;
 
     	case 5:
 	    	//Galaxy S3 Mini
     		$textmodelo = "Galaxy S3 Mini";
-	    	$larguratotal = 300;
-	    	$alturatotal = 560;
+	    	$larguratotal = 368;
+	    	$alturatotal = 550;
 	    	$mimage = "m-5.png";
 	    	break;
 
     	case 6:
 	    	//Galaxy S4 Mini
     		$textmodelo = "Galaxy S4 Mini";
-	    	$larguratotal = 280;
-	    	$alturatotal = 560;
+	    	$larguratotal = 342;
+	    	$alturatotal = 550;
 	    	$mimage = "m-6.png";
 	    	break;
 
     	case 7:
 	    	//Iphone 5C
     		$textmodelo = "Iphone 5C";
-	    	$larguratotal = 282;
-	    	$alturatotal = 560;
+	    	$larguratotal = 326;
+	    	$alturatotal = 550;
 	    	$mimage = "m-7.png";
+	    	break;
+
+	    case 8:
+	    	//iPod Touch 5
+    		$textmodelo = "iPod Touch 5";
+	    	$larguratotal = 326;
+	    	$alturatotal = 550;
+	    	$mimage = "m-8.png";
 	    	break;
 	}
 
