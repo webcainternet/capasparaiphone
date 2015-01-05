@@ -265,12 +265,12 @@ else {*/
 											background: #444;
 											padding: 5px;">
 						  <option value="0">-- Selecione --</option>
-						  <option value="4">Iphone 3/3G/3GS</option>
 						  <option value="0">Iphone 4/4S</option>
 						  <option value="1">Iphone 5/5S</option>
 						  <option value="7">Iphone 5C</option>
 						  <option value="2">Samsung Galaxy S3</option>
 						  <option value="3">Samsung Galaxy S4</option>
+						  <option value="4">Galaxy S5</option>
 						  <option value="5">Samsung Galaxy S3 Mini</option>
 						  <option value="6">Samsung Galaxy S4 Mini</option>
 						</select></center>
@@ -284,7 +284,7 @@ else {*/
 							<img style="width: 39px;" src="./img/iphone4.png" alt="">
 			          	</div>
 			          	<div class="fontc4y1" style="float: left; text-align: left; padding-left: 20px;margin-top: 5px;">
-								Iphone3/3G/3GS
+								Galaxy S5
 						</div>
 				</div>
 
