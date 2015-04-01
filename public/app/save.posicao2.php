@@ -50,7 +50,7 @@ ini_set("memory_limit","128M");
         fclose($savefile);
 
         //Descobre o tipo da imagem
-        $imagemtipo = exif_imagetype('/var/www/capasparaiphone.com.br/capasparaiphone/public/app/'.$novoarq.'.tmp');
+        $imagemtipo = exif_imagetype('/srv/httpd/capasparaiphone.com.br/public/app/'.$novoarq.'.tmp');
 
         switch ($imagemtipo) {
             case 1:

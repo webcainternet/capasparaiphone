@@ -1,3 +1,4 @@
+<!-- ff -->
 <?php echo $header; ?>
 <div id="content">
   <div class="breadcrumb">
@@ -32,6 +33,14 @@
                   <span class="error"><?php echo $error_name[$language['language_id']]; ?></span>
                   <?php } ?></td>
               </tr>
+	<?php if ($mpn) { ?>
+              <tr>
+                <td>Capinha:</td>
+                <td><a href="/app/impressao/?<?php echo $mpn; ?>" target="_blank" />Impressão</a>
+                  <a href="/app/product/?<?php echo $mpn; ?>" target="_blank" />Montagem</a>
+                        </td>
+              </tr>
+	<?php } ?>
               <tr>
                 <td><?php echo $entry_meta_description; ?></td>
                 <td><textarea name="product_description[<?php echo $language['language_id']; ?>][meta_description]" cols="40" rows="5"><?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['meta_description'] : ''; ?></textarea></td>
@@ -61,6 +70,14 @@
                 <span class="error"><?php echo $error_model; ?></span>
                 <?php } ?></td>
             </tr>
+        <?php if ($mpn) { ?>
+              <tr>
+                <td>Capinha:</td>
+                <td><a href="/app/impressao/?<?php echo $mpn; ?>" target="_blank" />Impressão</a>
+                  <a href="/app/product/?<?php echo $mpn; ?>" target="_blank" />Montagem</a>
+                        </td>
+              </tr>
+        <?php } ?>
             <tr>
               <td><?php echo $entry_sku; ?></td>
               <td><input type="text" name="sku" value="<?php echo $sku; ?>" /></td>
