@@ -1,8 +1,8 @@
 <?php
 //incluindo a classe de conexão com o facebook
-
 require '../facebook-php-sdk/src/facebook.php';
 
+ 
 /*
 * ID da App, vocé obteve isso na ultima
 * página de geração do seu aplicativo no facebook
@@ -12,7 +12,7 @@ $App_ID = '576622305778855';
 * App Secret, você obteve isso na ultima
 * página de geração do seu aplicativo no facebook
 */
-$App_Secret = 'f1beb40d642113d50a911f79fa2866b9';
+$App_Secret = 'd5fa3ee39357eb566807b7b742b7323e';
  
 //Instanciando o Objeto da classe do facebook
 $facebook = new Facebook(array(
@@ -22,18 +22,27 @@ $facebook = new Facebook(array(
  
 //Pegando Id do usuário Logado
 $o_user = $facebook->getUser();
- 
+
+//echo $o_user; 
 /*
 * Verificando se está conectado
 */
 if($o_user == 0)
 {
- 
     //Envia para a página de permissão do facebook, nela voce irá dar permissão ao aplicativo
     //acessar dados da sua conta
     $url = $facebook->getLoginUrl(array('scope' => array('user_about_me','user_hometown','user_photos','friends_photos','read_stream','friends_likes','photo_upload','publish_stream','status_update','video_upload')));
     //header("Location:".$url);
-    echo "<div>App error</div>";
+    //echo "<script language=javascript>location.href ='".$url."'</script>";
+    //$url = str_replace($url, 'index2.php', 'index.php');
+    $url = "/capasparaiphoneapp/1/index.php";
+    echo "<a class=\"button\" onclick=\"window.open('$url','_blank','toolbar=no, scrollbars=no, resizable=yes, top=400, left=500, width=850, height=600');\" href=\"#\">Entrar com Facebook</a>";
+    ?> 
+    <script>
+        setTimeout("getalbum()", 2000);
+    </script>
+    <?php
+
 }
 else
 {
@@ -61,69 +70,35 @@ else
         //Use var_dump($home) ou print_r($home)
         //para ver todos os campos retornados
         $albums = $facebook->api('/me/albums');
+        ?>
+
+        <script type="text/javascript">
+        function selecionaalbum(salbum) {
+                getphoto(salbum.value);
+                //window.location="https://www.capasparaiphone.com.br/capasparaiphoneapp/2/?idalbum="+salbum.value;
+        }
+        </script>
+
+        <select  onchange="selecionaalbum(this)">
+          <?php
+          $tfirsti = 0;
+          $tfirst = '';
+          foreach($albums['data'] as $album) 
+          {
+          $tfirst = $album['id'];
+          print ('<option value="'.$album['id'].'">'.$album['name'].'</option>' ) ;
+          $tfirsti++;
+          }
+          ?>
+
+          </select>
+          <script>
+            getphoto('<?php echo $tfirst; ?>');
+          </script>
+        <?php
 
 
-        //$album_id = $_GET['idalbum'];
-        //$photos = $facebook->api("/{$album_id}/photos");
     }
 }
-?>
  
-<?php
-session_start();
-
-if (isset($_SESSION["userid"])) {
-  $idcsession = $_SESSION["userid"];
-}
-else {
-  //Randomiza nome do arquivo
-  $date1 = date_create();
-  $timestamp1 = date_timestamp_get($date1);
-  $ramdomico4 = rand(1000,9999);
-  $idsession = $timestamp1."".$ramdomico4;
-  $_SESSION["userid"] = $idsession;
-
-  //echo "Nao logado:" . $_SESSION["userid"];
-}
-
-    $idcsession = $idcsession;
-    $gmodelo = $_GET["m"];
-    $glayout = $_GET["l"];
-?>
-
-
-<?php
-    
-
-      $album_id = $_GET["idalbum"];
-      $photos = $facebook->api("/{$album_id}/photos?limit=1000&offset=0");
-
-    $adate1 = date_create();
-    $atimestamp1 = date_timestamp_get($adate1);
-    $aramdomico4 = rand(1000,9999);
-    $ic = $atimestamp1.$aramdomico4;
-
-      foreach($photos['data'] as $photo)
-      {
-            $ic++;
-?>
-    		<div id="divdrag<?php echo $ic; ?>" style="background-color: #FFFFFF; width: 50px; float: left; overflow: hidden; height: 50px;
-                background: rgba(255,255,255,0.8);
-                position: relative;
-                display: inline-block;
-                margin: 5px;
-                vertical-align: top;
-                border: 1px solid #acacac;
-                padding: 6px 6px 6px 6px;
-                -webkit-box-shadow: 1px 1px 4px rgba(0,0,0,0.16);
-                box-shadow: 1px 1px 4px rgba(0,0,0,0.16);
-                font-size: 14px;
-                ">
-                <?php echo "<img src='{$photo['source']}' "; ?>
-                id="drag<?php echo $ic; ?>" draggable="true"
-                ondragstart="drag(event)" style="max-width:100%; max-height:100%;">
-        </div>
-<?php
-      }
-
 ?>

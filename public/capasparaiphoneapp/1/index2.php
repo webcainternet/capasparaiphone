@@ -2,17 +2,12 @@
 //incluindo a classe de conexão com o facebook
 require '../facebook-php-sdk/src/facebook.php';
 
- 
-/*
-* ID da App, vocé obteve isso na ultima
-* página de geração do seu aplicativo no facebook
-*/
 $App_ID = '576622305778855';
 /*
 * App Secret, você obteve isso na ultima
 * página de geração do seu aplicativo no facebook
 */
-$App_Secret = 'd5fa3ee39357eb566807b7b742b7323e';
+$App_Secret = 'f1beb40d642113d50a911f79fa2866b9';
  
 //Instanciando o Objeto da classe do facebook
 $facebook = new Facebook(array(
