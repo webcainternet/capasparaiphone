@@ -2,12 +2,17 @@
 //incluindo a classe de conexão com o facebook
 require '../facebook-php-sdk/src/facebook.php';
 
-$App_ID = '576622305778855';
+ 
+/*
+* ID da App, vocé obteve isso na ultima
+* página de geração do seu aplicativo no facebook
+*/
+$App_ID = '417509841755213';
 /*
 * App Secret, você obteve isso na ultima
 * página de geração do seu aplicativo no facebook
 */
-$App_Secret = 'f1beb40d642113d50a911f79fa2866b9';
+$App_Secret = '33fa7913fc9ff06df746819f507ab7c3';
  
 //Instanciando o Objeto da classe do facebook
 $facebook = new Facebook(array(
@@ -18,6 +23,7 @@ $facebook = new Facebook(array(
 //Pegando Id do usuário Logado
 $o_user = $facebook->getUser();
 
+//var_dump($o_user); exit;
 //echo $o_user; 
 /*
 * Verificando se está conectado
@@ -26,7 +32,7 @@ if($o_user == 0)
 {
     //Envia para a página de permissão do facebook, nela voce irá dar permissão ao aplicativo
     //acessar dados da sua conta
-    $url = $facebook->getLoginUrl(array('scope' => array('user_about_me','user_hometown','user_photos','friends_photos','read_stream','friends_likes','photo_upload','publish_stream','status_update','video_upload')));
+    $url = $facebook->getLoginUrl(array('scope' => array('user_about_me','user_hometown','user_photos','read_stream')));
     //header("Location:".$url);
     //echo "<script language=javascript>location.href ='".$url."'</script>";
     //$url = str_replace($url, 'index2.php', 'index.php');
@@ -50,6 +56,7 @@ else
     }
     else
     {
+      //var_dump($o_user); exit;
         //pegando as publicações do seu mural
         //$feed = $facebook->api('/me/feed');
         //Use var_dump($feed) ou print_r($feed)

@@ -20,9 +20,36 @@
 	$alturaunitaria = $alturaunitaria/4;
 	$larguraunitaria = number_format($larguraunitaria,0);
 	$alturaunitaria = number_format($alturaunitaria,0);
+
+	//Ajustes carrinho
+	switch ($modelo) {
+		case 0:
+			# Iphone 4
+			$larguraunitaria = "82";
+			$alturaunitaria = "126";
+			break;
+		case 4:
+			# 
+			$larguraunitaria = "82";
+			$alturaunitaria = "133";
+			break;
+		case 5:
+			# 
+			$larguraunitaria = "82";
+			$alturaunitaria = "122";
+			break;
+		case 6:
+			# 
+			$larguraunitaria = "82";
+			$alturaunitaria = "131";
+			break;
+	}
 ?>
+
+
 <?php //Layout 1 Foto
 	if ($layout == 0) { 
+		
 	$sql_statement1  = "SELECT * FROM cpi_capasconstrucao WHERE idcsession = $gidcsession AND modelo = $gmodelo AND layout = $glayout AND posicao = 1  order by datainsert desc limit 1";
 	$result1 = mysql_query($sql_statement1);
 	if (!$result1) { 

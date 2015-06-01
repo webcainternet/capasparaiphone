@@ -124,11 +124,14 @@ function finalizar() {
          document.getElementById("ircheckout1").style.display = "block";
          goto4();
          color4();
+         document.getElementById("btn2finalizar").style.display = "none";
       }
    } 
 }
 
 function comprar() {
+   /* document.getElementById("todoapp").style.display = 'none';
+   document.getElementById("todoapp2").style.display = 'block'; */
    window.parent.parent.window.location = '/app/save.product.php?idcsession='+document.getElementById("idsession").value+'&m='+document.getElementById("modelodocelular").value+'&l='+document.getElementById("layoutdacapinha").value+'&f='+document.getElementById("filtrocapinha").value;
 }
 

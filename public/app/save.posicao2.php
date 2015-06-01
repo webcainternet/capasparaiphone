@@ -16,8 +16,9 @@ ini_set("memory_limit","128M");
     $qntop = $_GET["ntop"];
 
 
-
-
+	//Corrigir problema SSL
+	$gimagem = str_replace('https://www.capasparaiphone.com.br','http://www.capasparaiphone.com.br', $gimagem);
+	$gimagem = str_replace('https://capasparaiphone.com.br','http://capasparaiphone.com.br', $gimagem);
 
         //Recebe imagem do cliente
         $clienteimagem = $gimagem;
@@ -33,7 +34,7 @@ ini_set("memory_limit","128M");
         function GetImageFromUrl($link)
         {
                 $ch = curl_init();
-                curl_setopt($ch, CURLOPT_POST, 0);
+		curl_setopt($ch, CURLOPT_POST, 0);
                 curl_setopt($ch,CURLOPT_URL,$link);
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
                 $result=curl_exec($ch);
@@ -50,250 +51,46 @@ ini_set("memory_limit","128M");
         fclose($savefile);
 
         //Descobre o tipo da imagem
-        $imagemtipo = exif_imagetype('/srv/httpd/capasparaiphone.com.br/public/app/'.$novoarq.'.tmp');
+        $imagemtipo = exif_imagetype('/var/www/capasparaiphone.com.br/capasparaiphone/public/app/'.$novoarq.'.tmp');
 
         switch ($imagemtipo) {
             case 1:
-
         //Arquivo normal
                 $image = imagecreatefromgif($novoarq.'.tmp');
                 imagefilter($image, IMG_FILTER_CONTRAST, -0);
                 imagepng($image, $novoarq.'.png');
                 imagedestroy($image);
                 $gimagem2 = $novoarq.'.png';
-
-/*
-        //Contraste 40
-                $image = imagecreatefromgif($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_CONTRAST, -40);
-                imagepng($image, $novoarq.'.png-40.png');
-                imagedestroy($image);
-
-        //Preto e Branco
-                $image = imagecreatefromgif($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_GRAYSCALE);
-                imagepng($image, $novoarq.'.png-pb.png');
-                imagedestroy($image);
-
-        //Sepia
-                $image = imagecreatefromgif($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_COLORIZE, 100, 50, 0);
-                imagepng($image, $novoarq.'.png-sp.png');
-                imagedestroy($image);
-
-        //Vermelho
-                $image = imagecreatefromgif($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_COLORIZE, 100, 0, 0);
-                imagepng($image, $novoarq.'.png-red.png');
-                imagedestroy($image);
-
-        //Verde
-                $image = imagecreatefromgif($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_COLORIZE, 0, 100, 0);
-                imagepng($image, $novoarq.'.png-verde.png');
-                imagedestroy($image);
-
-        //Azul
-                $image = imagecreatefromgif($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_COLORIZE, 0, 0, 100);
-                imagepng($image, $novoarq.'.png-azul.png');
-                imagedestroy($image);
-
-        //Amarelo
-                $image = imagecreatefromgif($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_COLORIZE, 100, 100, -100);
-                imagepng($image, $novoarq.'.png-amarelo.png');
-                imagedestroy($image);
-
-        //Roxo
-                $image = imagecreatefromgif($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_COLORIZE, 50, -50, 50);
-                imagepng($image, $novoarq.'.png-roxo.png');
-                imagedestroy($image);
-*/
                 break;
+
             case 2:
-
         //Arquivo normal
                 $image = imagecreatefromjpeg($novoarq.'.tmp');
                 imagefilter($image, IMG_FILTER_CONTRAST, -0);
                 imagepng($image, $novoarq.'.png');
                 imagedestroy($image);
                 $gimagem2 = $novoarq.'.png';
-/*
-        //Contraste 40
-                $image = imagecreatefromjpeg($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_CONTRAST, -40);
-                imagepng($image, $novoarq.'.png-40.png');
-                imagedestroy($image);
-
-        //Preto e Branco
-                $image = imagecreatefromjpeg($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_GRAYSCALE);
-                imagepng($image, $novoarq.'.png-pb.png');
-                imagedestroy($image);
-
-        //Sepia
-                $image = imagecreatefromjpeg($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_COLORIZE, 100, 50, 0);
-                imagepng($image, $novoarq.'.png-sp.png');
-                imagedestroy($image);
-
-        //Vermelho
-                $image = imagecreatefromjpeg($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_COLORIZE, 100, 0, 0);
-                imagepng($image, $novoarq.'.png-red.png');
-                imagedestroy($image);
-
-        //Verde
-                $image = imagecreatefromjpeg($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_COLORIZE, 0, 100, 0);
-                imagepng($image, $novoarq.'.png-verde.png');
-                imagedestroy($image);
-
-        //Azul
-                $image = imagecreatefromjpeg($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_COLORIZE, 0, 0, 100);
-                imagepng($image, $novoarq.'.png-azul.png');
-                imagedestroy($image);
-
-        //Amarelo
-                $image = imagecreatefromjpeg($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_COLORIZE, 100, 100, -100);
-                imagepng($image, $novoarq.'.png-amarelo.png');
-                imagedestroy($image);
-
-        //Roxo
-                $image = imagecreatefromjpeg($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_COLORIZE, 50, -50, 50);
-                imagepng($image, $novoarq.'.png-roxo.png');
-                imagedestroy($image);
-*/
-
                 break;
-            case 3:
 
+            case 3:
         //Arquivo normal
                 $image = imagecreatefrompng($novoarq.'.tmp');
                 imagefilter($image, IMG_FILTER_CONTRAST, -0);
                 imagepng($image, $novoarq.'.png');
                 imagedestroy($image);
                 $gimagem2 = $novoarq.'.png';
-/*
-        //Contraste 40
-                $image = imagecreatefrompng($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_CONTRAST, -40);
-                imagepng($image, $novoarq.'.png-40.png');
-                imagedestroy($image);
-
-        //Preto e Branco
-                $image = imagecreatefrompng($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_GRAYSCALE);
-                imagepng($image, $novoarq.'.png-pb.png');
-                imagedestroy($image);
-
-        //Sepia
-                $image = imagecreatefrompng($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_COLORIZE, 100, 50, 0);
-                imagepng($image, $novoarq.'.png-sp.png');
-                imagedestroy($image);
-
-        //Vermelho
-                $image = imagecreatefrompng($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_COLORIZE, 100, 0, 0);
-                imagepng($image, $novoarq.'.png-red.png');
-                imagedestroy($image);
-
-        //Verde
-                $image = imagecreatefrompng($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_COLORIZE, 0, 100, 0);
-                imagepng($image, $novoarq.'.png-verde.png');
-                imagedestroy($image);
-
-        //Azul
-                $image = imagecreatefrompng($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_COLORIZE, 0, 0, 100);
-                imagepng($image, $novoarq.'.png-azul.png');
-                imagedestroy($image);
-
-        //Amarelo
-                $image = imagecreatefrompng($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_COLORIZE, 100, 100, -100);
-                imagepng($image, $novoarq.'.png-amarelo.png');
-                imagedestroy($image);
-
-        //Roxo
-                $image = imagecreatefrompng($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_COLORIZE, 50, -50, 50);
-                imagepng($image, $novoarq.'.png-roxo.png');
-                imagedestroy($image);
-*/
                 break;
 
             case 6:
-
         //Arquivo normal
                 $image = imagecreatefrombmp($novoarq.'.tmp');
                 imagefilter($image, IMG_FILTER_CONTRAST, -0);
                 imagepng($image, $novoarq.'.png');
                 imagedestroy($image);
                 $gimagem2 = $novoarq.'.png';
-/*
-        //Contraste 40
-                $image = imagecreatefrombmp($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_CONTRAST, -40);
-                imagepng($image, $novoarq.'.png-40.png');
-                imagedestroy($image);
-
-        //Preto e Branco
-                $image = imagecreatefrombmp($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_GRAYSCALE);
-                imagepng($image, $novoarq.'.png-pb.png');
-                imagedestroy($image);
-
-        //Sepia
-                $image = imagecreatefrombmp($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_COLORIZE, 100, 50, 0);
-                imagepng($image, $novoarq.'.png-sp.png');
-                imagedestroy($image);
-
-        //Vermelho
-                $image = imagecreatefrombmp($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_COLORIZE, 100, 0, 0);
-                imagepng($image, $novoarq.'.png-red.png');
-                imagedestroy($image);
-
-        //Verde
-                $image = imagecreatefrombmp($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_COLORIZE, 0, 100, 0);
-                imagepng($image, $novoarq.'.png-verde.png');
-                imagedestroy($image);
-
-        //Azul
-                $image = imagecreatefrombmp($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_COLORIZE, 0, 0, 100);
-                imagepng($image, $novoarq.'.png-azul.png');
-                imagedestroy($image);
-
-        //Amarelo
-                $image = imagecreatefrombmp($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_COLORIZE, 100, 100, -100);
-                imagepng($image, $novoarq.'.png-amarelo.png');
-                imagedestroy($image);
-
-        //Roxo
-                $image = imagecreatefrombmp($novoarq.'.tmp');
-                imagefilter($image, IMG_FILTER_COLORIZE, 50, -50, 50);
-                imagepng($image, $novoarq.'.png-roxo.png');
-                imagedestroy($image);
-*/
                 break;
 
         }
-
-
-
- 
 
 $dblink = mysql_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD);
 mysql_select_db(DB_DATABASE,$dblink);
@@ -327,12 +124,7 @@ if (!$result) {
 else {
     ?>
         <img src="https://www.capasparaiphone.com.br/app/<?php echo "$novoarq"; ?>.png">
-        <?php /*
-        <img src="https://www.capasparaiphone.com.br/app/<?php echo "$novoarq"; ?>.png-40.png">
-        <img src="https://www.capasparaiphone.com.br/app/<?php echo "$novoarq"; ?>.png-pb.png">
-        <img src="https://www.capasparaiphone.com.br/app/<?php echo "$novoarq"; ?>.png-sp.png"> */ ?>
-    <?php
-}
 
-?>
+<?php } ?>
+
 

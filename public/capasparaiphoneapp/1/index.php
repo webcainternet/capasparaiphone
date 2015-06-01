@@ -55,12 +55,12 @@ $(window).load(function() {
 //incluindo a classe de conexão com o facebook
 require '../facebook-php-sdk/src/facebook.php';
 
-$App_ID = '576622305778855';
+$App_ID = '417509841755213';
 /*
 * App Secret, você obteve isso na ultima
 * página de geração do seu aplicativo no facebook
 */
-$App_Secret = 'f1beb40d642113d50a911f79fa2866b9';
+$App_Secret = '33fa7913fc9ff06df746819f507ab7c3';
  
 //Instanciando o Objeto da classe do facebook
 $facebook = new Facebook(array(
@@ -79,7 +79,7 @@ if($o_user == 0)
 {
     //Envia para a página de permissão do facebook, nela voce irá dar permissão ao aplicativo
     //acessar dados da sua conta
-    $url = $facebook->getLoginUrl(array('scope' => array('user_about_me','user_hometown','user_photos','friends_photos','read_stream','friends_likes','photo_upload','publish_stream','status_update','video_upload')));
+    $url = $facebook->getLoginUrl(array('scope' => array('user_about_me','user_hometown','user_photos','read_stream')));
     //header("Location:".$url);
     //echo "<script language=javascript>location.href ='".$url."'</script>";
     ?>

@@ -1,13 +1,21 @@
 <?php
+require '../src/Instagram.php';
+use MetzWeb\Instagram\Instagram;
+
+// initialize class
+$instagram = new Instagram(array(
+'apiKey'      => '8de0dedcca0f40618752cb632802949b',
+'apiSecret'   => 'a5b54552673047f793702a066d3e48fb',
+'apiCallback' => 'https://www.capasparaiphone.com.br/instagramcpiapp/instagram/success.php' // must point to success.php
+));
+
+
 session_start();
 if($_GET['id']=='logout')
 {
     unset($_SESSION['userdetails']);
     session_destroy();
 }
-
-require 'instagram.class.php';
-require 'instagram.config.php';
 
 if (!empty($_SESSION['userdetails'])) 
 {
@@ -16,8 +24,6 @@ if (!empty($_SESSION['userdetails']))
 }
 else
 {
-    //header('Location: /instagramcpiapp/instagram/index.php');
-  // Display the login button
   $loginUrl = $instagram->getLoginUrl();
   echo "<a class=\"button\" onclick=\"window.open('$loginUrl','_blank','toolbar=no, scrollbars=no, resizable=yes, top=400, left=500, width=700, height=700');\" href=\"#\">Entrar com Instagram</a>";
 
@@ -61,7 +67,7 @@ if (!empty($_SESSION['userdetails']))
                 </div>
 
 <?php
-}
 
+}
 }
 ?>

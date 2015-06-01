@@ -419,9 +419,9 @@ else {*/
   				<div class="fontc4y2 c4ysteptitle">OBTENHA SUAS FOTOS!</div>
   			</h3>
 
-  			<div class="passall pass3">
+  			<div class="passall pass3" style="overflow: hidden;">
 
-				<div style="float: left; margin-left: 20px; width: 360px; background-image: url('/app/img/setaarraste.png'); background-repeat: no-repeat; background-size: 110; background-position-x: 245;">
+				<div style="float: left; margin-left: 20px; width: 360px; background-image: url('/app/img/setaarraste.png'); background-repeat: no-repeat; background-size: 110px; background-position-x: 245px;">
 					<input onchange="showcomputador()" type="radio" name="modelo" id="ishowcomp" value="" style="display: inline; float: none;position: relative; top: -23px;">
 			          <img style="margin-left: 2px; margin-right: 15px; width: 35px;" src="./img/computador.png" alt="">
 			        
@@ -461,7 +461,7 @@ else {*/
 
 
 					<!-- Local imagens -->
-					<div style="height: 200px; float: left; width: 375px; overflow-x: hidden; margin-top: 10px;">
+					<div style="height: 180px; float: left; width: 385px; overflow-x: hidden; margin-top: 10px;">
 						<div id='preview'>
 						</div>
 					</div>
@@ -507,7 +507,6 @@ else {*/
 			display: none;
 			text-align: right;
 			font-size: 11px;">
-			<a href="#" onclick="VoltarEdicao()" style="color: #303030;">Voltar para a edição da capinha</a>
 			
 			<a href="#"><img border="0" src="img/comprar2.png" onclick="comprar()" style="margin-top: 10px;"></a>
 		</div>
@@ -526,7 +525,7 @@ else {*/
 			text-align: right;
 			font-size: 11px;">
 			
-			<div style="margin: 0px; padding: 0px; float: left;">
+			<div style="margin: 0px; padding: 0px; float: left; display: none;">
 				<a href="/app"><div style="color: #fff;
 display: inline-block;
 padding: 4px 10px;
